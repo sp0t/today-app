@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image, Dimensions } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, Dimensions, ImageSourcePropType } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, withSequence } from 'react-native-reanimated';
 
 const { width, height } = Dimensions.get('window');
 
-const BackgroundData = [
+interface BackgroundItem {
+  topImage: ImageSourcePropType;
+  bottomImage: ImageSourcePropType;
+  text: string;
+}
+
+const BackgroundData: BackgroundItem[] = [
   {
     topImage: require('../assets/images/login_learn_top.png'),
     bottomImage: require('../assets/images/login_learn_bottom.png'),
@@ -28,7 +34,8 @@ const BackgroundData = [
 ];
 
 const LoginScreen = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+
   const opacity = useSharedValue(1);
 
   useEffect(() => {
@@ -40,7 +47,7 @@ const LoginScreen = () => {
       );
 
       // Update case index after fade-out
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % cases.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % BackgroundData.length);
     }, 4000); // Change every 4 seconds
 
     return () => clearInterval(interval); // Cleanup
@@ -50,7 +57,7 @@ const LoginScreen = () => {
     opacity: opacity.value,
   }));
 
-  const currentCase = BackgroundData[currentIndex];
+  const currentCase: BackgroundItem = BackgroundData[currentIndex];
 
   return (
     <View style={styles.container}>

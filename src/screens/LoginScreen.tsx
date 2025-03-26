@@ -7,23 +7,23 @@ const { width, height } = Dimensions.get('window');
 // Define cases for images and text
 const cases = [
   {
-    topImage: require('../assets/svg/Logn_Learn_Top.svg'), // Replace with your image paths
-    bottomImage: require('../assets/svg/Login_Learn_Bottom.svg'),
+    topImage: require('../../assets/svg/Logn_Learn_Top.svg'), // Replace with your image paths
+    bottomImage: require('../../assets/svg/Login_Learn_Bottom.svg'),
     text: 'Welcome to Case 1',
   },
   {
-    topImage: require('../assets/svg/Login_Invest_Top.svg'),
-    bottomImage: require('../assets/svg/Login_Invest_Bottom.svg'),
+    topImage: require('../../assets/svg/Login_Invest_Top.svg'),
+    bottomImage: require('../../assets/svg/Login_Invest_Bottom.svg'),
     text: 'Experience Case 2',
   },
   {
-    topImage: require('../assets/svg/Login_Send_Top.svg'),
-    bottomImage: require('../assets/svg/Login_Send_Bottom.svg'),
+    topImage: require('../../assets/svg/Login_Send_Top.svg'),
+    bottomImage: require('../../assets/svg/Login_Send_Bottom.svg'),
     text: 'Explore Case 3',
   },
   {
-    topImage: require('../assets/svg/Login_Trade_Top.svg'),
-    bottomImage: require('../assets/svg/Login_Trade_Bottom.svg'),
+    topImage: require('../../assets/svg/Login_Trade_Top.svg'),
+    bottomImage: require('../../assets/svg/Login_Trade_Bottom.svg'),
     text: 'Discover Case 4',
   },
 ];

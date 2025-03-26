@@ -4,9 +4,9 @@ import { View, Text, Button } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../routes/index';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+// type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-const MarketScreen: React.FC<Props> = ({ navigation }) => {
+const MarketScreen = () => {
     // const { theme, toggleTheme } = useTheme();
 
     return (

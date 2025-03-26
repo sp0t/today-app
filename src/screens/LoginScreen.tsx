@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image, Dimensions, ImageBackground, ImageSourcePropType } from 'react-native';
+import { View, Text, Button, StyleSheet, ImageBackground, ImageSourcePropType, Dimensions } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, withSequence } from 'react-native-reanimated';
 
 const { width, height } = Dimensions.get('window');
@@ -35,8 +35,8 @@ const BackgroundData: BackgroundItem[] = [
 
 const LoginScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const backgroundOpacity = useSharedValue(1);
   
+  // Corner opacity values
   const learnOpacity = useSharedValue(1);
   const investOpacity = useSharedValue(0.3);
   const sendOpacity = useSharedValue(0.3);
@@ -44,35 +44,26 @@ const LoginScreen = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Smoother fade transition
-      backgroundOpacity.value = withSequence(
-        withTiming(0.3, { duration: 800 }),
-        withTiming(1, { duration: 800 })
-      );
-
+      // Change background images with animation
       const nextIndex = (currentIndex + 1) % BackgroundData.length;
       const nextCase = BackgroundData[nextIndex];
-
-
+      
+      // Smoother fade transition for corner text opacity
       learnOpacity.value = withTiming(nextCase.activeCorner === 'learn' ? 1 : 0.3, { duration: 800 });
       investOpacity.value = withTiming(nextCase.activeCorner === 'invest' ? 1 : 0.3, { duration: 800 });
       sendOpacity.value = withTiming(nextCase.activeCorner === 'send' ? 1 : 0.3, { duration: 800 });
       tradeOpacity.value = withTiming(nextCase.activeCorner === 'trade' ? 1 : 0.3, { duration: 800 });
 
       setCurrentIndex(nextIndex);
-    }, 4000); // Increased interval to 4 seconds for better viewing experience
+    }, 4000); // Increased interval for better viewing experience
     return () => clearInterval(interval);
   }, [currentIndex]);
 
-  const backgroundStyle = useAnimatedStyle(() => ({
-    opacity: backgroundOpacity.value,
-  }));
-
+  // Animated styles for corner text
   const learnStyle = useAnimatedStyle(() => ({ opacity: learnOpacity.value }));
   const investStyle = useAnimatedStyle(() => ({ opacity: investOpacity.value }));
   const sendStyle = useAnimatedStyle(() => ({ opacity: sendOpacity.value }));
   const tradeStyle = useAnimatedStyle(() => ({ opacity: tradeOpacity.value }));
-
 
   return (
     <View style={styles.container}>
@@ -83,7 +74,7 @@ const LoginScreen = () => {
           style={styles.backgroundImage}
           resizeMode="cover"
         >
-          <Animated.View style={[styles.overlay, backgroundStyle]}>
+          <View style={styles.overlay}>
             {/* Corner Texts */}
             <Animated.Text style={[styles.cornerText, styles.leftTop, learnStyle]}>
               Learn
@@ -100,7 +91,7 @@ const LoginScreen = () => {
 
             {/* Center Text */}
             <Text style={styles.centerText}>Today</Text>
-          </Animated.View>
+          </View>
         </ImageBackground>
       </View>
 
@@ -113,10 +104,7 @@ const LoginScreen = () => {
         >
           <View style={styles.contentContainer}>
             <Text style={styles.subtitle}>Don't wait for tomorrow, prosper today</Text>
-            <Button 
-              title="Sign in" 
-              onPress={() => {}}
-            />
+            <Button title="Sign in" onPress={() => {}} />
           </View>
         </ImageBackground>
       </View>
@@ -124,18 +112,17 @@ const LoginScreen = () => {
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   topHalf: {
     flex: 1,
-    backgroundColor: '#fff', // fallback color
+    backgroundColor: '#fff',
   },
   bottomHalf: {
     flex: 1,
-    backgroundColor: '#f5f5f5', // fallback color
+    backgroundColor: '#f5f5f5',
   },
   backgroundImage: {
     flex: 1,
@@ -145,7 +132,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.2)', // Reduced overlay opacity
+    backgroundColor: 'rgba(0,0,0,0.2)',
   },
   title: {
     fontSize: 24,
@@ -162,7 +149,6 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.2)',
     position: 'relative',
   },
   cornerText: {
@@ -196,6 +182,8 @@ const styles = StyleSheet.create({
     fontSize: 72,
     fontWeight: '400',
     fontFamily: 'New York',
+    transform: [{ translateX: -40 }, { translateY: -15 }],
   },
 });
+
 export default LoginScreen;

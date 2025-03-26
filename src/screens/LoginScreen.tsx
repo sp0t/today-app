@@ -12,23 +12,23 @@ interface BackgroundItem {
 
 const BackgroundData: BackgroundItem[] = [
   {
-    topImage: require('../assets/images/login_learn_top.png'),
-    bottomImage: require('../assets/images/login_learn_bottom.png'),
+    topImage: require('../assets/images/Login_Learn_Top.png'),
+    bottomImage: require('../assets/images/Login_Learn_Bottom.png'),
     text: 'Welcome to Case 1',
   },
   {
-    topImage: require('../assets/images/login_invest_top.png'),
-    bottomImage: require('../assets/images/login_invest_bottom.png'),
+    topImage: require('../assets/images/Login_Invest_Top.png'),
+    bottomImage: require('../assets/images/Login_Invest_Bottom.png'),
     text: 'Experience Case 2',
   },
   {
-    topImage: require('../assets/images/login_send_top.png'),
-    bottomImage: require('../assets/images/login_send_bottom.png'),
+    topImage: require('../assets/images/Login_Send_Top.png'),
+    bottomImage: require('../assets/images/Login_Send_Bottom.png'),
     text: 'Explore Case 3',
   },
   {
-    topImage: require('../assets/images/login_trade_top.png'),
-    bottomImage: require('../assets/images/login_trade_bottom.png'),
+    topImage: require('../assets/images/Login_Trade_Top.png'),
+    bottomImage: require('../assets/images/Login_Trade_Bottom.png'),
     text: 'Discover Case 4',
   },
 ];

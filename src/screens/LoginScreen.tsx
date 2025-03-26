@@ -70,12 +70,13 @@ const LoginScreen = () => {
       {/* Top Half */}
       <View style={styles.topHalf}>
         <View style={styles.topHalfContainer}>
-          <ImageBackground
-            source={BackgroundData[currentIndex].topImage}
-            style={styles.backgroundImage}
-            resizeMode="cover"
-          >
-            {/* <View style={styles.overlay}>
+          <View style={styles.imageArea}>
+            <ImageBackground
+              source={BackgroundData[currentIndex].topImage}
+              style={styles.backgroundImage}
+              resizeMode="cover"
+            >
+              {/* <View style={styles.overlay}>
               <Animated.Text style={[styles.cornerText, styles.leftTop, learnStyle]}>
                 Learn
               </Animated.Text>
@@ -91,7 +92,8 @@ const LoginScreen = () => {
 
               <Text style={styles.centerText}>Today</Text>
             </View> */}
-          </ImageBackground>
+            </ImageBackground>
+          </View>
         </View>
       </View>
 
@@ -114,7 +116,9 @@ const styles = StyleSheet.create({
   },
   topHalf: {
     flex: 1,
-    padding: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20, // Optional padding for the top section
   },
   topHalfContainer: {
     flex: 1,
@@ -123,6 +127,16 @@ const styles = StyleSheet.create({
   },
   bottomHalf: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20, // Optional padding for the bottom section
+  },
+
+  imageArea: {
+    width: width * 0.9, // Adjust the width (e.g., 90% of screen width)
+    height: height * 0.4, // Adjust the height (e.g., 40% of screen height)
+    borderRadius: 12, // Optional: Add rounded corners
+    overflow: 'hidden', // Ensure image respects the rounded corners
   },
   backgroundImage: {
     flex: 1,
@@ -138,22 +152,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     lineHeight: 22,
-  },
-  leftTop: {
-    top: 25,
-    left: 15,
-  },
-  rightTop: {
-    top: 25,
-    right: 15,
-  },
-  rightBottom: {
-    bottom: 25,
-    right: 15,
-  },
-  leftBottom: {
-    bottom: 25,
-    left: 15,
   },
   centerText: {
     color: '#000000',

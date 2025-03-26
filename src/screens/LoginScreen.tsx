@@ -2,39 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image, Dimensions } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, withSequence } from 'react-native-reanimated';
 
-
-// Import your SVGs
-import LearnTop from '../assets/svg/Login_Learn_Top.svg';
-import LearnBottom from '../assets/svg/Login_Learn_Bottom.svg';
-import InvestTop from '../assets/svg/Login_Invest_Top.svg';
-import InvestBottom from '../assets/svg/Login_Invest_Bottom.svg';
-import SendTop from '../assets/svg/Login_Send_Top.svg';
-import SendBottom from '../../assets/svg/Login_Send_Bottom.svg';
-import TradeTop from '../../assets/svg/Login_Trade_Top.svg';
-import TradeBottom from '../../assets/svg/Login_Trade_Bottom.svg';
-
 const { width, height } = Dimensions.get('window');
 
-// Define cases for images and text
-const cases = [
+const BackgroundData = [
   {
-    topImage: LearnTop,
-    bottomImage: LearnBottom,
+    topImage: require('../assets/images/login_learn_top.png'),
+    bottomImage: require('../assets/images/login_learn_bottom.png'),
     text: 'Welcome to Case 1',
   },
   {
-    topImage: InvestTop,
-    bottomImage: InvestBottom,
+    topImage: require('../assets/images/login_invest_top.png'),
+    bottomImage: require('../assets/images/login_invest_bottom.png'),
     text: 'Experience Case 2',
   },
   {
-    topImage: SendTop,
-    bottomImage: SendBottom,
+    topImage: require('../assets/images/login_send_top.png'),
+    bottomImage: require('../assets/images/login_send_bottom.png'),
     text: 'Explore Case 3',
   },
   {
-    topImage: TradeTop,
-    bottomImage: TradeBottom,
+    topImage: require('../assets/images/login_trade_top.png'),
+    bottomImage: require('../assets/images/login_trade_bottom.png'),
     text: 'Discover Case 4',
   },
 ];
@@ -62,7 +50,7 @@ const LoginScreen = () => {
     opacity: opacity.value,
   }));
 
-  const currentCase = cases[currentIndex];
+  const currentCase = BackgroundData[currentIndex];
 
   return (
     <View style={styles.container}>
@@ -90,7 +78,7 @@ const LoginScreen = () => {
           placeholderTextColor="#ccc"
           secureTextEntry
         />
-        <Button title="Login"/>
+        <Button title="Login" />
       </View>
     </View>
   );

@@ -16,7 +16,7 @@ export default function RootNavigation() {
 
     return (
         <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
-            <Stack.Navigator
+            <Stack.Navigator initialRouteName={Routes.MARKET}
             >
                 <Stack.Screen name={Routes.MARKET} component={MarketScreen} />
             </Stack.Navigator>

@@ -138,17 +138,14 @@ const styles = StyleSheet.create({
 
   halfContainer: {
     flex: 1,
-    width: '100%',
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
+    alignItems: 'center'
   },
 
   imageArea: {
-    width: width * 0.9, // Adjust the width (e.g., 90% of screen width)
-    height: height * 0.5, // Adjust the height (e.g., 40% of screen height)
-    borderRadius: 12, // Optional: Add rounded corners
-    overflow: 'hidden', // Ensure image respects the rounded corners
+    width: width * 0.9, 
+    height: height * 0.5, 
+    overflow: 'hidden',
   },
   backgroundImage: {
     flex: 1,

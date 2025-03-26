@@ -11,10 +11,13 @@ const MarketScreen: React.FC<Props> = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ fontSize: 20 }}>Home Screen</Text>
-            <Text>Current Theme:</Text>
-            <Button title="Toggle Theme"/>
-            <Button title="Go to Settings"/>
+            <Text style={{ fontSize: 20, color: theme === 'dark' ? '#fff' : '#000' }}>
+                Home Screen
+            </Text>
+            <Text style={{ color: theme === 'dark' ? '#fff' : '#000' }}>
+                Current Theme: {theme}
+            </Text>
+            <Button title="Toggle Theme" onPress={toggleTheme} />
         </View>
     );
 };

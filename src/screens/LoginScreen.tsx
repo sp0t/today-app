@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   },
   topHalf: {
     flex: 1,
-    padding: 16,
+    padding: 30,
   },
   topHalfContainer: {
     flex: 1,
@@ -126,8 +126,7 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    padding: 16, 
-    borderRadius: 12, 
+    width: '100%',
   },
   overlay: {
     flex: 1,

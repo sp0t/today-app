@@ -4,9 +4,9 @@ import AppNavigator from './src/routes/index';
 
 const App:FC = () => {
   return (
-    <ThemeProvider>
+    // <ThemeProvider>
       <AppNavigator />
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 };
 

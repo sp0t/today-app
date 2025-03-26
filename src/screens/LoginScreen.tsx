@@ -99,12 +99,16 @@ const LoginScreen = () => {
 
       {/* Bottom Half */}
       <View style={styles.bottomHalf}>
-        <ImageBackground
-          source={BackgroundData[currentIndex].bottomImage}
-          style={styles.backgroundImage}
-          resizeMode="contain"
-        >
-        </ImageBackground>
+        <View style={styles.halfContainer}>
+          <View style={styles.imageArea}>
+            <ImageBackground
+              source={BackgroundData[currentIndex].bottomImage}
+              style={styles.backgroundImage}
+              resizeMode="contain"
+            >
+            </ImageBackground>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -132,9 +136,17 @@ const styles = StyleSheet.create({
     padding: 20, // Optional padding for the bottom section
   },
 
+  halfContainer: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+
   imageArea: {
     width: width * 0.9, // Adjust the width (e.g., 90% of screen width)
-    height: height * 0.9, // Adjust the height (e.g., 40% of screen height)
+    height: height * 0.5, // Adjust the height (e.g., 40% of screen height)
     borderRadius: 12, // Optional: Add rounded corners
     overflow: 'hidden', // Ensure image respects the rounded corners
   },

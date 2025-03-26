@@ -7,70 +7,99 @@ const { width, height } = Dimensions.get('window');
 interface BackgroundItem {
   topImage: ImageSourcePropType;
   bottomImage: ImageSourcePropType;
-  text: string;
+  activeCorner: 'learn' | 'invest' | 'send' | 'trade';
 }
 
 const BackgroundData: BackgroundItem[] = [
   {
     topImage: require('../assets/images/Login_Learn_Top.png'),
     bottomImage: require('../assets/images/Login_Learn_Bottom.png'),
-    text: 'Welcome to Case 1',
+    activeCorner: 'learn',
   },
   {
     topImage: require('../assets/images/Login_Invest_Top.png'),
     bottomImage: require('../assets/images/Login_Invest_Bottom.png'),
-    text: 'Experience Case 2',
+    activeCorner: 'invest',
   },
   {
     topImage: require('../assets/images/Login_Send_Top.png'),
     bottomImage: require('../assets/images/Login_Send_Bottom.png'),
-    text: 'Explore Case 3',
+    activeCorner: 'send',
   },
   {
     topImage: require('../assets/images/Login_Trade_Top.png'),
     bottomImage: require('../assets/images/Login_Trade_Bottom.png'),
-    text: 'Discover Case 4',
+    activeCorner: 'trade',
   },
 ];
 
 const LoginScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const opacity = useSharedValue(1);
+  const backgroundOpacity = useSharedValue(1);
+  
+  const learnOpacity = useSharedValue(1);
+  const investOpacity = useSharedValue(0.3);
+  const sendOpacity = useSharedValue(0.3);
+  const tradeOpacity = useSharedValue(0.3);
 
   useEffect(() => {
     const interval = setInterval(() => {
       // Smoother fade transition
-      opacity.value = withSequence(
-        withTiming(0.3, { duration: 800 }), // Fade to 0.3 instead of 0
-        withTiming(1, { duration: 800 }) // Fade back to 1
+      backgroundOpacity.value = withSequence(
+        withTiming(0.3, { duration: 800 }),
+        withTiming(1, { duration: 800 })
       );
 
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % BackgroundData.length);
+      const nextIndex = (currentIndex + 1) % BackgroundData.length;
+      const nextCase = BackgroundData[nextIndex];
+
+
+      learnOpacity.value = withTiming(nextCase.activeCorner === 'learn' ? 1 : 0.3, { duration: 800 });
+      investOpacity.value = withTiming(nextCase.activeCorner === 'invest' ? 1 : 0.3, { duration: 800 });
+      sendOpacity.value = withTiming(nextCase.activeCorner === 'send' ? 1 : 0.3, { duration: 800 });
+      tradeOpacity.value = withTiming(nextCase.activeCorner === 'trade' ? 1 : 0.3, { duration: 800 });
+
+      setCurrentIndex(nextIndex);
     }, 4000); // Increased interval to 4 seconds for better viewing experience
     return () => clearInterval(interval);
-  }, [opacity]);
+  }, [currentIndex]);
 
-  const animatedStyle = useAnimatedStyle(() => ({
-    opacity: opacity.value,
+  const backgroundStyle = useAnimatedStyle(() => ({
+    opacity: backgroundOpacity.value,
   }));
 
-  const currentCase: BackgroundItem = BackgroundData[currentIndex];
+  const learnStyle = useAnimatedStyle(() => ({ opacity: learnOpacity.value }));
+  const investStyle = useAnimatedStyle(() => ({ opacity: investOpacity.value }));
+  const sendStyle = useAnimatedStyle(() => ({ opacity: sendOpacity.value }));
+  const tradeStyle = useAnimatedStyle(() => ({ opacity: tradeOpacity.value }));
+
 
   return (
     <View style={styles.container}>
       {/* Top Half */}
       <View style={styles.topHalf}>
         <ImageBackground 
-          source={currentCase.topImage} 
+          source={BackgroundData[currentIndex].topImage} 
           style={styles.backgroundImage}
           resizeMode="cover"
         >
-          <Animated.View style={[styles.contentContainer, animatedStyle]}>
-            <Text style={styles.title}>{currentCase.text}</Text>
-            <Button 
-              title="Create an account" 
-              onPress={() => {}}
-            />
+          <Animated.View style={[styles.overlay, backgroundStyle]}>
+            {/* Corner Texts */}
+            <Animated.Text style={[styles.cornerText, styles.leftTop, learnStyle]}>
+              Learn
+            </Animated.Text>
+            <Animated.Text style={[styles.cornerText, styles.rightTop, investStyle]}>
+              Invest
+            </Animated.Text>
+            <Animated.Text style={[styles.cornerText, styles.rightBottom, sendStyle]}>
+              Send
+            </Animated.Text>
+            <Animated.Text style={[styles.cornerText, styles.leftBottom, tradeStyle]}>
+              Trade
+            </Animated.Text>
+
+            {/* Center Text */}
+            <Text style={styles.centerText}>Today</Text>
           </Animated.View>
         </ImageBackground>
       </View>
@@ -78,7 +107,7 @@ const LoginScreen = () => {
       {/* Bottom Half */}
       <View style={styles.bottomHalf}>
         <ImageBackground 
-          source={currentCase.bottomImage} 
+          source={BackgroundData[currentIndex].bottomImage} 
           style={styles.backgroundImage}
           resizeMode="cover"
         >
@@ -130,6 +159,42 @@ const styles = StyleSheet.create({
     color: '#fff',
     marginBottom: 20,
     textAlign: 'center',
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    position: 'relative',
+  },
+  cornerText: {
+    position: 'absolute',
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  leftTop: {
+    top: '25%',
+    left: '15%',
+  },
+  rightTop: {
+    top: '25%',
+    right: '15%',
+  },
+  rightBottom: {
+    bottom: '25%',
+    right: '15%',
+  },
+  leftBottom: {
+    bottom: '25%',
+    left: '15%',
+  },
+  centerText: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -40 }, { translateY: -15 }],
+    color: '#fff',
+    fontSize: 32,
+    fontWeight: 'bold',
   },
 });
 export default LoginScreen;

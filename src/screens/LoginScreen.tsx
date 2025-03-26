@@ -115,14 +115,10 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center', // Ensures vertical alignment
+    alignItems: 'center',     // Ensures horizontal alignment
   },
   topHalf: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20, // Optional padding for the top section
-  },
-  topHalfContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -132,11 +128,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   imageArea: {
-    width: width * 0.9,
-    height: height * 0.5,
+    width: width * 0.9, // 90% of screen width
+    height: height * 0.4, // 40% of screen height
     overflow: 'hidden',
+    borderWidth: 1, // Optional: Add border for clarity
+    borderColor: '#ccc',
   },
   backgroundImage: {
     flex: 1,

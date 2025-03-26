@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    width: '100%',
     padding: 16, 
     borderRadius: 12, 
     overflow: 'hidden',

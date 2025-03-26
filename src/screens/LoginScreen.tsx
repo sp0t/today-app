@@ -5,10 +5,10 @@ import Animated, { useSharedValue, useAnimatedStyle, withTiming, withSequence } 
 
 // Import your SVGs
 import LearnTop from '../assets/svg/Login_Learn_Top.svg';
-import LearnBottom from '../../assets/svg/Login_Learn_Bottom.svg';
-import InvestTop from '../../assets/svg/Login_Invest_Top.svg';
-import InvestBottom from '../../assets/svg/Login_Invest_Bottom.svg';
-import SendTop from '../../assets/svg/Login_Send_Top.svg';
+import LearnBottom from '../assets/svg/Login_Learn_Bottom.svg';
+import InvestTop from '../assets/svg/Login_Invest_Top.svg';
+import InvestBottom from '../assets/svg/Login_Invest_Bottom.svg';
+import SendTop from '../assets/svg/Login_Send_Top.svg';
 import SendBottom from '../../assets/svg/Login_Send_Bottom.svg';
 import TradeTop from '../../assets/svg/Login_Trade_Top.svg';
 import TradeBottom from '../../assets/svg/Login_Trade_Bottom.svg';

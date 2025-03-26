@@ -6,14 +6,8 @@ import AppNavigator from './src/routes/index';
 const App: FC = () => {
   return (
     // <ThemeProvider>
-    // <AppNavigator />
+    <AppNavigator />
     // </ThemeProvider>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 20 }}>Home Screen</Text>
-      <Text>Current Theme:</Text>
-      <Button title="Toggle Theme" />
-      <Button title="Go to Settings" />
-    </View>
   );
 };
 

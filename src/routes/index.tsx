@@ -1,23 +1,25 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useTheme } from '../theme/ThemeContext';
+import Routes from './RouteName';
+import MarketScreen from '../screens/MarketScreen';
 
-import HomeScreen from '../screens/HomeScreen'; // Ensure this path is correct
+// screens
 
-export type RootStackParamList = {
-  Home: undefined;
-};
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator();
 
-const AppNavigator = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
+export default function RootNavigation() {
+    const { theme, toggleTheme } = useTheme();
 
-export default AppNavigator;
+
+    return (
+        <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
+            <Stack.Navigator
+            >
+                <Stack.Screen name={Routes.MARKET} component={MarketScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+}

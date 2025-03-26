@@ -66,17 +66,16 @@ const LoginScreen = () => {
   const tradeStyle = useAnimatedStyle(() => ({ opacity: tradeOpacity.value }));
 
   return (
-    <View style={styles.container}>
+    <View>
       {/* Top Half */}
       <View style={styles.topHalf}>
         <View style={styles.topHalfContainer}>
-          <View style={styles.imageArea}>
-            <ImageBackground
-              source={BackgroundData[currentIndex].topImage}
-              style={styles.backgroundImage}
-              resizeMode="contain"
-            >
-              {/* <View style={styles.overlay}>
+          <ImageBackground
+            source={BackgroundData[currentIndex].topImage}
+            style={styles.backgroundImage}
+            resizeMode="contain"
+          >
+            {/* <View style={styles.overlay}>
               <Animated.Text style={[styles.cornerText, styles.leftTop, learnStyle]}>
                 Learn
               </Animated.Text>
@@ -92,8 +91,7 @@ const LoginScreen = () => {
 
               <Text style={styles.centerText}>Today</Text>
             </View> */}
-            </ImageBackground>
-          </View>
+          </ImageBackground>
         </View>
       </View>
 
@@ -102,7 +100,7 @@ const LoginScreen = () => {
         <ImageBackground
           source={BackgroundData[currentIndex].bottomImage}
           style={styles.backgroundImage}
-          resizeMode="cover"
+          resizeMode="contain"
         >
         </ImageBackground>
       </View>
@@ -111,14 +109,12 @@ const LoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   topHalf: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20, // Optional padding for the top section
+    paddingTop: 28,
+    paddingBottom: 20, // Optional padding for the top section
   },
   topHalfContainer: {
     flex: 1,
@@ -132,12 +128,7 @@ const styles = StyleSheet.create({
     padding: 20, // Optional padding for the bottom section
   },
 
-  imageArea: {
-    width: width * 0.9, // Adjust the width (e.g., 90% of screen width)
-    height: height * 0.4, // Adjust the height (e.g., 40% of screen height)
-    borderRadius: 12, // Optional: Add rounded corners
-    overflow: 'hidden', // Ensure image respects the rounded corners
-  },
+
   backgroundImage: {
     flex: 1,
     width: '100%',

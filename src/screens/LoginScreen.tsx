@@ -134,13 +134,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
-  halfContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
+  
   imageArea: {
     width: width * 0.9, 
     height: height * 0.5, 

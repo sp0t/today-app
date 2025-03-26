@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet, Image, Dimensions, ImageSourcePropType, ImageBackground } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, Dimensions, ImageBackground, ImageSourcePropType } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, withSequence } from 'react-native-reanimated';
 
 const { width, height } = Dimensions.get('window');
@@ -16,11 +16,26 @@ const BackgroundData: BackgroundItem[] = [
     bottomImage: require('../assets/images/Login_Learn_Bottom.png'),
     text: 'Welcome to Case 1',
   },
-  // ... rest of your background data
+  {
+    topImage: require('../assets/images/Login_Invest_Top.png'),
+    bottomImage: require('../assets/images/Login_Invest_Bottom.png'),
+    text: 'Experience Case 2',
+  },
+  {
+    topImage: require('../assets/images/Login_Send_Top.png'),
+    bottomImage: require('../assets/images/Login_Send_Bottom.png'),
+    text: 'Explore Case 3',
+  },
+  {
+    topImage: require('../assets/images/Login_Trade_Top.png'),
+    bottomImage: require('../assets/images/Login_Trade_Bottom.png'),
+    text: 'Discover Case 4',
+  },
 ];
 
 const LoginScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+
   const opacity = useSharedValue(1);
 
   useEffect(() => {
@@ -29,9 +44,10 @@ const LoginScreen = () => {
         withTiming(0, { duration: 500 }), 
         withTiming(1, { duration: 500 }) 
       );
+
       setCurrentIndex((prevIndex) => (prevIndex + 1) % BackgroundData.length);
-    }, 2000);
-    return () => clearInterval(interval);
+    }, 2000); 
+    return () => clearInterval(interval); 
   }, [opacity]);
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -115,5 +131,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
 export default LoginScreen;

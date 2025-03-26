@@ -66,7 +66,7 @@ const LoginScreen = () => {
   const tradeStyle = useAnimatedStyle(() => ({ opacity: tradeOpacity.value }));
 
   return (
-    <View>
+    <View style={styles.container}>
       {/* Top Half */}
       <View style={styles.topHalf}>
         <View style={styles.topHalfContainer}>
@@ -109,12 +109,14 @@ const LoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   topHalf: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 28,
-    paddingBottom: 20, // Optional padding for the top section
+    padding: 20, // Optional padding for the top section
   },
   topHalfContainer: {
     flex: 1,

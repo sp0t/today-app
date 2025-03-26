@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
 
   imageArea: {
     width: width * 0.9, // Adjust the width (e.g., 90% of screen width)
-    height: height * 0.4, // Adjust the height (e.g., 40% of screen height)
+    height: height * 0.9, // Adjust the height (e.g., 40% of screen height)
     borderRadius: 12, // Optional: Add rounded corners
     overflow: 'hidden', // Ensure image respects the rounded corners
   },

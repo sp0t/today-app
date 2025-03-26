@@ -35,7 +35,7 @@ const BackgroundData: BackgroundItem[] = [
 
 const LoginScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  
+
   // Corner opacity values
   const learnOpacity = useSharedValue(1);
   const investOpacity = useSharedValue(0.3);
@@ -47,7 +47,7 @@ const LoginScreen = () => {
       // Change background images with animation
       const nextIndex = (currentIndex + 1) % BackgroundData.length;
       const nextCase = BackgroundData[nextIndex];
-      
+
       // Smoother fade transition for corner text opacity
       learnOpacity.value = withTiming(nextCase.activeCorner === 'learn' ? 1 : 0.3, { duration: 800 });
       investOpacity.value = withTiming(nextCase.activeCorner === 'invest' ? 1 : 0.3, { duration: 800 });
@@ -69,14 +69,15 @@ const LoginScreen = () => {
     <View style={styles.container}>
       {/* Top Half */}
       <View style={styles.topHalf}>
-        <ImageBackground 
-          source={BackgroundData[currentIndex].topImage} 
-          style={styles.backgroundImage}
-          resizeMode="cover"
-        >
-          <View style={styles.overlay}>
-            {/* Corner Texts */}
-            <Animated.Text style={[styles.cornerText, styles.leftTop, learnStyle]}>
+        <View style={styles.topHalfContainer}>
+          <ImageBackground
+            source={BackgroundData[currentIndex].topImage}
+            style={styles.backgroundImage}
+            resizeMode="cover"
+          >
+            <View style={styles.overlay}>
+              {/* Corner Texts */}
+              {/* <Animated.Text style={[styles.cornerText, styles.leftTop, learnStyle]}>
               Learn
             </Animated.Text>
             <Animated.Text style={[styles.cornerText, styles.rightTop, investStyle]}>
@@ -87,24 +88,25 @@ const LoginScreen = () => {
             </Animated.Text>
             <Animated.Text style={[styles.cornerText, styles.leftBottom, tradeStyle]}>
               Trade
-            </Animated.Text>
+            </Animated.Text> */}
 
-            {/* Center Text */}
-            <Text style={styles.centerText}>Today</Text>
-          </View>
-        </ImageBackground>
+              {/* Center Text */}
+              <Text style={styles.centerText}>Today</Text>
+            </View>
+          </ImageBackground>
+        </View>
       </View>
 
       {/* Bottom Half */}
       <View style={styles.bottomHalf}>
-        <ImageBackground 
-          source={BackgroundData[currentIndex].bottomImage} 
+        <ImageBackground
+          source={BackgroundData[currentIndex].bottomImage}
           style={styles.backgroundImage}
           resizeMode="cover"
         >
           <View style={styles.contentContainer}>
             <Text style={styles.subtitle}>Don't wait for tomorrow, prosper today</Text>
-            <Button title="Sign in" onPress={() => {}} />
+            <Button title="Sign in" onPress={() => { }} />
           </View>
         </ImageBackground>
       </View>
@@ -119,6 +121,11 @@ const styles = StyleSheet.create({
   topHalf: {
     flex: 1,
     padding: 24,
+  },
+  topHalfContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   bottomHalf: {
     flex: 1,

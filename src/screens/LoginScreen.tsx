@@ -157,25 +157,22 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   leftTop: {
-    top: '25%',
-    left: '15%',
+    top: 25,
+    left: 15,
   },
   rightTop: {
-    top: '25%',
-    right: '15%',
+    top: 25,
+    right: 15,
   },
   rightBottom: {
-    bottom: '25%',
-    right: '15%',
+    bottom: 25,
+    right: 15,
   },
   leftBottom: {
-    bottom: '25%',
-    left: '15%',
+    bottom: 25,
+    left: 15,
   },
   centerText: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
     color: '#000000',
     fontSize: 72,
     fontWeight: '400',

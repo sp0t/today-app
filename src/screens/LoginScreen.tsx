@@ -55,7 +55,7 @@ const LoginScreen = () => {
       tradeOpacity.value = withTiming(nextCase.activeCorner === 'trade' ? 1 : 0.3, { duration: 800 });
 
       setCurrentIndex(nextIndex);
-    }, 4000); // Increased interval for better viewing experience
+    }, 2000); // Increased interval for better viewing experience
     return () => clearInterval(interval);
   }, [currentIndex]);
 
@@ -75,24 +75,22 @@ const LoginScreen = () => {
             style={styles.backgroundImage}
             resizeMode="cover"
           >
-            <View style={styles.overlay}>
-              {/* Corner Texts */}
-              {/* <Animated.Text style={[styles.cornerText, styles.leftTop, learnStyle]}>
-              Learn
-            </Animated.Text>
-            <Animated.Text style={[styles.cornerText, styles.rightTop, investStyle]}>
-              Invest
-            </Animated.Text>
-            <Animated.Text style={[styles.cornerText, styles.rightBottom, sendStyle]}>
-              Send
-            </Animated.Text>
-            <Animated.Text style={[styles.cornerText, styles.leftBottom, tradeStyle]}>
-              Trade
-            </Animated.Text> */}
+            {/* <View style={styles.overlay}>
+              <Animated.Text style={[styles.cornerText, styles.leftTop, learnStyle]}>
+                Learn
+              </Animated.Text>
+              <Animated.Text style={[styles.cornerText, styles.rightTop, investStyle]}>
+                Invest
+              </Animated.Text>
+              <Animated.Text style={[styles.cornerText, styles.rightBottom, sendStyle]}>
+                Send
+              </Animated.Text>
+              <Animated.Text style={[styles.cornerText, styles.leftBottom, tradeStyle]}>
+                Trade
+              </Animated.Text>
 
-              {/* Center Text */}
               <Text style={styles.centerText}>Today</Text>
-            </View>
+            </View> */}
           </ImageBackground>
         </View>
       </View>
@@ -104,10 +102,10 @@ const LoginScreen = () => {
           style={styles.backgroundImage}
           resizeMode="cover"
         >
-          <View style={styles.contentContainer}>
+          {/* <View style={styles.contentContainer}>
             <Text style={styles.subtitle}>Don't wait for tomorrow, prosper today</Text>
             <Button title="Sign in" onPress={() => { }} />
-          </View>
+          </View> */}
         </ImageBackground>
       </View>
     </View>

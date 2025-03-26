@@ -102,10 +102,6 @@ const LoginScreen = () => {
           style={styles.backgroundImage}
           resizeMode="cover"
         >
-          {/* <View style={styles.contentContainer}>
-            <Text style={styles.subtitle}>Don't wait for tomorrow, prosper today</Text>
-            <Button title="Sign in" onPress={() => { }} />
-          </View> */}
         </ImageBackground>
       </View>
     </View>
@@ -118,7 +114,7 @@ const styles = StyleSheet.create({
   },
   topHalf: {
     flex: 1,
-    padding: 24,
+    padding: 16,
   },
   topHalfContainer: {
     flex: 1,
@@ -131,24 +127,6 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     width: '100%',
-  },
-  contentContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  subtitle: {
-    fontSize: 18,
-    color: '#fff',
-    marginBottom: 20,
-    textAlign: 'center',
   },
   overlay: {
     flex: 1,

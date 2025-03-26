@@ -1,12 +1,8 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 // import { useTheme } from '../theme/ThemeContext';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../routes/index';
 
-// type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
-
-const MarketScreen = () => {
+const HomeScreen = () => {
     // const { theme, toggleTheme } = useTheme();
 
     return (
@@ -19,4 +15,4 @@ const MarketScreen = () => {
     );
 };
 
-export default MarketScreen;
+export default HomeScreen;

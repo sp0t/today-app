@@ -2,28 +2,39 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image, Dimensions } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, withSequence } from 'react-native-reanimated';
 
+
+// Import your SVGs
+import LearnTop from '../assets/svg/Login_Learn_Top.svg';
+import LearnBottom from '../../assets/svg/Login_Learn_Bottom.svg';
+import InvestTop from '../../assets/svg/Login_Invest_Top.svg';
+import InvestBottom from '../../assets/svg/Login_Invest_Bottom.svg';
+import SendTop from '../../assets/svg/Login_Send_Top.svg';
+import SendBottom from '../../assets/svg/Login_Send_Bottom.svg';
+import TradeTop from '../../assets/svg/Login_Trade_Top.svg';
+import TradeBottom from '../../assets/svg/Login_Trade_Bottom.svg';
+
 const { width, height } = Dimensions.get('window');
 
 // Define cases for images and text
 const cases = [
   {
-    topImage: require('../assets/svg/Login_Learn_Top.svg'), // Replace with your image paths
-    bottomImage: require('../assets/svg/Login_Learn_Bottom.svg'),
+    topImage: LearnTop,
+    bottomImage: LearnBottom,
     text: 'Welcome to Case 1',
   },
   {
-    topImage: require('../assets/svg/Login_Invest_Top.svg'),
-    bottomImage: require('../assets/svg/Login_Invest_Bottom.svg'),
+    topImage: InvestTop,
+    bottomImage: InvestBottom,
     text: 'Experience Case 2',
   },
   {
-    topImage: require('../assets/svg/Login_Send_Top.svg'),
-    bottomImage: require('../assets/svg/Login_Send_Bottom.svg'),
+    topImage: SendTop,
+    bottomImage: SendBottom,
     text: 'Explore Case 3',
   },
   {
-    topImage: require('../assets/svg/Login_Trade_Top.svg'),
-    bottomImage: require('../assets/svg/Login_Trade_Bottom.svg'),
+    topImage: TradeTop,
+    bottomImage: TradeBottom,
     text: 'Discover Case 4',
   },
 ];

@@ -11,33 +11,33 @@ type Slide = {
     key: string;
     title: string;
     text: string;
-    image: any; 
+    // image: any; 
 };
 
 const slides: Slide[] = [
     {
         key: '1',
         title: 'Welcome to App',
-        text: 'Discover amazing features and more',
-        image: require('../assets/onboarding1.png'), // Add your image paths
+        text: 'Discover amazing features and more'
+        // image: require('../assets/onboarding1.png'), 
     },
     {
         key: '2',
         title: 'Easy to Use',
-        text: 'Simple and intuitive interface',
-        image: require('../assets/onboarding2.png'),
+        text: 'Simple and intuitive interface'
+        // image: require('../assets/onboarding2.png'),
     },
     {
         key: '3',
         title: 'Powerful Features',
-        text: 'Access all the tools you need',
-        image: require('../assets/onboarding3.png'),
+        text: 'Access all the tools you need'
+        // image: require('../assets/onboarding3.png'),
     },
     {
         key: '4',
         title: "Let's Get Started",
-        text: 'Join us now and start your journey',
-        image: require('../assets/onboarding4.png'),
+        text: 'Join us now and start your journey'
+        // image: require('../assets/onboarding4.png'),
     },
 ];
 
@@ -50,11 +50,11 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                 styles.slide,
                 { backgroundColor: theme === 'dark' ? '#333' : '#fff' }
             ]}>
-                <Image 
+                {/* <Image 
                     source={item.image} 
                     style={styles.image}
                     resizeMode="contain"
-                />
+                /> */}
                 <Text style={[
                     styles.title,
                     { color: theme === 'dark' ? '#fff' : '#000' }

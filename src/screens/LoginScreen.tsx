@@ -35,19 +35,19 @@ const BackgroundData: BackgroundItem[] = [
 
 const LoginScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-
   const opacity = useSharedValue(1);
 
   useEffect(() => {
     const interval = setInterval(() => {
+      // Smoother fade transition
       opacity.value = withSequence(
-        withTiming(0, { duration: 500 }), 
-        withTiming(1, { duration: 500 }) 
+        withTiming(0.3, { duration: 800 }), // Fade to 0.3 instead of 0
+        withTiming(1, { duration: 800 }) // Fade back to 1
       );
 
       setCurrentIndex((prevIndex) => (prevIndex + 1) % BackgroundData.length);
-    }, 2000); 
-    return () => clearInterval(interval); 
+    }, 4000); // Increased interval to 4 seconds for better viewing experience
+    return () => clearInterval(interval);
   }, [opacity]);
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -82,18 +82,19 @@ const LoginScreen = () => {
           style={styles.backgroundImage}
           resizeMode="cover"
         >
-          <Animated.View style={[styles.contentContainer, animatedStyle]}>
-            <Text style={styles.subtitle}>Already have an account?</Text>
+          <View style={styles.contentContainer}>
+            <Text style={styles.subtitle}>Don't wait for tomorrow, prosper today</Text>
             <Button 
               title="Sign in" 
               onPress={() => {}}
             />
-          </Animated.View>
+          </View>
         </ImageBackground>
       </View>
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.3)', // optional: adds a dark overlay
+    backgroundColor: 'rgba(0,0,0,0.2)', // Reduced overlay opacity
   },
   title: {
     fontSize: 24,

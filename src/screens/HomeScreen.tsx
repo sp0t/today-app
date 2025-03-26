@@ -1,9 +1,13 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
-// import { useTheme } from '../theme/ThemeContext';
+import { useTheme } from '../theme/ThemeContext';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../routes/index';
 
-const HomeScreen = () => {
-    // const { theme, toggleTheme } = useTheme();
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+
+const MarketScreen: React.FC<Props> = ({ navigation }) => {
+    const { theme, toggleTheme } = useTheme();
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -15,4 +19,4 @@ const HomeScreen = () => {
     );
 };
 
-export default HomeScreen;
+export default MarketScreen;

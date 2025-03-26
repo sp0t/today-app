@@ -167,9 +167,10 @@ const styles = StyleSheet.create({
   },
   cornerText: {
     position: 'absolute',
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: '#000000',
+    fontSize: 16,
+    fontWeight: '500',
+    lineHeight: 22,
   },
   leftTop: {
     top: '25%',
@@ -192,9 +193,10 @@ const styles = StyleSheet.create({
     top: '50%',
     left: '50%',
     transform: [{ translateX: -40 }, { translateY: -15 }],
-    color: '#fff',
-    fontSize: 32,
-    fontWeight: 'bold',
+    color: '#000000',
+    fontSize: 72,
+    fontWeight: '400',
+    fontFamily: 'New York',
   },
 });
 export default LoginScreen;

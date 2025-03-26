@@ -118,11 +118,10 @@ const styles = StyleSheet.create({
   },
   topHalf: {
     flex: 1,
-    backgroundColor: '#fff',
+    padding: 24,
   },
   bottomHalf: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
   },
   backgroundImage: {
     flex: 1,

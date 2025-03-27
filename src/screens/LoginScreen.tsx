@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontSize: 72,
     fontWeight: '400',
-    fontFamily: 'NewYork',
+    // fontFamily: 'NewYork',
     position: 'absolute',
     bottom: 0,
     textAlign: 'center',

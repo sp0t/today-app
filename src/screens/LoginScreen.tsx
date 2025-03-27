@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'blue',
     bottom: 0,
+    width: '100%',
   },
   overlay: {
     flex: 1,
@@ -151,6 +152,7 @@ const styles = StyleSheet.create({
     bottom: 20,
     borderWidth: 1,
     borderColor: 'green',
+
   },
   cornerText: {
     position: 'absolute',

@@ -77,21 +77,19 @@ const LoginScreen = () => {
           <View style={styles.topContainer}>
             <Text style={styles.centerText}>Today</Text>
           </View>
-          <View style={styles.overlay}>
-            <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
-              Learn
-            </Animated.Text>
-            <Animated.Text style={[styles.cornerText, styles.topRight, investStyle]}>
-              Invest
-            </Animated.Text>
+          <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
+            Learn
+          </Animated.Text>
+          <Animated.Text style={[styles.cornerText, styles.topRight, investStyle]}>
+            Invest
+          </Animated.Text>
 
-            <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>
-              Send
-            </Animated.Text>
-            <Animated.Text style={[styles.cornerText, styles.bottomLeft, tradeStyle]}>
-              Trade
-            </Animated.Text>
-          </View>
+          <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>
+            Send
+          </Animated.Text>
+          <Animated.Text style={[styles.cornerText, styles.bottomLeft, tradeStyle]}>
+            Trade
+          </Animated.Text>
         </ImageBackground>
       </View>
 
@@ -136,11 +134,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
   },
-  overlay: {
-    flex: 1,
-    position: 'relative',
-    alignItems: 'center',
-  },
   centerText: {
     color: '#000000',
     fontSize: 72,
@@ -160,20 +153,20 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   topLeft: {
-    top: 0,
-    left: 0,
+    top: -30,
+    left: 40,
   },
   topRight: {
-    top: 0,
-    right: 0,
+    top: -30,
+    right: 40,
   },
   bottomRight: {
-    bottom: 0,
-    right: 0,
+    bottom: -30,
+    right: 40,
   },
   bottomLeft: {
-    bottom: 0,
-    left: 0,
+    bottom: -30,
+    left: 40,
   },
 });
 

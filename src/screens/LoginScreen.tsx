@@ -74,9 +74,9 @@ const LoginScreen = () => {
           style={styles.backgroundImage}
           resizeMode="contain"
         >
-          <Text style={styles.centerText}>Today
-            <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}></Animated.Text>
-          </Text>
+          <View style={styles.topContainer}>
+            <Text style={styles.centerText}>Today</Text>
+          </View>
           {/* <View style={styles.overlay}>
             <View style={styles.textContainer}>
             <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
@@ -130,6 +130,11 @@ const styles = StyleSheet.create({
     borderColor: 'red',
     width: '100%',
   },
+  topContainer: {
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'blue',
+  },
   overlay: {
     flex: 1,
     position: 'relative',
@@ -143,7 +148,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     bottom: 20,
     borderWidth: 1,
-    borderColor: 'blue',
+    borderColor: 'green',
   },
   cornerText: {
     position: 'absolute',

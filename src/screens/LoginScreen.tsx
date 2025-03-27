@@ -131,10 +131,11 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   topContainer: {
+    position: 'absolute',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: 'blue',
-    bottom: 10,
+    bottom: 0,
   },
   overlay: {
     flex: 1,

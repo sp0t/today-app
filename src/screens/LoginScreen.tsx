@@ -130,8 +130,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     position: 'absolute',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'red',
     width: '100%',
     bottom: 70
   },

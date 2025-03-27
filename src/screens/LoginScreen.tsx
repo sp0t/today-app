@@ -155,11 +155,11 @@ const styles = StyleSheet.create({
   },
   topLeft: {
     left: 0,
-    top: -40,
+    top: -30,
   },
   topRight: {
     right: 0,
-    top: -40,
+    top: -30,
   },
   bottomRight: {
     right: 0,

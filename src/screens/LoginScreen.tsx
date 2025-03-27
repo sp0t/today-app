@@ -88,7 +88,7 @@ const LoginScreen = () => {
                 Trade
               </Animated.Text>
 
-              {/* <Text style={styles.centerText}>Today</Text> */}
+              <Text style={styles.centerText}>Today</Text>
             </View>
           </ImageBackground>
       </View>
@@ -142,7 +142,8 @@ const styles = StyleSheet.create({
     fontSize: 72,
     fontWeight: '400',
     fontFamily: 'New York',
-    transform: [{ translateX: -40 }, { translateY: -15 }],
+    position: 'absolute',
+    bottom: 0,
   },
 });
 

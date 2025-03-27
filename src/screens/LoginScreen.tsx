@@ -69,38 +69,39 @@ const LoginScreen = () => {
     <View style={styles.container}>
       {/* Top Half */}
       <View style={styles.topHalf}>
-          <ImageBackground
-            source={BackgroundData[currentIndex].topImage}
-            style={styles.backgroundImage}
-            resizeMode="contain"
-          >
-            <View style={styles.overlay}>
-              <Animated.Text style={[styles.cornerText, learnStyle]}>
+        <ImageBackground
+          source={BackgroundData[currentIndex].topImage}
+          style={styles.backgroundImage}
+          resizeMode="contain"
+        >
+          <View style={styles.overlay}>
+            <View style={styles.textContainer}>
+              <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
                 Learn
               </Animated.Text>
-              <Animated.Text style={[styles.cornerText, investStyle]}>
+              <Animated.Text style={[styles.cornerText, styles.topRight, investStyle]}>
                 Invest
               </Animated.Text>
-              <Animated.Text style={[styles.cornerText, sendStyle]}>
+              <Text style={styles.centerText}>Today</Text>
+              <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>
                 Send
               </Animated.Text>
-              <Animated.Text style={[styles.cornerText, tradeStyle]}>
+              <Animated.Text style={[styles.cornerText, styles.bottomLeft, tradeStyle]}>
                 Trade
               </Animated.Text>
-
-              <Text style={styles.centerText}>Today</Text>
             </View>
-          </ImageBackground>
+          </View>
+        </ImageBackground>
       </View>
 
       {/* Bottom Half */}
       <View style={styles.bottomHalf}>
-          <ImageBackground
-            source={BackgroundData[currentIndex].bottomImage}
-            style={styles.backgroundImage}
-            resizeMode="cover"
-          >
-          </ImageBackground>
+        <ImageBackground
+          source={BackgroundData[currentIndex].bottomImage}
+          style={styles.backgroundImage}
+          resizeMode="cover"
+        >
+        </ImageBackground>
       </View>
     </View>
   );
@@ -131,6 +132,20 @@ const styles = StyleSheet.create({
     position: 'relative',
     alignItems: 'center',
   },
+  textContainer: {
+    position: 'relative',
+    width: 300,
+    height: 300, 
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  centerText: {
+    color: '#000000',
+    fontSize: 72,
+    fontWeight: '400',
+    fontFamily: 'PlayfairDisplay-Medium',
+    textAlign: 'center',
+  },
   cornerText: {
     position: 'absolute',
     color: '#000000',
@@ -138,14 +153,21 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     lineHeight: 22,
   },
-  centerText: {
-    color: '#000000',
-    fontSize: 72,
-    fontWeight: '400',
-    fontFamily: 'PlayfairDisplay-Medium',
-    position: 'absolute',
-    bottom: 70,
-    textAlign: 'center',
+  topLeft: {
+    top: 0,
+    left: 0,
+  },
+  topRight: {
+    top: 0,
+    right: 0,
+  },
+  bottomRight: {
+    bottom: 0,
+    right: 0,
+  },
+  bottomLeft: {
+    bottom: 0,
+    left: 0,
   },
 });
 

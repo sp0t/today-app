@@ -129,11 +129,11 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     position: 'absolute',
-    bottom: 0,
     alignItems: 'center',
     borderWidth: 1,
     borderColor: 'red',
     width: '100%',
+    bottom: 70
   },
   todayContainer: {
     width: 204,
@@ -148,7 +148,6 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: 'PlayfairDisplay-Medium',
     textAlign: 'center',
-    // bottom: 70,
     borderWidth: 1,
     borderColor: 'green',
 

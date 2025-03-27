@@ -74,7 +74,9 @@ const LoginScreen = () => {
           style={styles.backgroundImage}
           resizeMode="contain"
         >
-          <Text style={styles.centerText}>Today</Text>
+          <Text style={styles.centerText}>Today
+            <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}></Animated.Text>
+          </Text>
           {/* <View style={styles.overlay}>
             <View style={styles.textContainer}>
             <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
@@ -92,7 +94,6 @@ const LoginScreen = () => {
             </Animated.Text>
             </View>
             </View> */}
-          <View style={styles.topContainer}></View>
         </ImageBackground>
       </View>
 

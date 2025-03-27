@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   todayContainer: {
-    width: 210,
+    width: 204,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,

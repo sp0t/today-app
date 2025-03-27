@@ -137,6 +137,8 @@ const styles = StyleSheet.create({
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'black',
   },
   centerText: {
     color: '#000000',

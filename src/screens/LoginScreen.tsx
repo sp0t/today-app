@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     bottom: -40,
   },
   bottomTitle: {
-    marginTop: '15%',
+    marginTop: '10%',
     color: '#000000',
     fontSize: 12,
     fontWeight: '200',
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   createButton: {
-    top: '50%',
+    marginTop: '40%',
     backgroundColor: '#101010',
     borderRadius: 12,
     width: '90%',

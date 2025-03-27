@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     bottom: -40,
   },
   bottomTitle: {
-    marginTop: '10%',
+    marginTop: '15%',
     color: '#000000',
     fontSize: 12,
     fontWeight: '200',

@@ -56,7 +56,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
       type: 'verification',
       component: () => (
         <View style={styles.slideContainer}>
-          <Image source={require('../assets/icons/mail.png')} style={styles.icon} />
+          {/* <Image source={require('../assets/icons/mail.png')} style={styles.icon} /> */}
           <Text style={styles.title}>Check your email</Text>
           <Text style={styles.subtitle}>We just sent a security code to {formData.email}</Text>
           <TextInput
@@ -82,7 +82,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
       type: 'name',
       component: () => (
         <View style={styles.slideContainer}>
-          <Image source={require('../assets/icons/user.png')} style={styles.icon} />
+          {/* <Image source={require('../assets/icons/user.png')} style={styles.icon} /> */}
           <Text style={styles.title}>What is your name?</Text>
           <Text style={styles.subtitle}>
             Your name is how others find you on Today.{'\n'}You can change this later.
@@ -114,7 +114,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
       type: 'photo',
       component: () => (
         <View style={styles.slideContainer}>
-          <Image source={require('../assets/icons/user.png')} style={styles.icon} />
+          {/* <Image source={require('../assets/icons/user.png')} style={styles.icon} /> */}
           <Text style={styles.title}>Add a profile photo</Text>
           <Text style={styles.subtitle}>
             Your profile photo is how you show up, you can change this later

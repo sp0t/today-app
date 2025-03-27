@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontSize: 72,
     fontWeight: '400',
-    fontFamily: 'PlayFair',
+    fontFamily: 'PlayfairDisplay-Medium',
     position: 'absolute',
     bottom: 70,
     textAlign: 'center',

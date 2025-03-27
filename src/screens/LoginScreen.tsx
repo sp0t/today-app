@@ -84,7 +84,7 @@ const LoginScreen = () => {
               </Animated.Text>
 
               <Text style={styles.centerText}>Today</Text>
-              
+
               <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>
                 Send
               </Animated.Text>
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: 'PlayfairDisplay-Medium',
     textAlign: 'center',
-    bottom: 70,
+    // bottom: 70,
     borderWidth: 1,
     borderColor: 'green',
 

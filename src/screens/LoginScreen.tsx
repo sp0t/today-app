@@ -218,6 +218,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   createButtonText: {
+    marginTop: '20%',
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '500',

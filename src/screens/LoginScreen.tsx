@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: 'blue',
+    bottom: 10,
   },
   overlay: {
     flex: 1,

@@ -114,13 +114,11 @@ const LoginScreen = () => {
         <View style={styles.bottomContentContainer}>
           <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
           <TouchableOpacity style={styles.createButton} onPress={() => { }}>
-            <Text style={styles.buttonText}>Create an account</Text>
+            <Text style={styles.createButtonText}>Create an account</Text>
           </TouchableOpacity>
-          <Button
-            title="Sign in"
-            onPress={() => { }}
-            color='#101010'
-          ></Button>
+          <TouchableOpacity style={styles.logInButton} onPress={() => { }}>
+            <Text style={styles.logInButtonText}>Sign in</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -219,8 +217,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  buttonText: {
+  createButtonText: {
     color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '500',
+    lineHeight: 22
+  },
+  logInButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logInButtonText: {
+    color: '#101010',
     fontSize: 16,
     fontWeight: '500',
     lineHeight: 22

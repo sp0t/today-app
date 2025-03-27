@@ -128,13 +128,6 @@ const styles = StyleSheet.create({
     borderColor: 'red',
     width: '100%',
   },
-  topContainer: {
-    flex: 1,
-    position: 'relative',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'blue',
-  },
   overlay: {
     flex: 1,
     position: 'relative',

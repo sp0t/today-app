@@ -101,8 +101,8 @@ const LoginScreen = () => {
       <View style={styles.bottomHalf}>
         <ImageBackground
           source={BackgroundData[currentIndex].bottomImage}
-          style={styles.backgroundImage}
-          resizeMode="cover"
+          style={styles.fullWidthImageContain}
+          resizeMode="contain"
         >
         </ImageBackground>
       </View>
@@ -133,6 +133,10 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     width: '100%',
+  },
+  fullWidthImageContain: {
+    width: '100%', 
+    height: '100%',
   },
   contentContainer: {
     position: 'absolute',

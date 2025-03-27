@@ -55,7 +55,7 @@ const LoginScreen = () => {
       tradeOpacity.value = withTiming(nextCase.activeCorner === 'trade' ? 1 : 0.3, { duration: 800 });
 
       // Update background opacity
-      topImageOpacity.value = withTiming(0, { duration: 800 }, () => {
+      topImageOpacity.value = withTiming(0.5, { duration: 800 }, () => {
         runOnJS(setCurrentIndex)(nextIndex);
         topImageOpacity.value = withTiming(1, { duration: 800 });
       });
@@ -63,7 +63,7 @@ const LoginScreen = () => {
       bottomImageOpacity.value = withTiming(0, { duration: 800 }, () => {
         bottomImageOpacity.value = withTiming(1, { duration: 800 });
       });
-    }, 4000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [currentIndex]);

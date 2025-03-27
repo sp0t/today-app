@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     position: 'absolute',
     bottom: 0,
+    alignItems: 'center',
     borderWidth: 1,
     borderColor: 'red',
     width: '100%',

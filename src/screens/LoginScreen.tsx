@@ -119,8 +119,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottomHalf: {
-    position: 'absolute',
-    bottom: 0,
     flex: 0.4,
     justifyContent: 'center',
     alignItems: 'center',

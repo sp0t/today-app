@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType } from 'react-native';
-import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, runOnJS } from 'react-native-reanimated';
 
 interface BackgroundItem {
   topImage: ImageSourcePropType;
@@ -56,7 +56,7 @@ const LoginScreen = () => {
 
       // Update background opacity
       topImageOpacity.value = withTiming(0, { duration: 800 }, () => {
-        setCurrentIndex(nextIndex);
+        runOnJS(setCurrentIndex)(nextIndex);
         topImageOpacity.value = withTiming(1, { duration: 800 });
       });
 

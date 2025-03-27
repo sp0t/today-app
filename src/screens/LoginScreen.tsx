@@ -76,7 +76,6 @@ const LoginScreen = () => {
         >
           <View style={styles.contentContainer}>
             <View style={styles.todayContainer}>
-              <Text style={styles.centerText}>Today</Text>
               <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
                 Learn
               </Animated.Text>
@@ -84,6 +83,8 @@ const LoginScreen = () => {
                 Invest
               </Animated.Text>
 
+              <Text style={styles.centerText}>Today</Text>
+              
               <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>
                 Send
               </Animated.Text>

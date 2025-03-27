@@ -134,8 +134,6 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     position: 'relative',
-    width: 300,
-    height: 300, 
     justifyContent: 'center',
     alignItems: 'center',
   },

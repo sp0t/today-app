@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   createButton: {
-    top: '60%',
+    top: '50%',
     backgroundColor: '#101010',
     borderRadius: 12,
     width: '90%',

@@ -74,6 +74,7 @@ const LoginScreen = () => {
           style={styles.backgroundImage}
           resizeMode="contain"
         >
+          <Text style={styles.centerText}>Today</Text>
           {/* <View style={styles.overlay}>
             <View style={styles.textContainer}>
             <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
@@ -82,7 +83,7 @@ const LoginScreen = () => {
             <Animated.Text style={[styles.cornerText, styles.topRight, investStyle]}>
             Invest
             </Animated.Text>
-            <Text style={styles.centerText}>Today</Text>
+            
             <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>
             Send
             </Animated.Text>
@@ -133,12 +134,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     alignItems: 'center',
   },
-  textContainer: {
-    position: 'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
-    bottom: 20,
-  },
   centerText: {
     color: '#000000',
     fontSize: 72,
@@ -146,6 +141,8 @@ const styles = StyleSheet.create({
     fontFamily: 'PlayfairDisplay-Medium',
     textAlign: 'center',
     bottom: 20,
+    borderWidth: 1,
+    borderColor: 'blue',
   },
   cornerText: {
     position: 'absolute',

@@ -60,7 +60,7 @@ const LoginScreen = () => {
         topImageOpacity.value = withTiming(1, { duration: 800 });
       });
 
-      bottomImageOpacity.value = withTiming(0, { duration: 800 }, () => {
+      bottomImageOpacity.value = withTiming(0.5, { duration: 800 }, () => {
         bottomImageOpacity.value = withTiming(1, { duration: 800 });
       });
     }, 2000);

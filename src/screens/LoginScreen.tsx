@@ -130,12 +130,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
   },
   imageArea: {
-    width: width * 0.9, // 90% of screen width
-    height: height * 0.4, // 40% of screen height
     borderWidth: 1, // Optional: Add border for clarity
     borderColor: '#ccc',
     backgroundColor: 'yellow',
-    
+
   },
   backgroundImage: {
     flex: 1,

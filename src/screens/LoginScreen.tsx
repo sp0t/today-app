@@ -70,11 +70,11 @@ const LoginScreen = () => {
       {/* Top Half */}
       <View style={styles.topHalf}>
         <View style={styles.imageArea}>
-          <ImageBackground
+          {/* <ImageBackground
             source={BackgroundData[currentIndex].topImage}
             style={styles.backgroundImage}
             resizeMode="contain"
-          >
+          > */}
             {/* <View style={styles.overlay}>
               <Animated.Text style={[styles.cornerText, styles.leftTop, learnStyle]}>
                 Learn
@@ -91,19 +91,19 @@ const LoginScreen = () => {
 
               <Text style={styles.centerText}>Today</Text>
             </View> */}
-          </ImageBackground>
+          {/* </ImageBackground> */}
         </View>
       </View>
 
       {/* Bottom Half */}
       <View style={styles.bottomHalf}>
         <View style={styles.imageArea}>
-          <ImageBackground
+          {/* <ImageBackground
             source={BackgroundData[currentIndex].bottomImage}
             style={styles.backgroundImage}
             resizeMode="contain"
           >
-          </ImageBackground>
+          </ImageBackground> */}
         </View>
       </View>
     </View>

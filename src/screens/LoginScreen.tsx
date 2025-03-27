@@ -195,6 +195,7 @@ const styles = StyleSheet.create({
     bottom: -40,
   },
   bottomTitle: {
+    top: '10%',
     color: '#000000',
     fontSize: 12,
     fontWeight: '200',

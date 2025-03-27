@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType, Button } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, runOnJS } from 'react-native-reanimated';
 
 interface BackgroundItem {
@@ -113,6 +113,10 @@ const LoginScreen = () => {
         </Animated.View>
         <View style={styles.bottomContentContainer}>
           <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
+          <Button
+            title="Create an account"
+            onPress={() => {}}
+          ></Button>
         </View>
       </View>
     </View>

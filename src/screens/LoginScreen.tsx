@@ -129,7 +129,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   contentContainer: {
-    flex: 1,
+    position: 'absolute',
+    bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 100, // Position from top

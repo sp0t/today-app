@@ -114,17 +114,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center', // Ensures vertical alignment
-    alignItems: 'center',     // Ensures horizontal alignment
+    alignItems: 'center',
+    backgroundColor: 'red',     // Ensures horizontal alignment
   },
   topHalf: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'blue',
   },
   bottomHalf: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'green',
   },
   imageArea: {
     width: width * 0.9, // 90% of screen width

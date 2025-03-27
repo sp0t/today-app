@@ -155,18 +155,26 @@ const styles = StyleSheet.create({
   topLeft: {
     top: -30,
     left: 40,
+    borderWidth: 1,
+    borderColor: 'yellow',
   },
   topRight: {
     top: -30,
     right: 40,
+    borderWidth: 1,
+    borderColor: 'yellow',
   },
   bottomRight: {
     bottom: -30,
     right: 40,
+    borderWidth: 1,
+    borderColor: 'yellow',
   },
   bottomLeft: {
     bottom: -30,
     left: 40,
+    borderWidth: 1,
+    borderColor: 'yellow',
   },
 });
 

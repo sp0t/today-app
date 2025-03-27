@@ -110,8 +110,8 @@ const LoginScreen = () => {
             style={styles.backgroundImage}
             resizeMode="stretch"
           />
+          <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
         </Animated.View>
-        <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
       </View>
     </View>
   );

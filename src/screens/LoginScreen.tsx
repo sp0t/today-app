@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
   },
   bottomHalf: {
     flex: 0.3,
+    overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
   },

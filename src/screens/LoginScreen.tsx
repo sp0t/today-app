@@ -229,6 +229,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logInButtonText: {
+    marginTop: 20,
     color: '#101010',
     fontSize: 16,
     fontWeight: '500',

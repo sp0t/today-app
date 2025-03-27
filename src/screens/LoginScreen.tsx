@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'red',
     width: '100%',
+    alignItems: 'center',
   },
   overlay: {
     flex: 1,

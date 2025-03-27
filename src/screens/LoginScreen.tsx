@@ -111,6 +111,7 @@ const LoginScreen = () => {
             resizeMode="stretch"
           />
         </Animated.View>
+        <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
       </View>
     </View>
   );
@@ -183,6 +184,13 @@ const styles = StyleSheet.create({
   bottomLeft: {
     left: 0,
     bottom: -40,
+  },
+  bottomTitle: {
+    color: '#000000',
+    fontSize: 12,
+    fontWeight: '400',
+    fontFamily: 'PlayfairDisplay-Medium',
+    textAlign: 'center',
   },
 });
 

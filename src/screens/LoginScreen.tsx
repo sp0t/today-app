@@ -131,13 +131,12 @@ const styles = StyleSheet.create({
     bottom: 0,
     borderWidth: 1,
     borderColor: 'red',
+    width: '100%',
   },
   todayContainer: {
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 300, // Adjust based on your needs
-    height: 200, // Adjust based on your needs
   },
   centerText: {
     color: '#000000',

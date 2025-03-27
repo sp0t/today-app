@@ -110,8 +110,10 @@ const LoginScreen = () => {
             style={styles.backgroundImage}
             resizeMode="stretch"
           />
-          <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
         </Animated.View>
+        <View style={styles.bottomContentContainer}>
+          <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
+        </View>
       </View>
     </View>
   );
@@ -149,6 +151,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     bottom: 70,
+  },
+  bottomContentContainer: {
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   todayContainer: {
     width: 204,

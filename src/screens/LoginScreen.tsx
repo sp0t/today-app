@@ -74,21 +74,23 @@ const LoginScreen = () => {
           style={styles.backgroundImage}
           resizeMode="contain"
         >
-          <View style={styles.topContainer}>
-            <Text style={styles.centerText}>Today</Text>
-            <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
-              Learn
-            </Animated.Text>
-            <Animated.Text style={[styles.cornerText, styles.topRight, investStyle]}>
-              Invest
-            </Animated.Text>
+          <View style={styles.contentContainer}>
+            <View style={styles.todayContainer}>
+              <Text style={styles.centerText}>Today</Text>
+              <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
+                Learn
+              </Animated.Text>
+              <Animated.Text style={[styles.cornerText, styles.topRight, investStyle]}>
+                Invest
+              </Animated.Text>
 
-            <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>
-              Send
-            </Animated.Text>
-            <Animated.Text style={[styles.cornerText, styles.bottomLeft, tradeStyle]}>
-              Trade
-            </Animated.Text>
+              <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>
+                Send
+              </Animated.Text>
+              <Animated.Text style={[styles.cornerText, styles.bottomLeft, tradeStyle]}>
+                Trade
+              </Animated.Text>
+            </View>
           </View>
         </ImageBackground>
       </View>
@@ -126,13 +128,18 @@ const styles = StyleSheet.create({
     borderColor: 'red',
     width: '100%',
   },
-  topContainer: {
-    position: 'absolute',
+  contentContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'blue',
-    bottom: 0,
-    width: '100%',
+    marginTop: 100, // Position from top
+  },
+  todayContainer: {
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 300, // Adjust based on your needs
+    height: 200, // Adjust based on your needs
   },
   centerText: {
     color: '#000000',

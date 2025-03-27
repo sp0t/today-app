@@ -102,7 +102,7 @@ const LoginScreen = () => {
         <ImageBackground
           source={BackgroundData[currentIndex].bottomImage}
           style={styles.backgroundImage}
-          resizeMode="cover"
+          resizeMode="contain"
         >
         </ImageBackground>
       </View>

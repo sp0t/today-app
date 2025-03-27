@@ -122,6 +122,8 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
+    borderWidth: 1,
+    borderColor: 'red',
   },
   overlay: {
     flex: 1,

@@ -115,6 +115,7 @@ const LoginScreen = () => {
           <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
           <Button
             title="Create an account"
+            style={styles.createButton}
             onPress={() => {}}
           ></Button>
         </View>
@@ -206,6 +207,17 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     fontFamily: 'PlayfairDisplay-Medium',
     textAlign: 'center',
+  },
+  createButton: {
+    top: '60%',
+    backgroundColor: '#101010',
+    borderRadius: 12,
+    width: '90%',
+    height: 48,
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '500',
+    lineHeight: 22
   },
 });
 

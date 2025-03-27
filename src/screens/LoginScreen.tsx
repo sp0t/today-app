@@ -95,8 +95,8 @@ const LoginScreen = () => {
           </View>
         </ImageBackground>
       </View>
-      {/* <View style={styles.middleContainer}> */}
-      </View>
+      {/* <View style={styles.middleContainer}>
+      </View> */}
       {/* Bottom Half */}
       <View style={styles.bottomHalf}>
         <ImageBackground

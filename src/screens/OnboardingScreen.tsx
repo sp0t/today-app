@@ -1,161 +1,235 @@
-import React from 'react';
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useTheme } from '../theme/ThemeContext';
-import Routes from '../routes/RouteName';
+// import * as ImagePicker from 'react-native-image-picker';
 
-const { width } = Dimensions.get('window');
-
-type Slide = {
-    key: string;
-    title: string;
-    text: string;
-    // image: any; 
-};
-
-const slides: Slide[] = [
-    {
-        key: '1',
-        title: 'Welcome to App',
-        text: 'Discover amazing features and more'
-        // image: require('../assets/onboarding1.png'), 
-    },
-    {
-        key: '2',
-        title: 'Easy to Use',
-        text: 'Simple and intuitive interface'
-        // image: require('../assets/onboarding2.png'),
-    },
-    {
-        key: '3',
-        title: 'Powerful Features',
-        text: 'Access all the tools you need'
-        // image: require('../assets/onboarding3.png'),
-    },
-    {
-        key: '4',
-        title: "Let's Get Started",
-        text: 'Join us now and start your journey'
-        // image: require('../assets/onboarding4.png'),
-    },
-];
+interface SlideData {
+  email: string;
+  verificationCode: string;
+  firstName: string;
+  lastName: string;
+  profilePhoto: string;
+}
 
 const OnboardingScreen = ({ navigation }: { navigation: any }) => {
-    const { theme } = useTheme();
-    
-    const renderItem = ({ item }: { item: Slide }) => {
-        return (
-            <View style={[
-                styles.slide,
-                { backgroundColor: theme === 'dark' ? '#333' : '#fff' }
-            ]}>
-                {/* <Image 
-                    source={item.image} 
-                    style={styles.image}
-                    resizeMode="contain"
-                /> */}
-                <Text style={[
-                    styles.title,
-                    { color: theme === 'dark' ? '#fff' : '#000' }
-                ]}>
-                    {item.title}
-                </Text>
-                <Text style={[
-                    styles.text,
-                    { color: theme === 'dark' ? '#ccc' : '#666' }
-                ]}>
-                    {item.text}
-                </Text>
-            </View>
-        );
-    };
+  const sliderRef = useRef<AppIntroSlider | null>(null);
+  const [formData, setFormData] = useState<SlideData>({
+    email: '',
+    verificationCode: '',
+    firstName: '',
+    lastName: '',
+    profilePhoto: '',
+  });
 
-    const handleDone = async () => {
-        try {
-            // If you're using AsyncStorage to track onboarding completion
-            await AsyncStorage.setItem('hasSeenOnboarding', 'true');
-            navigation.replace(Routes.MARKET);
-        } catch (error) {
-            console.error('Error saving onboarding status:', error);
-            navigation.replace(Routes.MARKET);
-        }
-    };
+  const validateEmail = (email: string) => {
+    return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email);
+  };
 
-    return (
-        <AppIntroSlider
-            data={slides}
-            renderItem={renderItem}
-            onDone={handleDone}
-            showSkipButton
-            onSkip={handleDone}
-            renderNextButton={() => (
-                <Text style={[
-                    styles.buttonText,
-                    { color: theme === 'dark' ? '#fff' : '#000' }
-                ]}>
-                    Next
-                </Text>
+  const slides = [
+    {
+      key: '1',
+      type: 'email',
+      component: () => (
+        <View style={styles.slideContainer}>
+          <Text style={styles.title}>Welcome to Today</Text>
+          <Text style={styles.subtitle}>Enter your email address</Text>
+          <TextInput
+            style={styles.input}
+            value={formData.email}
+            onChangeText={(text) => setFormData({ ...formData, email: text })}
+            placeholder="Email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
+          <TouchableOpacity
+            style={[styles.button, !validateEmail(formData.email) && styles.buttonDisabled]}
+            disabled={!validateEmail(formData.email)}
+            onPress={() => sliderRef.current?.goToSlide(1)}
+          >
+            <Text style={styles.buttonText}>Continue</Text>
+          </TouchableOpacity>
+        </View>
+      ),
+    },
+    {
+      key: '2',
+      type: 'verification',
+      component: () => (
+        <View style={styles.slideContainer}>
+          <Image source={require('../assets/icons/mail.png')} style={styles.icon} />
+          <Text style={styles.title}>Check your email</Text>
+          <Text style={styles.subtitle}>We just sent a security code to {formData.email}</Text>
+          <TextInput
+            style={styles.input}
+            value={formData.verificationCode}
+            onChangeText={(text) => setFormData({ ...formData, verificationCode: text })}
+            placeholder="Enter verification code"
+            keyboardType="number-pad"
+            maxLength={6}
+          />
+          <TouchableOpacity
+            style={[styles.button, formData.verificationCode.length !== 6 && styles.buttonDisabled]}
+            disabled={formData.verificationCode.length !== 6}
+            onPress={() => sliderRef.current?.goToSlide(2)}
+          >
+            <Text style={styles.buttonText}>Continue</Text>
+          </TouchableOpacity>
+        </View>
+      ),
+    },
+    {
+      key: '3',
+      type: 'name',
+      component: () => (
+        <View style={styles.slideContainer}>
+          <Image source={require('../assets/icons/user.png')} style={styles.icon} />
+          <Text style={styles.title}>What is your name?</Text>
+          <Text style={styles.subtitle}>
+            Your name is how others find you on Today.{'\n'}You can change this later.
+          </Text>
+          <TextInput
+            style={styles.input}
+            value={formData.firstName}
+            onChangeText={(text) => setFormData({ ...formData, firstName: text })}
+            placeholder="First name"
+          />
+          <TextInput
+            style={styles.input}
+            value={formData.lastName}
+            onChangeText={(text) => setFormData({ ...formData, lastName: text })}
+            placeholder="Last name"
+          />
+          <TouchableOpacity
+            style={[styles.button, !(formData.firstName && formData.lastName) && styles.buttonDisabled]}
+            disabled={!(formData.firstName && formData.lastName)}
+            onPress={() => sliderRef.current?.goToSlide(3)}
+          >
+            <Text style={styles.buttonText}>Continue</Text>
+          </TouchableOpacity>
+        </View>
+      ),
+    },
+    {
+      key: '4',
+      type: 'photo',
+      component: () => (
+        <View style={styles.slideContainer}>
+          <Image source={require('../assets/icons/user.png')} style={styles.icon} />
+          <Text style={styles.title}>Add a profile photo</Text>
+          <Text style={styles.subtitle}>
+            Your profile photo is how you show up, you can change this later
+          </Text>
+          <TouchableOpacity
+            style={styles.photoUpload}
+            // onPress={() => {
+            //   ImagePicker.launchImageLibrary({
+            //     mediaType: 'photo',
+            //     includeBase64: false,
+            //   }, (response) => {
+            //     if (response.assets?.[0]?.uri) {
+            //       setFormData({ ...formData, profilePhoto: response.assets[0].uri });
+            //     }
+            //   });
+            // }}
+          >
+            {formData.profilePhoto ? (
+              <Image source={{ uri: formData.profilePhoto }} style={styles.profilePhoto} />
+            ) : (
+              <Text style={styles.uploadText}>Upload Photo</Text>
             )}
-            renderDoneButton={() => (
-                <Text style={[
-                    styles.buttonText,
-                    { color: theme === 'dark' ? '#fff' : '#000' }
-                ]}>
-                    Get Started
-                </Text>
-            )}
-            renderSkipButton={() => (
-                <Text style={[
-                    styles.buttonText,
-                    { color: theme === 'dark' ? '#fff' : '#000' }
-                ]}>
-                    Skip
-                </Text>
-            )}
-        />
-    );
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.replace('Home')}
+          >
+            <Text style={styles.buttonText}>Let's go!</Text>
+          </TouchableOpacity>
+        </View>
+      ),
+    },
+  ];
+
+  return (
+    <AppIntroSlider
+      ref={sliderRef}
+      data={slides}
+      renderItem={({ item }) => item.component()}
+      showNextButton={false}
+      showDoneButton={false}
+      showSkipButton={false}
+      scrollEnabled={false}
+    />
+  );
 };
 
 const styles = StyleSheet.create({
-    slide: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 20,
-    },
-    image: {
-        width: width * 0.8,
-        height: width * 0.8,
-        marginBottom: 30,
-    },
-    title: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        marginBottom: 10,
-        textAlign: 'center',
-    },
-    text: {
-        fontSize: 16,
-        textAlign: 'center',
-        paddingHorizontal: 25,
-    },
-    buttonText: {
-        fontSize: 16,
-        fontWeight: '600',
-    },
-    dot: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
-        marginHorizontal: 4,
-    },
-    activeDot: {
-        width: 20,
-        height: 8,
-        borderRadius: 4,
-        marginHorizontal: 4,
-    },
+  slideContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  icon: {
+    width: 60,
+    height: 60,
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+    marginBottom: 30,
+  },
+  input: {
+    width: '100%',
+    height: 50,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    marginBottom: 15,
+    fontSize: 16,
+  },
+  button: {
+    width: '100%',
+    height: 50,
+    backgroundColor: '#007AFF',
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  buttonDisabled: {
+    backgroundColor: '#ccc',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  photoUpload: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    backgroundColor: '#f0f0f0',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  profilePhoto: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+  },
+  uploadText: {
+    color: '#666',
+  },
 });
 
 export default OnboardingScreen;

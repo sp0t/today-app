@@ -112,16 +112,17 @@ const LoginScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: 'red',     // Ensures horizontal alignment
   },
   topHalf: {
-    flex: 1,
+    flex: 0.5,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'blue',
   },
   bottomHalf: {
-    flex: 1,
+    flex: 0.5,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'green',

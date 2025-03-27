@@ -144,6 +144,7 @@ const styles = StyleSheet.create({
     fontFamily: 'New York',
     position: 'absolute',
     bottom: 0,
+    textAlign: 'center',
   },
 });
 

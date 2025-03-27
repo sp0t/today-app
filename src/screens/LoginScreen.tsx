@@ -113,9 +113,14 @@ const LoginScreen = () => {
         </Animated.View>
         <View style={styles.bottomContentContainer}>
           <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
-          <TouchableOpacity style={styles.createButton} onPress={() => {}}>
+          <TouchableOpacity style={styles.createButton} onPress={() => { }}>
             <Text style={styles.buttonText}>Create an account</Text>
           </TouchableOpacity>
+          <Button
+            title="Sign in"
+            onPress={() => { }}
+            color='#101010'
+          ></Button>
         </View>
       </View>
     </View>

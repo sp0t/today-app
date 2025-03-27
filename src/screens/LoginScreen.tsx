@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   bottomTitle: {
     color: '#000000',
     fontSize: 12,
-    fontWeight: '400',
+    fontWeight: '200',
     fontFamily: 'PlayfairDisplay-Medium',
     textAlign: 'center',
   },

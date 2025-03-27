@@ -95,7 +95,7 @@ const LoginScreen = () => {
           </View>
         </ImageBackground>
       </View>
-      <View style={styles.middleContainer}>
+      {/* <View style={styles.middleContainer}> */}
       </View>
       {/* Bottom Half */}
       <View style={styles.bottomHalf}>
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottomHalf: {
-    flex: 0.3,
+    flex: 0.5,
     overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',

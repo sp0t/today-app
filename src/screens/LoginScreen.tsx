@@ -124,16 +124,13 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: 'red',
     width: '100%',
   },
   contentContainer: {
     position: 'absolute',
     bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 100, // Position from top
+    borderWidth: 1,
+    borderColor: 'red',
   },
   todayContainer: {
     position: 'relative',

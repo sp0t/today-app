@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType, Button } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType, Button, TouchableOpacity } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, runOnJS } from 'react-native-reanimated';
 
 interface BackgroundItem {
@@ -113,11 +113,9 @@ const LoginScreen = () => {
         </Animated.View>
         <View style={styles.bottomContentContainer}>
           <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
-          <Button
-            title="Create an account"
-            style={styles.createButton}
-            onPress={() => {}}
-          ></Button>
+          <TouchableOpacity style={styles.createButton} onPress={() => {}}>
+            <Text style={styles.buttonText}>Create an account</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -158,7 +156,7 @@ const styles = StyleSheet.create({
     bottom: 70,
   },
   bottomContentContainer: {
-    flex:1,
+    flex: 1,
     position: 'absolute',
     top: 0,
     width: '100%',
@@ -214,6 +212,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     width: '90%',
     height: 48,
+  },
+  buttonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '500',

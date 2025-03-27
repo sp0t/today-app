@@ -75,20 +75,20 @@ const LoginScreen = () => {
             resizeMode="center"
           >
             <View style={styles.overlay}>
-              <Animated.Text style={[styles.cornerText, styles.leftTop, learnStyle]}>
+              <Animated.Text style={[styles.cornerText, learnStyle]}>
                 Learn
               </Animated.Text>
-              <Animated.Text style={[styles.cornerText, styles.rightTop, investStyle]}>
+              <Animated.Text style={[styles.cornerText, investStyle]}>
                 Invest
               </Animated.Text>
-              <Animated.Text style={[styles.cornerText, styles.rightBottom, sendStyle]}>
+              <Animated.Text style={[styles.cornerText, sendStyle]}>
                 Send
               </Animated.Text>
-              <Animated.Text style={[styles.cornerText, styles.leftBottom, tradeStyle]}>
+              <Animated.Text style={[styles.cornerText, tradeStyle]}>
                 Trade
               </Animated.Text>
 
-              <Text style={styles.centerText}>Today</Text>
+              {/* <Text style={styles.centerText}>Today</Text> */}
             </View>
           </ImageBackground>
       </View>

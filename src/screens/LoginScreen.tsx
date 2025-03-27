@@ -74,24 +74,25 @@ const LoginScreen = () => {
           style={styles.backgroundImage}
           resizeMode="contain"
         >
-          <View style={styles.overlay}>
+          {/* <View style={styles.overlay}>
             <View style={styles.textContainer}>
-              <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
-                Learn
-              </Animated.Text>
-              <Animated.Text style={[styles.cornerText, styles.topRight, investStyle]}>
-                Invest
-              </Animated.Text>
-              <Text style={styles.centerText}>Today</Text>
-              <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>
-                Send
-              </Animated.Text>
-              <Animated.Text style={[styles.cornerText, styles.bottomLeft, tradeStyle]}>
-                Trade
-              </Animated.Text>
+            <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
+            Learn
+            </Animated.Text>
+            <Animated.Text style={[styles.cornerText, styles.topRight, investStyle]}>
+            Invest
+            </Animated.Text>
+            <Text style={styles.centerText}>Today</Text>
+            <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>
+            Send
+            </Animated.Text>
+            <Animated.Text style={[styles.cornerText, styles.bottomLeft, tradeStyle]}>
+            Trade
+            </Animated.Text>
             </View>
-          </View>
+            </View> */}
         </ImageBackground>
+        <View style={styles.topContainer}></View>
       </View>
 
       {/* Bottom Half */}
@@ -126,6 +127,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'red',
     width: '100%',
+  },
+  topContainer: {
+    flex: 1,
+    position: 'relative',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'blue',
   },
   overlay: {
     flex: 1,

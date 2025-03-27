@@ -145,6 +145,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: 'PlayfairDisplay-Medium',
     textAlign: 'center',
+    bottom: 20,
   },
   cornerText: {
     position: 'absolute',

@@ -75,7 +75,6 @@ const LoginScreen = () => {
           resizeMode="contain"
         >
           <View style={styles.contentContainer}>
-            <View style={styles.todayContainer}>
               <Text style={styles.centerText}>Today</Text>
               <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
                 Learn
@@ -91,7 +90,6 @@ const LoginScreen = () => {
                 Trade
               </Animated.Text>
             </View>
-          </View>
         </ImageBackground>
       </View>
 

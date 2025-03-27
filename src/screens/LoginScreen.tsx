@@ -77,23 +77,21 @@ const LoginScreen = () => {
           <View style={styles.topContainer}>
             <Text style={styles.centerText}>Today</Text>
           </View>
-          {/* <View style={styles.overlay}>
-            <View style={styles.textContainer}>
+          <View style={styles.overlay}>
             <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
-            Learn
+              Learn
             </Animated.Text>
             <Animated.Text style={[styles.cornerText, styles.topRight, investStyle]}>
-            Invest
+              Invest
             </Animated.Text>
-            
+
             <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>
-            Send
+              Send
             </Animated.Text>
             <Animated.Text style={[styles.cornerText, styles.bottomLeft, tradeStyle]}>
-            Trade
+              Trade
             </Animated.Text>
-            </View>
-            </View> */}
+          </View>
         </ImageBackground>
       </View>
 

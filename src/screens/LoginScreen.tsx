@@ -69,12 +69,11 @@ const LoginScreen = () => {
     <View style={styles.container}>
       {/* Top Half */}
       <View style={styles.topHalf}>
-        <View style={styles.imageArea}>
-          {/* <ImageBackground
+          <ImageBackground
             source={BackgroundData[currentIndex].topImage}
             style={styles.backgroundImage}
-            resizeMode="contain"
-          > */}
+            resizeMode="center"
+          >
             {/* <View style={styles.overlay}>
               <Animated.Text style={[styles.cornerText, styles.leftTop, learnStyle]}>
                 Learn
@@ -91,20 +90,17 @@ const LoginScreen = () => {
 
               <Text style={styles.centerText}>Today</Text>
             </View> */}
-          {/* </ImageBackground> */}
-        </View>
+          </ImageBackground>
       </View>
 
       {/* Bottom Half */}
       <View style={styles.bottomHalf}>
-        <View style={styles.imageArea}>
-          {/* <ImageBackground
+          <ImageBackground
             source={BackgroundData[currentIndex].bottomImage}
             style={styles.backgroundImage}
-            resizeMode="contain"
+            resizeMode="center"
           >
-          </ImageBackground> */}
-        </View>
+          </ImageBackground>
       </View>
     </View>
   );
@@ -119,23 +115,14 @@ const styles = StyleSheet.create({
     flex: 0.5,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'blue',
   },
   bottomHalf: {
     flex: 0.5,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'green',
-  },
-  imageArea: {
-    borderWidth: 1, // Optional: Add border for clarity
-    borderColor: '#ccc',
-    backgroundColor: 'yellow',
-
   },
   backgroundImage: {
     flex: 1,
-    width: '100%',
   },
   overlay: {
     flex: 1,

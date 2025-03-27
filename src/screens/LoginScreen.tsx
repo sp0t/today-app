@@ -139,8 +139,6 @@ const styles = StyleSheet.create({
     width: 204,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'black',
   },
   centerText: {
     color: '#000000',
@@ -148,8 +146,6 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: 'PlayfairDisplay-Medium',
     textAlign: 'center',
-    borderWidth: 1,
-    borderColor: 'green',
 
   },
   cornerText: {
@@ -161,27 +157,19 @@ const styles = StyleSheet.create({
   },
   topLeft: {
     left: 0,
-    top: -30,
-    borderWidth: 1,
-    borderColor: 'yellow',
+    top: -40,
   },
   topRight: {
     right: 0,
-    top: -30,
-    borderWidth: 1,
-    borderColor: 'yellow',
+    top: -40,
   },
   bottomRight: {
     right: 0,
-    bottom: -30,
-    borderWidth: 1,
-    borderColor: 'yellow',
+    bottom: -40,
   },
   bottomLeft: {
     left: 0,
-    bottom: -30,
-    borderWidth: 1,
-    borderColor: 'yellow',
+    bottom: -40,
   },
 });
 

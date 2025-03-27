@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   middleContainer: {
-    flex: 0.1,
+    flex: 0.2,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottomHalf: {
-    flex: 0.4,
+    flex: 0.3,
     justifyContent: 'center',
     alignItems: 'center',
   },

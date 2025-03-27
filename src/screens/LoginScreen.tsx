@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
-
-const { width, height } = Dimensions.get('window');
 
 interface BackgroundItem {
   topImage: ImageSourcePropType;
@@ -36,53 +34,58 @@ const BackgroundData: BackgroundItem[] = [
 const LoginScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  // Opacity values
-  const backgroundOpacity = useSharedValue(1);
+  // Shared values for opacity
   const learnOpacity = useSharedValue(1);
   const investOpacity = useSharedValue(0.3);
   const sendOpacity = useSharedValue(0.3);
   const tradeOpacity = useSharedValue(0.3);
 
+  const topImageOpacity = useSharedValue(1);
+  const bottomImageOpacity = useSharedValue(1);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      // Change background images with animation
       const nextIndex = (currentIndex + 1) % BackgroundData.length;
       const nextCase = BackgroundData[nextIndex];
 
-      // Animate opacity
-      backgroundOpacity.value = withTiming(0, { duration: 800 }, () => {
-        setCurrentIndex(nextIndex);
-        backgroundOpacity.value = withTiming(1, { duration: 800 });
-      });
-
-      // Update corner opacity values
+      // Update text opacity
       learnOpacity.value = withTiming(nextCase.activeCorner === 'learn' ? 1 : 0.3, { duration: 800 });
       investOpacity.value = withTiming(nextCase.activeCorner === 'invest' ? 1 : 0.3, { duration: 800 });
       sendOpacity.value = withTiming(nextCase.activeCorner === 'send' ? 1 : 0.3, { duration: 800 });
       tradeOpacity.value = withTiming(nextCase.activeCorner === 'trade' ? 1 : 0.3, { duration: 800 });
-    }, 2000);
+
+      // Update background opacity
+      topImageOpacity.value = withTiming(0, { duration: 800 }, () => {
+        setCurrentIndex(nextIndex);
+        topImageOpacity.value = withTiming(1, { duration: 800 });
+      });
+
+      bottomImageOpacity.value = withTiming(0, { duration: 800 }, () => {
+        bottomImageOpacity.value = withTiming(1, { duration: 800 });
+      });
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [currentIndex]);
 
   // Animated styles
-  const backgroundAnimatedStyle = useAnimatedStyle(() => ({
-    opacity: backgroundOpacity.value,
-  }));
   const learnStyle = useAnimatedStyle(() => ({ opacity: learnOpacity.value }));
   const investStyle = useAnimatedStyle(() => ({ opacity: investOpacity.value }));
   const sendStyle = useAnimatedStyle(() => ({ opacity: sendOpacity.value }));
   const tradeStyle = useAnimatedStyle(() => ({ opacity: tradeOpacity.value }));
 
+  const topImageStyle = useAnimatedStyle(() => ({ opacity: topImageOpacity.value }));
+  const bottomImageStyle = useAnimatedStyle(() => ({ opacity: bottomImageOpacity.value }));
+
   return (
     <View style={styles.container}>
       {/* Top Half */}
       <View style={styles.topHalf}>
-        <Animated.View style={[styles.backgroundImageContainer, backgroundAnimatedStyle]}>
+        <Animated.View style={[styles.backgroundImageContainer, topImageStyle]}>
           <ImageBackground
             source={BackgroundData[currentIndex].topImage}
             style={styles.backgroundImage}
-            resizeMode="contain"
+            resizeMode="stretch"
           />
         </Animated.View>
         <View style={styles.contentContainer}>
@@ -95,10 +98,10 @@ const LoginScreen = () => {
           </View>
         </View>
       </View>
-      <View style={styles.middleContainer}></View>
+
       {/* Bottom Half */}
       <View style={styles.bottomHalf}>
-        <Animated.View style={[styles.backgroundImageContainer, backgroundAnimatedStyle]}>
+        <Animated.View style={[styles.backgroundImageContainer, bottomImageStyle]}>
           <ImageBackground
             source={BackgroundData[currentIndex].bottomImage}
             style={styles.backgroundImage}
@@ -114,18 +117,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  middleContainer: {
-    flex: 0.1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   topHalf: {
     flex: 0.5,
     justifyContent: 'center',
     alignItems: 'center',
   },
   bottomHalf: {
-    flex: 0.4,
+    flex: 0.5,
     justifyContent: 'center',
     alignItems: 'center',
   },

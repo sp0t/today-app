@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet, ImageBackground, ImageSourcePropType, Dimensions } from 'react-native';
-import Animated, { useSharedValue, useAnimatedStyle, withTiming, withSequence } from 'react-native-reanimated';
+import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType, Dimensions } from 'react-native';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 const { width, height } = Dimensions.get('window');
 
@@ -36,7 +36,8 @@ const BackgroundData: BackgroundItem[] = [
 const LoginScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  // Corner opacity values
+  // Opacity values
+  const backgroundOpacity = useSharedValue(1);
   const learnOpacity = useSharedValue(1);
   const investOpacity = useSharedValue(0.3);
   const sendOpacity = useSharedValue(0.3);
@@ -48,18 +49,26 @@ const LoginScreen = () => {
       const nextIndex = (currentIndex + 1) % BackgroundData.length;
       const nextCase = BackgroundData[nextIndex];
 
-      // Smoother fade transition for corner text opacity
+      // Animate opacity
+      backgroundOpacity.value = withTiming(0, { duration: 800 }, () => {
+        setCurrentIndex(nextIndex);
+        backgroundOpacity.value = withTiming(1, { duration: 800 });
+      });
+
+      // Update corner opacity values
       learnOpacity.value = withTiming(nextCase.activeCorner === 'learn' ? 1 : 0.3, { duration: 800 });
       investOpacity.value = withTiming(nextCase.activeCorner === 'invest' ? 1 : 0.3, { duration: 800 });
       sendOpacity.value = withTiming(nextCase.activeCorner === 'send' ? 1 : 0.3, { duration: 800 });
       tradeOpacity.value = withTiming(nextCase.activeCorner === 'trade' ? 1 : 0.3, { duration: 800 });
+    }, 2000);
 
-      setCurrentIndex(nextIndex);
-    }, 2000); // Increased interval for better viewing experience
     return () => clearInterval(interval);
   }, [currentIndex]);
 
-  // Animated styles for corner text
+  // Animated styles
+  const backgroundAnimatedStyle = useAnimatedStyle(() => ({
+    opacity: backgroundOpacity.value,
+  }));
   const learnStyle = useAnimatedStyle(() => ({ opacity: learnOpacity.value }));
   const investStyle = useAnimatedStyle(() => ({ opacity: investOpacity.value }));
   const sendStyle = useAnimatedStyle(() => ({ opacity: sendOpacity.value }));
@@ -69,42 +78,33 @@ const LoginScreen = () => {
     <View style={styles.container}>
       {/* Top Half */}
       <View style={styles.topHalf}>
-        <ImageBackground
-          source={BackgroundData[currentIndex].topImage}
-          style={styles.backgroundImage}
-          resizeMode="contain"
-        >
-          <View style={styles.contentContainer}>
-            <View style={styles.todayContainer}>
-              <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>
-                Learn
-              </Animated.Text>
-              <Animated.Text style={[styles.cornerText, styles.topRight, investStyle]}>
-                Invest
-              </Animated.Text>
-
-              <Text style={styles.centerText}>Today</Text>
-
-              <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>
-                Send
-              </Animated.Text>
-              <Animated.Text style={[styles.cornerText, styles.bottomLeft, tradeStyle]}>
-                Trade
-              </Animated.Text>
-            </View>
+        <Animated.View style={[styles.backgroundImageContainer, backgroundAnimatedStyle]}>
+          <ImageBackground
+            source={BackgroundData[currentIndex].topImage}
+            style={styles.backgroundImage}
+            resizeMode="contain"
+          />
+        </Animated.View>
+        <View style={styles.contentContainer}>
+          <View style={styles.todayContainer}>
+            <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>Learn</Animated.Text>
+            <Animated.Text style={[styles.cornerText, styles.topRight, investStyle]}>Invest</Animated.Text>
+            <Text style={styles.centerText}>Today</Text>
+            <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>Send</Animated.Text>
+            <Animated.Text style={[styles.cornerText, styles.bottomLeft, tradeStyle]}>Trade</Animated.Text>
           </View>
-        </ImageBackground>
+        </View>
       </View>
-      <View style={styles.middleContainer}>
-      </View>
+      <View style={styles.middleContainer}></View>
       {/* Bottom Half */}
       <View style={styles.bottomHalf}>
-        <ImageBackground
-          source={BackgroundData[currentIndex].bottomImage}
-          style={styles.fullWidthImageContain}
-          resizeMode="stretch"
-        >
-        </ImageBackground>
+        <Animated.View style={[styles.backgroundImageContainer, backgroundAnimatedStyle]}>
+          <ImageBackground
+            source={BackgroundData[currentIndex].bottomImage}
+            style={styles.backgroundImage}
+            resizeMode="stretch"
+          />
+        </Animated.View>
       </View>
     </View>
   );
@@ -126,23 +126,22 @@ const styles = StyleSheet.create({
   },
   bottomHalf: {
     flex: 0.4,
-    overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  backgroundImageContainer: {
+    flex: 1,
+    width: '100%',
   },
   backgroundImage: {
     flex: 1,
     width: '100%',
   },
-  fullWidthImageContain: {
-    width: '100%', 
-    height: '100%',
-  },
   contentContainer: {
     position: 'absolute',
     alignItems: 'center',
     width: '100%',
-    bottom: 70
+    bottom: 70,
   },
   todayContainer: {
     width: 204,
@@ -155,7 +154,6 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: 'PlayfairDisplay-Medium',
     textAlign: 'center',
-
   },
   cornerText: {
     position: 'absolute',

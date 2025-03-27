@@ -161,21 +161,25 @@ const styles = StyleSheet.create({
   },
   topLeft: {
     left: 0,
+    top: 0,
     borderWidth: 1,
     borderColor: 'yellow',
   },
   topRight: {
     right: 0,
+    top: 0,
     borderWidth: 1,
     borderColor: 'yellow',
   },
   bottomRight: {
     right: 0,
+    bottom: 0,
     borderWidth: 1,
     borderColor: 'yellow',
   },
   bottomLeft: {
     left: 0,
+    bottom: 0,
     borderWidth: 1,
     borderColor: 'yellow',
   },

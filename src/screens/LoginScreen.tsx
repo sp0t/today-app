@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: 'PlayfairDisplay-Medium',
     textAlign: 'center',
-    bottom: 20,
+    bottom: 70,
     borderWidth: 1,
     borderColor: 'green',
 

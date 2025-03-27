@@ -91,8 +91,8 @@ const LoginScreen = () => {
             </Animated.Text>
             </View>
             </View> */}
+          <View style={styles.topContainer}></View>
         </ImageBackground>
-        <View style={styles.topContainer}></View>
       </View>
 
       {/* Bottom Half */}

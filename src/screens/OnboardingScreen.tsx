@@ -138,20 +138,18 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                     <SmallIcon source={images.onboarding.UserIcon} />
                                     <Text style={styles.title}>What is your name?</Text>
                                     <Text style={[styles.subtitle, { marginTop: 14 }]}>Your name is how others find you on Today.{'\n'}You can change this later.</Text>
-                                    <View style={{flex:1}}>
-                                        <PrimaryInput
-                                            style={{ marginTop: 24 }}
-                                            value={formData.firstName}
-                                            onChangeText={(text) => setFormData({ ...formData, firstName: text })}
-                                            placeholder="First name"
-                                        />
-                                        <PrimaryInput
-                                            style={{ marginTop: 10 }}
-                                            value={formData.lastName}
-                                            onChangeText={(text) => setFormData({ ...formData, lastName: text })}
-                                            placeholder="Last name"
-                                        />
-                                    </View>
+                                    <PrimaryInput
+                                        style={{ marginTop: 24 }}
+                                        value={formData.firstName}
+                                        onChangeText={(text) => setFormData({ ...formData, firstName: text })}
+                                        placeholder="First name"
+                                    />
+                                    <PrimaryInput
+                                        style={{ marginTop: 10 }}
+                                        value={formData.lastName}
+                                        onChangeText={(text) => setFormData({ ...formData, lastName: text })}
+                                        placeholder="Last name"
+                                    />
                                 </View>
                             </ImageBackground>
                         </View>

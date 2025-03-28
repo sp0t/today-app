@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType, Button, T
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, runOnJS } from 'react-native-reanimated';
 import { loginBackgroundData } from '../constants/constatants';
 
+import PrimaryButton from '../components/ui/Button/PrimaryButton';
+import TextButton from '../components/ui/Button/TextButton';
+
 
 const LoginScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -86,12 +89,8 @@ const LoginScreen = () => {
         </Animated.View>
         <View style={styles.bottomContentContainer}>
           <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
-          <TouchableOpacity style={styles.createButton} onPress={() => { }}>
-            <Text style={styles.createButtonText}>Create an account</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.logInButton} onPress={() => { }}>
-            <Text style={styles.logInButtonText}>Sign in</Text>
-          </TouchableOpacity>
+          <PrimaryButton title="Create an account" onPress={() => { }} />
+          <TextButton title="Sign in" onPress={() => { }} />
         </View>
       </View>
     </View>
@@ -181,32 +180,6 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     fontFamily: 'PlayfairDisplay-Medium',
     textAlign: 'center',
-  },
-  createButton: {
-    marginTop: '20%',
-    backgroundColor: '#101010',
-    borderRadius: 12,
-    width: '90%',
-    height: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  createButtonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 22
-  },
-  logInButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logInButtonText: {
-    marginTop: 20,
-    color: '#101010',
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 22
   },
 });
 

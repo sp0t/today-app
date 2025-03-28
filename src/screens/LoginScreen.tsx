@@ -55,8 +55,7 @@ const LoginScreen = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      {/* Top Half */}
-      <View style={styles.topHalf}>
+      <View style={{ flex: 0.5 }}>
         <Animated.View style={[styles.backgroundImageContainer, topImageStyle]}>
           <ImageBackground
             source={loginBackgroundData[currentIndex].topImage}
@@ -77,11 +76,10 @@ const LoginScreen = () => {
         </View>
       </View>
 
-      <View style={styles.middleContainer}>
+      <View style={{ flex: 0.1 }}>
       </View>
 
-      {/* Bottom Half */}
-      <View style={styles.bottomHalf}>
+      <View style={{ flex: 0.4 }}>
         <Animated.View style={[styles.backgroundImageContainer, bottomImageStyle]}>
           <ImageBackground
             source={loginBackgroundData[currentIndex].bottomImage}
@@ -100,21 +98,6 @@ const LoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  topHalf: {
-    flex: 0.5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  bottomHalf: {
-    flex: 0.4,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  middleContainer: {
-    flex: 0.1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   backgroundImageContainer: {
     flex: 1,
     width: '100%',

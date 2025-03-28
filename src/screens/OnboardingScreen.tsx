@@ -40,7 +40,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                         <View style={[baseStyles.bgImgContainer]}>
                             <ImageBackground
                                 source={images.onboarding.OnboardingTop}
-                                style={baseStyles.bgImage}
+                                style={[baseStyles.bgImage, { alignItems: 'center' }]}
                                 resizeMode="cover">
                                 <View style={{ marginTop: '40%', width: '90%', borderWidth: 1, borderColor: 'red' }}>
                                     <Text>Welcome to Today</Text>

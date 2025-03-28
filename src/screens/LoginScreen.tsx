@@ -54,7 +54,7 @@ const LoginScreen = () => {
   const bottomImageStyle = useAnimatedStyle(() => ({ opacity: bottomImageOpacity.value }));
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       {/* Top Half */}
       <View style={styles.topHalf}>
         <Animated.View style={[styles.backgroundImageContainer, topImageStyle]}>

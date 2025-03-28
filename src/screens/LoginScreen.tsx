@@ -54,7 +54,7 @@ const LoginScreen = () => {
   const bottomImageStyle = useAnimatedStyle(() => ({ opacity: bottomImageOpacity.value }));
 
   return (
-    <View style={styles.container}>
+    <View>
       {/* Top Half */}
       <View style={styles.topHalf}>
         <Animated.View style={[styles.backgroundImageContainer, topImageStyle]}>
@@ -100,9 +100,6 @@ const LoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   topHalf: {
     flex: 0.5,
     justifyContent: 'center',

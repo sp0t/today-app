@@ -227,11 +227,11 @@ const styles = StyleSheet.create({
         height: 50,
         borderWidth: 1,
         borderColor: '#E4E4E7',
-        borderRadius: 8,
         paddingHorizontal: 16,
         paddingVertical: 16,
         marginBottom: 15,
         fontSize: 16,
+        borderRadius: 12,
     },
     button: {
         width: '100%',

@@ -150,8 +150,8 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                         </View>
                     </View>
                     <View style={{ flex: 0.1 }}>
-                        <PrimaryInput
-                            style={{ marginTop: 10 }}
+                    <PrimaryInput
+                            style={{ marginTop: 30 }}
                             value={formData.lastName}
                             onChangeText={(text) => setFormData({ ...formData, lastName: text })}
                             placeholder="Last name"

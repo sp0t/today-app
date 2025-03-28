@@ -93,7 +93,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                     <Text style={styles.title}>Check your email</Text>
                                     <Text style={[styles.subtitle, { marginTop: 14 }]}>We just sent a security code to{'\n'}{formData.email}</Text>
                                     <PrimaryInput
-                                        style={{ marginTop: 25 }}
+                                        style={{ marginTop: 24 }}
                                         value={formData.verificationCode}
                                         onChangeText={(text) => setFormData({ ...formData, verificationCode: text })}
                                         placeholder="Enter the code"
@@ -139,7 +139,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                     <Text style={styles.title}>What is your name?</Text>
                                     <Text style={[styles.subtitle, { marginTop: 14 }]}>Your name is how others find you on Today.{'\n'}You can change this later.</Text>
                                     <PrimaryInput
-                                        style={{ marginTop: 25 }}
+                                        style={{ marginTop: 24 }}
                                         value={formData.firstName}
                                         onChangeText={(text) => setFormData({ ...formData, firstName: text })}
                                         placeholder="First name"

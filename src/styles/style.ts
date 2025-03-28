@@ -13,7 +13,7 @@ const baseStyles = StyleSheet.create({
   topContainer: {
     position: 'absolute',
     width: '100%',
-    top: '70%',
+    bottom: 70,
   },
   bottomContainer: {
     flex: 1,

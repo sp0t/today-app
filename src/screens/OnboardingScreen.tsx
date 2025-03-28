@@ -133,23 +133,26 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                             <ImageBackground
                                 source={images.onboarding.OnboardingTop}
                                 style={[baseStyles.bgImage, { alignItems: 'center' }]}
-                                resizeMode="cover">
-                                <View style={styles.contentContainer}>
-                                    <SmallIcon source={images.onboarding.UserIcon} />
-                                    <Text style={styles.title}>What is your name?</Text>
-                                    <Text style={[styles.subtitle, { marginTop: 14 }]}>Your name is how others find you on Today.{'\n'}You can change this later.</Text>
-                                    <PrimaryInput
-                                        style={{ marginTop: 24 }}
-                                        value={formData.firstName}
-                                        onChangeText={(text) => setFormData({ ...formData, firstName: text })}
-                                        placeholder="First name"
-                                    />
-                                    <PrimaryInput
-                                        style={{ marginTop: 10 }}
-                                        value={formData.lastName}
-                                        onChangeText={(text) => setFormData({ ...formData, lastName: text })}
-                                        placeholder="Last name"
-                                    />
+                                resizeMode="cover"
+                            >
+                                <View style={{ flex: 1 }} pointerEvents="box-none">
+                                    <View style={styles.contentContainer}>
+                                        <SmallIcon source={images.onboarding.UserIcon} />
+                                        <Text style={styles.title}>What is your name?</Text>
+                                        <Text style={[styles.subtitle, { marginTop: 14 }]}>Your name is how others find you on Today.{'\n'}You can change this later.</Text>
+                                        <PrimaryInput
+                                            style={{ marginTop: 24 }}
+                                            value={formData.firstName}
+                                            onChangeText={(text) => setFormData({ ...formData, firstName: text })}
+                                            placeholder="First name"
+                                        />
+                                        <PrimaryInput
+                                            style={{ marginTop: 10 }}
+                                            value={formData.lastName}
+                                            onChangeText={(text) => setFormData({ ...formData, lastName: text })}
+                                            placeholder="Last name"
+                                        />
+                                    </View>
                                 </View>
                             </ImageBackground>
                         </View>

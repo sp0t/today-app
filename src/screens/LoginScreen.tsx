@@ -9,10 +9,9 @@ import TextButton from '../components/ui/Button/TextButton';
 const LoginScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  // Type for cornerOpacities shared value with explicit keys
   type CornerKeys = 'learn' | 'invest' | 'send' | 'trade';
 
-  // Shared value object for opacity of all corners
+
   const cornerOpacities = useSharedValue<{ [key in CornerKeys]: number }>({
     learn: 1,
     invest: 0.3,
@@ -20,8 +19,8 @@ const LoginScreen = () => {
     trade: 0.3,
   });
 
-  // Single shared value for image opacity
-  const imageOpacity = useSharedValue(1);
+  const topImageOpacity = useSharedValue(1);
+  const bottomImageOpacity = useSharedValue(1);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,10 +33,14 @@ const LoginScreen = () => {
         cornerOpacities.value[cornerKey] = nextCase.activeCorner === cornerKey ? 1 : 0.3;
       });
 
-      // Update image opacity (top and bottom images)
-      imageOpacity.value = withTiming(0.5, { duration: 800 }, () => {
+      // Update background opacity
+      topImageOpacity.value = withTiming(0.5, { duration: 800 }, () => {
         runOnJS(setCurrentIndex)(nextIndex);
-        imageOpacity.value = withTiming(1, { duration: 800 });
+        topImageOpacity.value = withTiming(1, { duration: 800 });
+      });
+
+      bottomImageOpacity.value = withTiming(0.5, { duration: 800 }, () => {
+        bottomImageOpacity.value = withTiming(1, { duration: 800 });
       });
     }, 2000);
 
@@ -50,16 +53,14 @@ const LoginScreen = () => {
       opacity: cornerOpacities.value[key],
     }));
 
-  // Animated styles for images
-  const imageStyle = useAnimatedStyle(() => ({
-    opacity: imageOpacity.value,
-  }));
+  const topImageStyle = useAnimatedStyle(() => ({ opacity: topImageOpacity.value }));
+  const bottomImageStyle = useAnimatedStyle(() => ({ opacity: bottomImageOpacity.value }));
 
   return (
     <View style={styles.container}>
       {/* Top Half */}
       <View style={styles.topHalf}>
-        <Animated.View style={[styles.backgroundImageContainer, imageStyle]}>
+        <Animated.View style={[styles.backgroundImageContainer, topImageStyle]}>
           <ImageBackground
             source={loginBackgroundData[currentIndex].topImage}
             style={styles.backgroundImage}
@@ -81,7 +82,7 @@ const LoginScreen = () => {
 
       {/* Bottom Half */}
       <View style={styles.bottomHalf}>
-        <Animated.View style={[styles.backgroundImageContainer, imageStyle]}>
+        <Animated.View style={[styles.backgroundImageContainer, bottomImageStyle]}>
           <ImageBackground
             source={loginBackgroundData[currentIndex].bottomImage}
             style={styles.backgroundImage}

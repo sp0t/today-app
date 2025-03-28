@@ -1,11 +1,11 @@
-import { ViewStyle, TextStyle, KeyboardTypeOptions } from 'react-native';
+import { ViewStyle, TextStyle, StyleProp, KeyboardTypeOptions } from 'react-native';
 import { AnimatedStyle } from 'react-native-reanimated';
 
 export interface ButtonProps {
     title: string;
     onPress: () => void;
-    style?: ViewStyle;
-    textStyle?: TextStyle;
+    style?: StyleProp<ViewStyle>;
+    textStyle?: StyleProp<TextStyle>;
 }
 
 export interface InputProps {
@@ -14,7 +14,7 @@ export interface InputProps {
     placeholder?: string;
     keyboardType?: KeyboardTypeOptions;
     autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
-    style?: any;
+    style?: StyleProp<ViewStyle>;
 }
 
 export interface CornerTextProps {

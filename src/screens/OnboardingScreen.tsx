@@ -43,18 +43,18 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 style={baseStyles.bgImage}
                                 resizeMode="cover"
                             />
-                        </View>
-                        <View>
-                            <Text>Welcome to Today</Text>
-                            <Text style={styles.title}>Enter your email address</Text>
-                            <TextInput
-                                style={styles.input}
-                                value={formData.email}
-                                onChangeText={(text) => setFormData({ ...formData, email: text })}
-                                placeholder="Email"
-                                keyboardType="email-address"
-                                autoCapitalize="none"
-                            />
+                            <View>
+                                <Text>Welcome to Today</Text>
+                                <Text style={styles.title}>Enter your email address</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    value={formData.email}
+                                    onChangeText={(text) => setFormData({ ...formData, email: text })}
+                                    placeholder="Email"
+                                    keyboardType="email-address"
+                                    autoCapitalize="none"
+                                />
+                            </View>
                         </View>
                     </View>
                     <View style={{ flex: 0.1 }}>

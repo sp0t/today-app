@@ -4,8 +4,8 @@ import { images } from '../styles'
 export const enum ACTIVECORNER {
     LEARN = 'learn',
     INVEST = 'invest',
-    SEND = 'send',
     TRADE = 'trade',
+    SEND = 'send',
 }
 
 export const loginBackgroundData: BackgroundItem[] = [
@@ -20,13 +20,13 @@ export const loginBackgroundData: BackgroundItem[] = [
         activeCorner: ACTIVECORNER.INVEST,
     },
     {
-        topImage: images.login.SendTop,
-        bottomImage: images.login.SendBottom,
-        activeCorner: ACTIVECORNER.SEND,
-    },
-    {
         topImage: images.login.TradeTop,
         bottomImage: images.login.TradeBottom,
         activeCorner: ACTIVECORNER.TRADE,
+    },
+    {
+        topImage: images.login.SendTop,
+        bottomImage: images.login.SendBottom,
+        activeCorner: ACTIVECORNER.SEND,
     },
 ]

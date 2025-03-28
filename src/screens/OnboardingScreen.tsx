@@ -127,8 +127,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
             key: '3',
             type: 'name',
             component: () => (
-                <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
-
+                <View style={{ flex: 1 }}>
                     <View style={{ flex: 0.5 }}>
                         <View style={[baseStyles.bgImgContainer]}>
                             <ImageBackground
@@ -171,7 +170,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 onPress={() => sliderRef.current?.goToSlide(3)} />
                         </View>
                     </View>
-                </ScrollView>
+                </View>
             ),
         },
         {

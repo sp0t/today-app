@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 // import * as ImagePicker from 'react-native-image-picker';
 
@@ -127,7 +127,8 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
             key: '3',
             type: 'name',
             component: () => (
-                <View style={{ flex: 1 }}>
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
+
                     <View style={{ flex: 0.5 }}>
                         <View style={[baseStyles.bgImgContainer]}>
                             <ImageBackground
@@ -170,7 +171,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 onPress={() => sliderRef.current?.goToSlide(3)} />
                         </View>
                     </View>
-                </View>
+                </ScrollView>
             ),
         },
         {

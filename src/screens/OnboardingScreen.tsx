@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     welcomeText: {
         fontSize: 14,
         fontWeight: '400',
-        fontFamily: 'PlayfairDisplay-Regular',
+        fontFamily: 'PlayfairDisplay-Medium',
     },
     title: {
         width: 271,

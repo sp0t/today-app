@@ -46,7 +46,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                     <Text>Welcome to Today</Text>
                                     <Text style={styles.title}>Enter your email address</Text>
                                     <TextInput
-                                        style={styles.input}
+                                        style={[styles.input, { marginTop: 36 }]}
                                         value={formData.email}
                                         onChangeText={(text) => setFormData({ ...formData, email: text })}
                                         placeholder="Email"
@@ -196,8 +196,6 @@ const styles = StyleSheet.create({
     contentContainer: {
         marginTop: '40%',
         width: '90%',
-        borderWidth: 1,
-        borderColor: 'red',
     },
     icon: {
         width: 60,

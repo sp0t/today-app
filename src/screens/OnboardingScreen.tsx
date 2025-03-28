@@ -45,9 +45,9 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                             />
                         </View>
                         <View style={[baseStyles.topContainer]}>
-                            <View style={{ borderWidth: 1, borderColor: 'red' }}>
+                            <View style={styles.titleContainer}>
                                 <Text>Welcome to Today</Text>
-                                <Text>Enter your email address</Text>
+                                <Text style={styles.title}>Enter your email address</Text>
                                 <TextInput
                                     style={styles.input}
                                     value={formData.email}
@@ -195,15 +195,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
     },
+    titleContainer: {
+        width: 204,
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+    },
     icon: {
         width: 60,
         height: 60,
         marginBottom: 20,
     },
     title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 10,
+        fontSize: 36,
+        fontWeight: '500',
+        letterSpacing: -0.25,
         textAlign: 'center',
     },
     subtitle: {

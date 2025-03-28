@@ -41,7 +41,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                             <ImageBackground
                                 source={images.onboarding.OnboardingTop}
                                 style={baseStyles.bgImage}
-                                resizeMode="stretch"
+                                resizeMode="cover"
                             />
                         </View>
                         <View style={[baseStyles.topContainer]}>
@@ -210,7 +210,6 @@ const styles = StyleSheet.create({
         fontSize: 36,
         fontWeight: '500',
         letterSpacing: -0.25,
-        textAlign: 'center',
     },
     subtitle: {
         fontSize: 16,

@@ -42,7 +42,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 source={images.onboarding.OnboardingTop}
                                 style={[baseStyles.bgImage, { alignItems: 'center' }]}
                                 resizeMode="cover">
-                                <View style={{ marginTop: '40%', width: '90%', borderWidth: 1, borderColor: 'red' }}>
+                                <View style={styles.contentContainer}>
                                     <Text>Welcome to Today</Text>
                                     <Text style={styles.title}>Enter your email address</Text>
                                     <TextInput
@@ -84,7 +84,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                     <Text style={styles.title}>Check your email</Text>
                     <Text style={styles.subtitle}>We just sent a security code to {formData.email}</Text>
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, { marginTop: 36 }]}
                         value={formData.verificationCode}
                         onChangeText={(text) => setFormData({ ...formData, verificationCode: text })}
                         placeholder="Enter verification code"
@@ -193,18 +193,28 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
     },
-    titleContainer: {
-        width: 271,
+    contentContainer: {
+        marginTop: '40%',
+        width: '90%',
+        borderWidth: 1,
+        borderColor: 'red',
     },
     icon: {
         width: 60,
         height: 60,
         marginBottom: 20,
     },
+    welcomeText: {
+        fontSize: 14,
+        fontWeight: '400',
+        fontFamily: 'PlayfairDisplay-Regular',
+    },
     title: {
+        width: 271,
         fontSize: 36,
         fontWeight: '500',
         letterSpacing: -0.25,
+        marginTop: 10,
     },
     subtitle: {
         fontSize: 16,
@@ -216,9 +226,10 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 50,
         borderWidth: 1,
-        borderColor: '#ddd',
+        borderColor: '#E4E4E7',
         borderRadius: 8,
-        paddingHorizontal: 15,
+        paddingHorizontal: 16,
+        paddingVertical: 16,
         marginBottom: 15,
         fontSize: 16,
     },

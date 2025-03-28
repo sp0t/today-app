@@ -74,7 +74,7 @@ const LoginScreen = () => {
             resizeMode="stretch"
           />
         </Animated.View>
-        <View style={baseStyles.topContainer}>
+        <View style={[baseStyles.topContainer, { alignItems: 'center', justifyContent: 'center' }]}>
           <View style={styles.todayContainer}>
             <CornerText text="Learn" top={-30} left={0} animatedStyle={learnStyle} />
             <CornerText text="Invest" top={-30} right={0} animatedStyle={investStyle} />
@@ -96,7 +96,7 @@ const LoginScreen = () => {
             resizeMode="stretch"
           />
         </Animated.View>
-        <View style={baseStyles.bottomContainer}>
+        <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
           <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
           <PrimaryButton title="Create an account" style={{ marginTop: '20%' }} onPress={handleCreateAccount} />
           <TextButton title="Sign in" style={{ marginTop: 20 }} onPress={() => { }} />

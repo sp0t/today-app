@@ -5,3 +5,6 @@ export interface BackgroundItem {
     bottomImage: ImageSourcePropType;
     activeCorner: 'learn' | 'invest' | 'send' | 'trade';
 }
+
+
+  

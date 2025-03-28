@@ -5,7 +5,7 @@ import { loginBackgroundData } from '../constants/constatants';
 
 import PrimaryButton from '../components/ui/Button/PrimaryButton';
 import TextButton from '../components/ui/Button/TextButton';
-
+import CornerText from '../components/login/ConerText';
 
 const LoginScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -66,11 +66,10 @@ const LoginScreen = () => {
         </Animated.View>
         <View style={styles.contentContainer}>
           <View style={styles.todayContainer}>
-            <Animated.Text style={[styles.cornerText, styles.topLeft, learnStyle]}>Learn</Animated.Text>
-            <Animated.Text style={[styles.cornerText, styles.topRight, investStyle]}>Invest</Animated.Text>
-            <Text style={styles.centerText}>Today</Text>
-            <Animated.Text style={[styles.cornerText, styles.bottomRight, sendStyle]}>Send</Animated.Text>
-            <Animated.Text style={[styles.cornerText, styles.bottomLeft, tradeStyle]}>Trade</Animated.Text>
+            <CornerText text="Learn" top={-30} left={0} animatedStyle={learnStyle} />
+            <CornerText text="Invest" top={-30} right={0} animatedStyle={investStyle} />
+            <CornerText text="Send" bottom={-40} left={0} animatedStyle={sendStyle} />
+            <CornerText text="Trade" bottom={-40} right={0} animatedStyle={tradeStyle} />
           </View>
         </View>
       </View>
@@ -150,29 +149,7 @@ const styles = StyleSheet.create({
     fontFamily: 'PlayfairDisplay-Medium',
     textAlign: 'center',
   },
-  cornerText: {
-    position: 'absolute',
-    color: '#000000',
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 22,
-  },
-  topLeft: {
-    left: 0,
-    top: -30,
-  },
-  topRight: {
-    right: 0,
-    top: -30,
-  },
-  bottomRight: {
-    right: 0,
-    bottom: -40,
-  },
-  bottomLeft: {
-    left: 0,
-    bottom: -40,
-  },
+
   bottomTitle: {
     marginTop: '10%',
     color: '#000000',

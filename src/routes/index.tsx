@@ -4,30 +4,17 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../theme/ThemeContext';
 import Routes from './RouteName';  
+import { RootStackParamList } from '../interface/login';
+
 // screens
 import OnboardingScreen from '../screens/OnboardingScreen';
 import LoginScreen from '../screens/LoginScreen';
 import MarketScreen from '../screens/MarketScreen';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function RootNavigation() {
     const { theme, toggleTheme } = useTheme();
-    const [initialRoute, setInitialRoute] = React.useState(Routes.ONBOARDING);
-
-    useEffect(() => {
-        const checkOnboarding = async () => {
-            try {
-                const hasSeenOnboarding = await AsyncStorage.getItem('hasSeenOnboarding');
-                if (hasSeenOnboarding === 'true') {
-                    setInitialRoute(Routes.MARKET);
-                }
-            } catch (error) {
-                console.error('Error checking onboarding status:', error);
-            }
-        };
-        checkOnboarding();
-    }, []); 
 
     return (
         <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>

@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType, Button, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, runOnJS } from 'react-native-reanimated';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
 import { loginBackgroundData } from '../constants/constatants';
+import Routes from '../routes/RouteName';  
+import { RootStackParamList } from '../interface/login';
 
 import PrimaryButton from '../components/ui/Button/PrimaryButton';
 import TextButton from '../components/ui/Button/TextButton';
 import CornerText from '../components/login/ConerText';
 
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, Routes.LOGIN>;
+
 const LoginScreen = () => {
+  const navigation = useNavigation<LoginScreenNavigationProp>();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   // Shared values for opacity
@@ -52,6 +60,10 @@ const LoginScreen = () => {
 
   const topImageStyle = useAnimatedStyle(() => ({ opacity: topImageOpacity.value }));
   const bottomImageStyle = useAnimatedStyle(() => ({ opacity: bottomImageOpacity.value }));
+
+  const handleCreateAccount = () => {
+    navigation.navigate(Routes.ONBOARDING);
+  }
 
   return (
     <View style={{ flex: 1 }}>

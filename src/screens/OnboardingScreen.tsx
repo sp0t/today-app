@@ -46,7 +46,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 <View style={styles.contentContainer}>
                                     <Text style={styles.welcomeText}>Welcome to Today</Text>
                                     <Text style={styles.title}>Enter your</Text>
-                                    <Text style={styles.title}>email address</Text>
+                                    <Text style={[styles.title, {marginTop:-10}]}>email address</Text>
                                     <PrimaryInput
                                         style={{ marginTop: 36 }}
                                         value={formData.email}
@@ -70,7 +70,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                             />
                         </View>
                         <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
-                            <PrimaryButton title="Continue" style={[{ marginTop: 36 }, !validateEmail(formData.email) && styles.buttonDisabled]}
+                            <PrimaryButton title="Continue" style={[{ marginTop: '20%' }, !validateEmail(formData.email) && styles.buttonDisabled]}
                                 disabled={!validateEmail(formData.email)} onPress={() => sliderRef.current?.goToSlide(1)} />
                         </View>
                     </View>

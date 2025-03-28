@@ -48,7 +48,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                     <Text style={styles.welcomeText}>Welcome to Today</Text>
                                     <Text style={styles.title}>Enter your{'\n'}email address</Text>
                                     <PrimaryInput
-                                        style={{ marginTop: 36 }}
+                                        style={{ marginTop: 37 }}
                                         value={formData.email}
                                         onChangeText={(text) => setFormData({ ...formData, email: text })}
                                         placeholder="Your email"

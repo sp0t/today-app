@@ -92,9 +92,9 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 <View style={styles.contentContainer}>
                                     <SmallIcon source={images.onboarding.MailIcon} />
                                     <Text style={styles.title}>Check your email</Text>
-                                    <Text style={styles.subtitle}>We just sent a security code to {formData.email}</Text>
+                                    <Text style={[styles.subtitle, {marginTop: 14}]}>We just sent a security code to {formData.email}</Text>
                                     <PrimaryInput
-                                        style={{ marginTop: 20 }}
+                                        style={{ marginTop: 25 }}
                                         value={formData.verificationCode}
                                         onChangeText={(text) => setFormData({ ...formData, verificationCode: text })}
                                         placeholder="Enter the code"
@@ -238,9 +238,9 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: 16,
-        color: '#666',
-        textAlign: 'center',
-        marginBottom: 30,
+        color: '#6B7280',
+        fontWeight: '400',
+        lineHeight: 20,
     },
     input: {
         width: '100%',

@@ -13,8 +13,8 @@ const LoginScreen = () => {
   // Shared values for opacity
   const learnOpacity = useSharedValue(1);
   const investOpacity = useSharedValue(0.3);
-  const sendOpacity = useSharedValue(0.3);
   const tradeOpacity = useSharedValue(0.3);
+  const sendOpacity = useSharedValue(0.3);
 
   const topImageOpacity = useSharedValue(1);
   const bottomImageOpacity = useSharedValue(1);

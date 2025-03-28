@@ -47,7 +47,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 <View style={styles.contentContainer}>
                                     <Text style={styles.welcomeText}>Welcome to Today</Text>
                                     <Text style={styles.title}>Enter your</Text>
-                                    <Text style={[styles.title, {marginTop:-1.5}]}>email address</Text>
+                                    <Text style={[styles.title]}>email address</Text>
                                     <PrimaryInput
                                         style={{ marginTop: 36 }}
                                         value={formData.email}

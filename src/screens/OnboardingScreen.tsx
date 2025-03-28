@@ -92,7 +92,8 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 <View style={styles.contentContainer}>
                                     <SmallIcon source={images.onboarding.MailIcon} />
                                     <Text style={styles.title}>Check your email</Text>
-                                    <Text style={[styles.subtitle, {marginTop: 14}]}>We just sent a security code to {formData.email}</Text>
+                                    <Text style={[styles.subtitle, {marginTop: 14}]}>We just sent a security code to</Text>
+                                    <Text style={[styles.subtitle]}>{formData.email}</Text>
                                     <PrimaryInput
                                         style={{ marginTop: 25 }}
                                         value={formData.verificationCode}

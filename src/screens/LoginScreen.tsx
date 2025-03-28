@@ -27,8 +27,8 @@ const LoginScreen = () => {
       // Update text opacity
       learnOpacity.value = withTiming(nextCase.activeCorner === 'learn' ? 1 : 0.3, { duration: 800 });
       investOpacity.value = withTiming(nextCase.activeCorner === 'invest' ? 1 : 0.3, { duration: 800 });
-      sendOpacity.value = withTiming(nextCase.activeCorner === 'send' ? 1 : 0.3, { duration: 800 });
       tradeOpacity.value = withTiming(nextCase.activeCorner === 'trade' ? 1 : 0.3, { duration: 800 });
+      sendOpacity.value = withTiming(nextCase.activeCorner === 'send' ? 1 : 0.3, { duration: 800 });
 
       // Update background opacity
       topImageOpacity.value = withTiming(0.5, { duration: 800 }, () => {
@@ -47,8 +47,8 @@ const LoginScreen = () => {
   // Animated styles
   const learnStyle = useAnimatedStyle(() => ({ opacity: learnOpacity.value }));
   const investStyle = useAnimatedStyle(() => ({ opacity: investOpacity.value }));
-  const sendStyle = useAnimatedStyle(() => ({ opacity: sendOpacity.value }));
   const tradeStyle = useAnimatedStyle(() => ({ opacity: tradeOpacity.value }));
+  const sendStyle = useAnimatedStyle(() => ({ opacity: sendOpacity.value }));
 
   const topImageStyle = useAnimatedStyle(() => ({ opacity: topImageOpacity.value }));
   const bottomImageStyle = useAnimatedStyle(() => ({ opacity: bottomImageOpacity.value }));
@@ -63,15 +63,13 @@ const LoginScreen = () => {
             resizeMode="stretch"
           />
         </Animated.View>
-        <View style={styles.contentContainer}>
+        <View style={styles.tipContentContainer}>
           <View style={styles.todayContainer}>
-
             <CornerText text="Learn" top={-30} left={0} animatedStyle={learnStyle} />
             <CornerText text="Invest" top={-30} right={0} animatedStyle={investStyle} />
             <Text style={styles.centerText}>Today</Text>
             <CornerText text="Trade" bottom={-40} right={0} animatedStyle={tradeStyle} />
             <CornerText text="Send" bottom={-40} left={0} animatedStyle={sendStyle} />
-
           </View>
         </View>
       </View>
@@ -89,8 +87,8 @@ const LoginScreen = () => {
         </Animated.View>
         <View style={styles.bottomContentContainer}>
           <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
-          <PrimaryButton title="Create an account" onPress={() => { }} />
-          <TextButton title="Sign in" onPress={() => { }} />
+          <PrimaryButton title="Create an account" style={{ marginTop: '20%' }} onPress={() => { }} />
+          <TextButton title="Sign in" style={{ marginTop: 20 }} onPress={() => { }} />
         </View>
       </View>
     </View>
@@ -106,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
   },
-  contentContainer: {
+  tipContentContainer: {
     position: 'absolute',
     alignItems: 'center',
     width: '100%',

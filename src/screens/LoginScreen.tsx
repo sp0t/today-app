@@ -66,10 +66,13 @@ const LoginScreen = () => {
         </Animated.View>
         <View style={styles.contentContainer}>
           <View style={styles.todayContainer}>
+
             <CornerText text="Learn" top={-30} left={0} animatedStyle={learnStyle} />
             <CornerText text="Invest" top={-30} right={0} animatedStyle={investStyle} />
+            <Text style={styles.centerText}>Today</Text>
             <CornerText text="Send" bottom={-40} left={0} animatedStyle={sendStyle} />
             <CornerText text="Trade" bottom={-40} right={0} animatedStyle={tradeStyle} />
+
           </View>
         </View>
       </View>
@@ -149,7 +152,6 @@ const styles = StyleSheet.create({
     fontFamily: 'PlayfairDisplay-Medium',
     textAlign: 'center',
   },
-
   bottomTitle: {
     marginTop: '10%',
     color: '#000000',

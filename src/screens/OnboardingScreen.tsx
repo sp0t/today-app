@@ -44,7 +44,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 resizeMode="stretch"
                             />
                         </View>
-                        <View style={[baseStyles.topContainer, { alignItems: 'center', justifyContent: 'center' }]}>
+                        <View style={[baseStyles.topContainer]}>
                             <View style={{ borderWidth: 1, borderColor: 'red' }}>
                                 <Text style={styles.title}>Welcome to Today</Text>
                                 <Text style={styles.subtitle}>Enter your email address</Text>

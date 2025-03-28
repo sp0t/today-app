@@ -30,7 +30,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
       key: '1',
       type: 'email',
       component: () => (
-        <View style={styles.slideContainer}>
+        <View style={{ flex: 1 }}>
           <Text style={styles.title}>Welcome to Today</Text>
           <Text style={styles.subtitle}>Enter your email address</Text>
           <TextInput

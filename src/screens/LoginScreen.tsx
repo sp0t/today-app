@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { loginBackgroundData } from '../constants/constatants';
 import Routes from '../routes/RouteName';  
 import { GenericNavigationProps } from '../interface/types';
+import { baseStyles } from '../styles';
 
 import PrimaryButton from '../components/ui/Button/PrimaryButton';
 import TextButton from '../components/ui/Button/TextButton';
@@ -66,14 +67,14 @@ const LoginScreen = () => {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flex: 0.5 }}>
-        <Animated.View style={[styles.backgroundImageContainer, topImageStyle]}>
+        <Animated.View style={[baseStyles.bgImgContainer, topImageStyle]}>
           <ImageBackground
             source={loginBackgroundData[currentIndex].topImage}
-            style={styles.backgroundImage}
+            style={baseStyles.bgImage}
             resizeMode="stretch"
           />
         </Animated.View>
-        <View style={styles.tipContentContainer}>
+        <View style={baseStyles.topContainer}>
           <View style={styles.todayContainer}>
             <CornerText text="Learn" top={-30} left={0} animatedStyle={learnStyle} />
             <CornerText text="Invest" top={-30} right={0} animatedStyle={investStyle} />
@@ -88,14 +89,14 @@ const LoginScreen = () => {
       </View>
 
       <View style={{ flex: 0.4 }}>
-        <Animated.View style={[styles.backgroundImageContainer, bottomImageStyle]}>
+        <Animated.View style={[baseStyles.bgImgContainer, bottomImageStyle]}>
           <ImageBackground
             source={loginBackgroundData[currentIndex].bottomImage}
-            style={styles.backgroundImage}
+            style={baseStyles.bgImage}
             resizeMode="stretch"
           />
         </Animated.View>
-        <View style={styles.bottomContentContainer}>
+        <View style={baseStyles.bottomContainer}>
           <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
           <PrimaryButton title="Create an account" style={{ marginTop: '20%' }} onPress={handleCreateAccount} />
           <TextButton title="Sign in" style={{ marginTop: 20 }} onPress={() => { }} />
@@ -106,28 +107,6 @@ const LoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  backgroundImageContainer: {
-    flex: 1,
-    width: '100%',
-  },
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-  },
-  tipContentContainer: {
-    position: 'absolute',
-    alignItems: 'center',
-    width: '100%',
-    bottom: 70,
-  },
-  bottomContentContainer: {
-    flex: 1,
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   todayContainer: {
     width: 204,
     alignItems: 'center',

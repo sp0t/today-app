@@ -1,5 +1,5 @@
 const images = {
-    login:{
+    login: {
         LearnTop: require('../assets/images/Login_Learn_Top.png'),
         LearnBottom: require('../assets/images/Login_Learn_Bottom.png'),
         InvestTop: require('../assets/images/Login_Invest_Top.png'),
@@ -8,6 +8,10 @@ const images = {
         SendBottom: require('../assets/images/Login_Send_Bottom.png'),
         TradeTop: require('../assets/images/Login_Trade_Top.png'),
         TradeBottom: require('../assets/images/Login_Trade_Bottom.png'),
+    },
+    onboarding: {
+        OnboardingTop: require('../assets/images/Onboarding_Top.png'),
+        OnboardingBottom: require('../assets/images/Onboarding_Bottom.png'),
     }
 };
 

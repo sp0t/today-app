@@ -1,35 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType, Button, TouchableOpacity } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, runOnJS } from 'react-native-reanimated';
+import { loginBackgroundData } from '../constants/constatants';
 
-interface BackgroundItem {
-  topImage: ImageSourcePropType;
-  bottomImage: ImageSourcePropType;
-  activeCorner: 'learn' | 'invest' | 'send' | 'trade';
-}
-
-const BackgroundData: BackgroundItem[] = [
-  {
-    topImage: require('../assets/images/Login_Learn_Top.png'),
-    bottomImage: require('../assets/images/Login_Learn_Bottom.png'),
-    activeCorner: 'learn',
-  },
-  {
-    topImage: require('../assets/images/Login_Invest_Top.png'),
-    bottomImage: require('../assets/images/Login_Invest_Bottom.png'),
-    activeCorner: 'invest',
-  },
-  {
-    topImage: require('../assets/images/Login_Send_Top.png'),
-    bottomImage: require('../assets/images/Login_Send_Bottom.png'),
-    activeCorner: 'send',
-  },
-  {
-    topImage: require('../assets/images/Login_Trade_Top.png'),
-    bottomImage: require('../assets/images/Login_Trade_Bottom.png'),
-    activeCorner: 'trade',
-  },
-];
 
 const LoginScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -45,8 +18,8 @@ const LoginScreen = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextIndex = (currentIndex + 1) % BackgroundData.length;
-      const nextCase = BackgroundData[nextIndex];
+      const nextIndex = (currentIndex + 1) % loginBackgroundData.length;
+      const nextCase = loginBackgroundData[nextIndex];
 
       // Update text opacity
       learnOpacity.value = withTiming(nextCase.activeCorner === 'learn' ? 1 : 0.3, { duration: 800 });
@@ -106,7 +79,7 @@ const LoginScreen = () => {
       <View style={styles.bottomHalf}>
         <Animated.View style={[styles.backgroundImageContainer, bottomImageStyle]}>
           <ImageBackground
-            source={BackgroundData[currentIndex].bottomImage}
+            source={loginBackgroundData[currentIndex].bottomImage}
             style={styles.backgroundImage}
             resizeMode="stretch"
           />

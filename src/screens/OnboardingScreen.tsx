@@ -46,8 +46,8 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                         </View>
                         <View style={[baseStyles.topContainer]}>
                             <View style={{ borderWidth: 1, borderColor: 'red' }}>
-                                <Text style={styles.title}>Welcome to Today</Text>
-                                <Text style={styles.subtitle}>Enter your email address</Text>
+                                <Text>Welcome to Today</Text>
+                                <Text>Enter your email address</Text>
                                 <TextInput
                                     style={styles.input}
                                     value={formData.email}

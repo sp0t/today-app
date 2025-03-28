@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType, Button, TouchableOpacity } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, runOnJS } from 'react-native-reanimated';
 import { loginBackgroundData } from '../constants/constatants';
-import CornerText from '../components/login/ConerText';
+
 import PrimaryButton from '../components/ui/Button/PrimaryButton';
 import TextButton from '../components/ui/Button/TextButton';
+import CornerText from '../components/login/ConerText';
 
 const LoginScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  type CornerKeys = 'learn' | 'invest' | 'send' | 'trade';
-
-
-  const cornerOpacities = useSharedValue<{ [key in CornerKeys]: number }>({
-    learn: 1,
-    invest: 0.3,
-    send: 0.3,
-    trade: 0.3,
-  });
+  // Shared values for opacity
+  const learnOpacity = useSharedValue(1);
+  const investOpacity = useSharedValue(0.3);
+  const sendOpacity = useSharedValue(0.3);
+  const tradeOpacity = useSharedValue(0.3);
 
   const topImageOpacity = useSharedValue(1);
   const bottomImageOpacity = useSharedValue(1);
@@ -27,11 +24,11 @@ const LoginScreen = () => {
       const nextIndex = (currentIndex + 1) % loginBackgroundData.length;
       const nextCase = loginBackgroundData[nextIndex];
 
-      // Update corner opacity values dynamically
-      Object.keys(cornerOpacities.value).forEach((key) => {
-        const cornerKey = key as CornerKeys; // Type assertion here
-        cornerOpacities.value[cornerKey] = nextCase.activeCorner === cornerKey ? 1 : 0.3;
-      });
+      // Update text opacity
+      learnOpacity.value = withTiming(nextCase.activeCorner === 'learn' ? 1 : 0.3, { duration: 800 });
+      investOpacity.value = withTiming(nextCase.activeCorner === 'invest' ? 1 : 0.3, { duration: 800 });
+      sendOpacity.value = withTiming(nextCase.activeCorner === 'send' ? 1 : 0.3, { duration: 800 });
+      tradeOpacity.value = withTiming(nextCase.activeCorner === 'trade' ? 1 : 0.3, { duration: 800 });
 
       // Update background opacity
       topImageOpacity.value = withTiming(0.5, { duration: 800 }, () => {
@@ -47,11 +44,11 @@ const LoginScreen = () => {
     return () => clearInterval(interval);
   }, [currentIndex]);
 
-  // Animated styles for corners
-  const cornerStyles = (key: CornerKeys) =>
-    useAnimatedStyle(() => ({
-      opacity: cornerOpacities.value[key],
-    }));
+  // Animated styles
+  const learnStyle = useAnimatedStyle(() => ({ opacity: learnOpacity.value }));
+  const investStyle = useAnimatedStyle(() => ({ opacity: investOpacity.value }));
+  const sendStyle = useAnimatedStyle(() => ({ opacity: sendOpacity.value }));
+  const tradeStyle = useAnimatedStyle(() => ({ opacity: tradeOpacity.value }));
 
   const topImageStyle = useAnimatedStyle(() => ({ opacity: topImageOpacity.value }));
   const bottomImageStyle = useAnimatedStyle(() => ({ opacity: bottomImageOpacity.value }));
@@ -69,16 +66,19 @@ const LoginScreen = () => {
         </Animated.View>
         <View style={styles.contentContainer}>
           <View style={styles.todayContainer}>
-            <CornerText text="Learn" top={-30} left={0} animatedStyle={cornerStyles('learn')} />
-            <CornerText text="Invest" top={-30} right={0} animatedStyle={cornerStyles('invest')} />
+
+            <CornerText text="Learn" top={-30} left={0} animatedStyle={learnStyle} />
+            <CornerText text="Invest" top={-30} right={0} animatedStyle={investStyle} />
             <Text style={styles.centerText}>Today</Text>
-            <CornerText text="Trade" bottom={-40} right={0} animatedStyle={cornerStyles('trade')} />
-            <CornerText text="Send" bottom={-40} left={0} animatedStyle={cornerStyles('send')} />
+            <CornerText text="Trade" bottom={-40} right={0} animatedStyle={tradeStyle} />
+            <CornerText text="Send" bottom={-40} left={0} animatedStyle={sendStyle} />
+
           </View>
         </View>
       </View>
 
-      <View style={styles.middleContainer}></View>
+      <View style={styles.middleContainer}>
+      </View>
 
       {/* Bottom Half */}
       <View style={styles.bottomHalf}>
@@ -91,8 +91,8 @@ const LoginScreen = () => {
         </Animated.View>
         <View style={styles.bottomContentContainer}>
           <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
-          <PrimaryButton title="Create an account" onPress={() => {}} />
-          <TextButton title="Sign in" onPress={() => {}} />
+          <PrimaryButton title="Create an account" onPress={() => { }} />
+          <TextButton title="Sign in" onPress={() => { }} />
         </View>
       </View>
     </View>

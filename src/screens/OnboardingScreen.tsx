@@ -41,20 +41,21 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                             <ImageBackground
                                 source={images.onboarding.OnboardingTop}
                                 style={baseStyles.bgImage}
-                                resizeMode="cover"
-                            />
-                            <View>
-                                <Text>Welcome to Today</Text>
-                                <Text style={styles.title}>Enter your email address</Text>
-                                <TextInput
-                                    style={styles.input}
-                                    value={formData.email}
-                                    onChangeText={(text) => setFormData({ ...formData, email: text })}
-                                    placeholder="Email"
-                                    keyboardType="email-address"
-                                    autoCapitalize="none"
-                                />
-                            </View>
+                                resizeMode="cover">
+                                <View>
+                                    <Text>Welcome to Today</Text>
+                                    <Text style={styles.title}>Enter your email address</Text>
+                                    <TextInput
+                                        style={styles.input}
+                                        value={formData.email}
+                                        onChangeText={(text) => setFormData({ ...formData, email: text })}
+                                        placeholder="Email"
+                                        keyboardType="email-address"
+                                        autoCapitalize="none"
+                                    />
+                                </View>
+
+                            </ImageBackground>
                         </View>
                     </View>
                     <View style={{ flex: 0.1 }}>

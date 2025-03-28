@@ -69,10 +69,10 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 style={baseStyles.bgImage}
                                 resizeMode="stretch"
                             />
-                            <View>
-                                <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
-                                    <PrimaryButton title="Create an account" style={{ marginTop: '20%' }} onPress={() => sliderRef.current?.goToSlide(1)} />
-                                </View>
+                        </View>
+                        <View>
+                            <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
+                                <PrimaryButton title="Create an account" style={{ marginTop: '20%' }} onPress={() => sliderRef.current?.goToSlide(1)} />
                             </View>
                         </View>
                     </View>

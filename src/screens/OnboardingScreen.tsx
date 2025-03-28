@@ -44,7 +44,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 resizeMode="cover"
                             />
                         </View>
-                        <View style={[baseStyles.topContainer]}>
+                        <View>
                             <Text>Welcome to Today</Text>
                             <Text style={styles.title}>Enter your email address</Text>
                             <TextInput

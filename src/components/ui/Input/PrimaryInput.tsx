@@ -20,7 +20,6 @@ const PrimaryInput: React.FC<InputProps> = ({ value, onChangeText, placeholder, 
 const styles = StyleSheet.create({
     input: {
         width: '100%',
-        height: 50,
         borderWidth: 1,
         borderColor: '#E4E4E7',
         paddingHorizontal: 16,

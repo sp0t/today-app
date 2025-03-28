@@ -50,7 +50,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                         style={{ marginTop: 36 }}
                                         value={formData.email}
                                         onChangeText={(text) => setFormData({ ...formData, email: text })}
-                                        placeholder="Email"
+                                        placeholder="Your email"
                                         keyboardType="email-address"
                                         autoCapitalize="none"
                                     />
@@ -70,7 +70,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                             />
                         </View>
                         <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
-                            <PrimaryButton title="Create an account" style={{ marginTop: '30%' }} onPress={() => sliderRef.current?.goToSlide(1)} />
+                            <PrimaryButton title="Continue" style={{ marginTop: '30%' }} onPress={() => sliderRef.current?.goToSlide(1)} />
                         </View>
                     </View>
                 </View>

@@ -45,7 +45,8 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 resizeMode="cover">
                                 <View style={styles.contentContainer}>
                                     <Text style={styles.welcomeText}>Welcome to Today</Text>
-                                    <Text style={styles.title}>Enter your email address</Text>
+                                    <Text style={styles.title}>Enter your</Text>
+                                    <Text style={styles.title}>email address</Text>
                                     <PrimaryInput
                                         style={{ marginTop: 36 }}
                                         value={formData.email}
@@ -55,7 +56,6 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                         autoCapitalize="none"
                                     />
                                 </View>
-
                             </ImageBackground>
                         </View>
                     </View>
@@ -70,7 +70,8 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                             />
                         </View>
                         <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
-                            <PrimaryButton title="Continue" style={[{ marginTop: 36 }, !validateEmail(formData.email) && styles.buttonDisabled]} onPress={() => sliderRef.current?.goToSlide(1)} />
+                            <PrimaryButton title="Continue" style={[{ marginTop: 36 }, !validateEmail(formData.email) && styles.buttonDisabled]}
+                                disabled={!validateEmail(formData.email)} onPress={() => sliderRef.current?.goToSlide(1)} />
                         </View>
                     </View>
                 </View>
@@ -80,25 +81,45 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
             key: '2',
             type: 'verification',
             component: () => (
-                <View style={styles.slideContainer}>
-                    {/* <Image source={require('../assets/icons/mail.png')} style={styles.icon} /> */}
-                    <Text style={styles.title}>Check your email</Text>
-                    <Text style={styles.subtitle}>We just sent a security code to {formData.email}</Text>
-                    <TextInput
-                        style={[styles.input, { marginTop: 36 }]}
-                        value={formData.verificationCode}
-                        onChangeText={(text) => setFormData({ ...formData, verificationCode: text })}
-                        placeholder="Enter verification code"
-                        keyboardType="number-pad"
-                        maxLength={6}
-                    />
-                    <TouchableOpacity
-                        style={[styles.button, formData.verificationCode.length !== 6 && styles.buttonDisabled]}
-                        disabled={formData.verificationCode.length !== 6}
-                        onPress={() => sliderRef.current?.goToSlide(2)}
-                    >
-                        <Text style={styles.buttonText}>Continue</Text>
-                    </TouchableOpacity>
+                <View style={{ flex: 1 }}>
+                    <View style={{ flex: 0.5 }}>
+                        <View style={[baseStyles.bgImgContainer]}>
+                            <ImageBackground
+                                source={images.onboarding.OnboardingTop}
+                                style={[baseStyles.bgImage, { alignItems: 'center' }]}
+                                resizeMode="cover">
+                                <View style={styles.contentContainer}>
+                                    <Image source={images.onboarding.MailIcon} style={styles.icon} />
+                                    <Text style={styles.title}>Check your email</Text>
+                                    <Text style={styles.subtitle}>We just sent a security code to {formData.email}</Text>
+                                    <PrimaryInput
+                                        style={{ marginTop: 20 }}
+                                        value={formData.verificationCode}
+                                        onChangeText={(text) => setFormData({ ...formData, verificationCode: text })}
+                                        placeholder="Enter the code"
+                                        keyboardType="number-pad"
+                                        maxLength={6}
+                                    />
+                                </View>
+                            </ImageBackground>
+                        </View>
+                    </View>
+                    <View style={{ flex: 0.1 }}>
+                    </View>
+                    <View style={{ flex: 0.4 }}>
+                        <View style={[baseStyles.bgImgContainer]}>
+                            <ImageBackground
+                                source={images.onboarding.OnboardingBottom}
+                                style={baseStyles.bgImage}
+                                resizeMode="stretch"
+                            />
+                        </View>
+                        <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
+                            <PrimaryButton title="Continue" style={[{ marginTop: 36 }, formData.verificationCode.length !== 6 && styles.buttonDisabled]}
+                                disabled={formData.verificationCode.length !== 6}
+                                onPress={() => sliderRef.current?.goToSlide(2)} />
+                        </View>
+                    </View>
                 </View>
             ),
         },
@@ -209,7 +230,6 @@ const styles = StyleSheet.create({
         fontFamily: 'PlayfairDisplay-Medium',
     },
     title: {
-        width: 271,
         fontSize: 36,
         fontWeight: '500',
         letterSpacing: -0.25,

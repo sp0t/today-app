@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 import { InputProps } from '../../../interface/component';
 
-const PrimaryInput: React.FC<InputProps> = ({ value, onChangeText, placeholder, keyboardType, autoCapitalize, style }) => {
+const PrimaryInput: React.FC<InputProps> = ({ value, onChangeText, placeholder, keyboardType, autoCapitalize, style, maxLength }) => {
     return (
         <TextInput
             style={[styles.input, style]}
@@ -11,6 +11,7 @@ const PrimaryInput: React.FC<InputProps> = ({ value, onChangeText, placeholder, 
             placeholder={placeholder}
             keyboardType={keyboardType}
             autoCapitalize={autoCapitalize}
+            maxLength={maxLength}
         >
         </TextInput>
     );

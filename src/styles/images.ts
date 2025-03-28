@@ -12,6 +12,8 @@ const images = {
     onboarding: {
         OnboardingTop: require('../assets/images/Onboarding_Top.png'),
         OnboardingBottom: require('../assets/images/Onboarding_Bottom.png'),
+        UserIcon: require('../assets/images/UserIcon.png'),
+        MailIcon: require('../assets/images/MailIcon.png'),
     }
 };
 

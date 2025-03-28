@@ -6,6 +6,7 @@ export interface ButtonProps {
     onPress: () => void;
     style?: StyleProp<ViewStyle>;
     textStyle?: StyleProp<TextStyle>;
+    disabled?: boolean;
 }
 
 export interface InputProps {
@@ -15,6 +16,7 @@ export interface InputProps {
     keyboardType?: KeyboardTypeOptions;
     autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
     style?: StyleProp<ViewStyle>;
+    maxLength?: number;
 }
 
 export interface CornerTextProps {

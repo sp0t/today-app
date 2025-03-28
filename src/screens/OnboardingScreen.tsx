@@ -42,7 +42,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 source={images.onboarding.OnboardingTop}
                                 style={baseStyles.bgImage}
                                 resizeMode="cover">
-                                <View style={{ marginTop: '40%', borderWidth: 1, borderColor: 'red' }}>
+                                <View style={{ marginTop: '40%', width: '90%', borderWidth: 1, borderColor: 'red' }}>
                                     <Text>Welcome to Today</Text>
                                     <Text style={styles.title}>Enter your email address</Text>
                                     <TextInput

@@ -56,7 +56,7 @@ const LoginScreen = () => {
       <View style={styles.topHalf}>
         <Animated.View style={[styles.backgroundImageContainer, topImageStyle]}>
           <ImageBackground
-            source={BackgroundData[currentIndex].topImage}
+            source={loginBackgroundData[currentIndex].topImage}
             style={styles.backgroundImage}
             resizeMode="stretch"
           />

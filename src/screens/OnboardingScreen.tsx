@@ -7,6 +7,7 @@ import { baseStyles } from '../styles';
 import images from '../styles/images';
 
 import PrimaryButton from '../components/ui/Button/PrimaryButton';
+import PrimaryInput from '../components/ui/Input/PrimaryInput';
 
 interface SlideData {
     email: string;
@@ -45,8 +46,8 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 <View style={styles.contentContainer}>
                                     <Text>Welcome to Today</Text>
                                     <Text style={styles.title}>Enter your email address</Text>
-                                    <TextInput
-                                        style={[styles.input, { marginTop: 36 }]}
+                                    <PrimaryInput
+                                        style={{ marginTop: 36 }}
                                         value={formData.email}
                                         onChangeText={(text) => setFormData({ ...formData, email: text })}
                                         placeholder="Email"

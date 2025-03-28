@@ -68,7 +68,7 @@ const LoginScreen = () => {
 
             <CornerText text="Learn" top={-30} left={0} animatedStyle={learnStyle} />
             <CornerText text="Invest" top={-30} right={0} animatedStyle={investStyle} />
-            <Text>Today</Text>
+            <Text style={styles.centerText}>Today</Text>
             <CornerText text="Trade" bottom={-40} right={0} animatedStyle={tradeStyle} />
             <CornerText text="Send" bottom={-40} left={0} animatedStyle={sendStyle} />
 
@@ -125,10 +125,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
+  },
+  centerText: {
     color: '#000000',
     fontSize: 72,
     fontWeight: '400',
     fontFamily: 'PlayfairDisplay-Medium',
+    textAlign: 'center',
   },
   bottomTitle: {
     marginTop: '10%',

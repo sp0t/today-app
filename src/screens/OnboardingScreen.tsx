@@ -46,8 +46,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 resizeMode="cover">
                                 <View style={styles.contentContainer}>
                                     <Text style={styles.welcomeText}>Welcome to Today</Text>
-                                    <Text style={styles.title}>Enter your</Text>
-                                    <Text style={[styles.title]}>email address</Text>
+                                    <Text style={styles.title}>Enter your{'\n'}email address</Text>
                                     <PrimaryInput
                                         style={{ marginTop: 36 }}
                                         value={formData.email}
@@ -92,8 +91,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 <View style={styles.contentContainer}>
                                     <SmallIcon source={images.onboarding.MailIcon} />
                                     <Text style={styles.title}>Check your email</Text>
-                                    <Text style={[styles.subtitle, {marginTop: 14}]}>We just sent a security code to</Text>
-                                    <Text style={[styles.subtitle]}>{formData.email}</Text>
+                                    <Text style={[styles.subtitle, { marginTop: 14 }]}>We just sent a security code to{'\n'}{formData.email}</Text>
                                     <PrimaryInput
                                         style={{ marginTop: 25 }}
                                         value={formData.verificationCode}
@@ -129,31 +127,49 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
             key: '3',
             type: 'name',
             component: () => (
-                <View style={styles.slideContainer}>
-                    {/* <Image source={require('../assets/icons/user.png')} style={styles.icon} /> */}
-                    <Text style={styles.title}>What is your name?</Text>
-                    <Text style={styles.subtitle}>
-                        Your name is how others find you on Today.{'\n'}You can change this later.
-                    </Text>
-                    <TextInput
-                        style={styles.input}
-                        value={formData.firstName}
-                        onChangeText={(text) => setFormData({ ...formData, firstName: text })}
-                        placeholder="First name"
-                    />
-                    <TextInput
-                        style={styles.input}
-                        value={formData.lastName}
-                        onChangeText={(text) => setFormData({ ...formData, lastName: text })}
-                        placeholder="Last name"
-                    />
-                    <TouchableOpacity
-                        style={[styles.button, !(formData.firstName && formData.lastName) && styles.buttonDisabled]}
-                        disabled={!(formData.firstName && formData.lastName)}
-                        onPress={() => sliderRef.current?.goToSlide(3)}
-                    >
-                        <Text style={styles.buttonText}>Continue</Text>
-                    </TouchableOpacity>
+                <View style={{ flex: 1 }}>
+                    <View style={{ flex: 0.5 }}>
+                        <View style={[baseStyles.bgImgContainer]}>
+                            <ImageBackground
+                                source={images.onboarding.OnboardingTop}
+                                style={[baseStyles.bgImage, { alignItems: 'center' }]}
+                                resizeMode="cover">
+                                <View style={styles.contentContainer}>
+                                    <SmallIcon source={images.onboarding.UserIcon} />
+                                    <Text style={styles.title}>What is your name?</Text>
+                                    <Text style={[styles.subtitle, { marginTop: 14 }]}>Your name is how others find you on Today.{'\n'}You can change this later.</Text>
+                                    <PrimaryInput
+                                        style={{ marginTop: 25 }}
+                                        value={formData.firstName}
+                                        onChangeText={(text) => setFormData({ ...formData, firstName: text })}
+                                        placeholder="First name"
+                                    />
+                                    <PrimaryInput
+                                        style={{ marginTop: 10 }}
+                                        value={formData.lastName}
+                                        onChangeText={(text) => setFormData({ ...formData, lastName: text })}
+                                        placeholder="Last name"
+                                    />
+                                </View>
+                            </ImageBackground>
+                        </View>
+                    </View>
+                    <View style={{ flex: 0.1 }}>
+                    </View>
+                    <View style={{ flex: 0.4 }}>
+                        <View style={[baseStyles.bgImgContainer]}>
+                            <ImageBackground
+                                source={images.onboarding.OnboardingBottom}
+                                style={baseStyles.bgImage}
+                                resizeMode="stretch"
+                            />
+                        </View>
+                        <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
+                            <PrimaryButton title="Continue" style={[{ marginTop: '30%' }, !(formData.firstName && formData.lastName) && styles.buttonDisabled]}
+                                disabled={!(formData.firstName && formData.lastName)}
+                                onPress={() => sliderRef.current?.goToSlide(3)} />
+                        </View>
+                    </View>
                 </View>
             ),
         },

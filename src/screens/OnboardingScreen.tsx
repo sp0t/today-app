@@ -8,6 +8,7 @@ import images from '../styles/images';
 
 import PrimaryButton from '../components/ui/Button/PrimaryButton';
 import PrimaryInput from '../components/ui/Input/PrimaryInput';
+import SmallIcon from '../components/ui/Icon/smallIcon';
 
 interface SlideData {
     email: string;
@@ -89,7 +90,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                 style={[baseStyles.bgImage, { alignItems: 'center' }]}
                                 resizeMode="cover">
                                 <View style={styles.contentContainer}>
-                                    <Image source={images.onboarding.MailIcon} style={styles.icon} />
+                                    <SmallIcon source={images.onboarding.MailIcon} />
                                     <Text style={styles.title}>Check your email</Text>
                                     <Text style={styles.subtitle}>We just sent a security code to {formData.email}</Text>
                                     <PrimaryInput
@@ -115,7 +116,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                             />
                         </View>
                         <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
-                            <PrimaryButton title="Continue" style={[{ marginTop: 36 }, formData.verificationCode.length !== 6 && styles.buttonDisabled]}
+                            <PrimaryButton title="Continue" style={[{ marginTop: '30%' }, formData.verificationCode.length !== 6 && styles.buttonDisabled]}
                                 disabled={formData.verificationCode.length !== 6}
                                 onPress={() => sliderRef.current?.goToSlide(2)} />
                         </View>

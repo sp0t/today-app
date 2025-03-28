@@ -71,7 +71,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                             />
                         </View>
                         <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'red' }]}>
-                            <PrimaryButton title="Create an account" style={{ marginTop: '25%' }} onPress={() => sliderRef.current?.goToSlide(1)} />
+                            <PrimaryButton title="Create an account" style={{ marginTop: '30%' }} onPress={() => sliderRef.current?.goToSlide(1)} />
                         </View>
                     </View>
                 </View>

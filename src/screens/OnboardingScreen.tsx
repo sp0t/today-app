@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 // import * as ImagePicker from 'react-native-image-picker';
 
@@ -178,37 +178,61 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
             key: '4',
             type: 'photo',
             component: () => (
-                <View style={styles.slideContainer}>
-                    {/* <Image source={require('../assets/icons/user.png')} style={styles.icon} /> */}
-                    <Text style={styles.title}>Add a profile photo</Text>
-                    <Text style={styles.subtitle}>
-                        Your profile photo is how you show up, you can change this later
-                    </Text>
-                    <TouchableOpacity
-                        style={styles.photoUpload}
-                    // onPress={() => {
-                    //   ImagePicker.launchImageLibrary({
-                    //     mediaType: 'photo',
-                    //     includeBase64: false,
-                    //   }, (response) => {
-                    //     if (response.assets?.[0]?.uri) {
-                    //       setFormData({ ...formData, profilePhoto: response.assets[0].uri });
-                    //     }
-                    //   });
-                    // }}
-                    >
-                        {formData.profilePhoto ? (
-                            <Image source={{ uri: formData.profilePhoto }} style={styles.profilePhoto} />
-                        ) : (
-                            <Text style={styles.uploadText}>Upload Photo</Text>
-                        )}
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={() => navigation.replace('Home')}
-                    >
-                        <Text style={styles.buttonText}>Let's go!</Text>
-                    </TouchableOpacity>
+                <View style={{ flex: 1 }}>
+                    <View style={{ flex: 0.5 }}>
+                        <View style={[baseStyles.bgImgContainer]}>
+                            <ImageBackground
+                                source={images.onboarding.OnboardingTop}
+                                style={[baseStyles.bgImage, { alignItems: 'center' }]}
+                                resizeMode="cover"
+                            >
+                                <View style={styles.contentContainer}>
+                                    <SmallIcon source={images.onboarding.UserIcon} />
+                                    <Text style={styles.title}>Add a profile photo</Text>
+                                    <Text style={[styles.subtitle, { marginTop: 14 }]}>
+                                        Your profile photo is how you show up,{'\n'}you can change this later
+                                    </Text>
+                                    <TouchableOpacity
+                                        style={styles.photoUpload}
+                                        // onPress={() => {
+                                        //   ImagePicker.launchImageLibrary({
+                                        //     mediaType: 'photo',
+                                        //     includeBase64: false,
+                                        //   }, (response) => {
+                                        //     if (response.assets?.[0]?.uri) {
+                                        //       setFormData({ ...formData, profilePhoto: response.assets[0].uri });
+                                        //     }
+                                        //   });
+                                        // }}
+                                    >
+                                        {formData.profilePhoto ? (
+                                            <Image source={{ uri: formData.profilePhoto }} style={styles.profilePhoto} />
+                                        ) : (
+                                            <Text style={styles.uploadText}>Upload Photo</Text>
+                                        )}
+                                    </TouchableOpacity>
+                                </View>
+                            </ImageBackground>
+                        </View>
+                    </View>
+                    <View style={{ flex: 0.1 }}>
+                    </View>
+                    <View style={{ flex: 0.4 }}>
+                        <View style={[baseStyles.bgImgContainer]}>
+                            <ImageBackground
+                                source={images.onboarding.OnboardingBottom}
+                                style={baseStyles.bgImage}
+                                resizeMode="stretch"
+                            />
+                        </View>
+                        <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
+                            <PrimaryButton 
+                                title="Let's go!" 
+                                style={{ marginTop: '30%' }}
+                                onPress={() => navigation.replace('Home')} 
+                            />
+                        </View>
+                    </View>
                 </View>
             ),
         },
@@ -295,7 +319,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#f0f0f0',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 20,
+        marginTop: 24,
+        alignSelf: 'center',
     },
     profilePhoto: {
         width: 120,

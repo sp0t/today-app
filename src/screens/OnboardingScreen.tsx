@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-// import * as ImagePicker from 'react-native-image-picker';
+import * as ImagePicker from 'react-native-image-picker';
 
 import { baseStyles } from '../styles';
 import images from '../styles/images';
@@ -194,16 +194,16 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                                     </Text>
                                     <TouchableOpacity
                                         style={styles.photoUpload}
-                                        // onPress={() => {
-                                        //   ImagePicker.launchImageLibrary({
-                                        //     mediaType: 'photo',
-                                        //     includeBase64: false,
-                                        //   }, (response) => {
-                                        //     if (response.assets?.[0]?.uri) {
-                                        //       setFormData({ ...formData, profilePhoto: response.assets[0].uri });
-                                        //     }
-                                        //   });
-                                        // }}
+                                        onPress={() => {
+                                          ImagePicker.launchImageLibrary({
+                                            mediaType: 'photo',
+                                            includeBase64: false,
+                                          }, (response:any) => {
+                                            if (response.assets?.[0]?.uri) {
+                                              setFormData({ ...formData, profilePhoto: response.assets[0].uri });
+                                            }
+                                          });
+                                        }}
                                     >
                                         {formData.profilePhoto ? (
                                             <Image source={{ uri: formData.profilePhoto }} style={styles.profilePhoto} />

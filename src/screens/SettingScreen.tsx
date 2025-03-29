@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { useTheme } from '../theme/ThemeContext';
 
-const MarketScreen = () => {
+const SettingScreen = () => {
     const { theme, toggleTheme } = useTheme();
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text style={{ fontSize: 20, color: theme === 'dark' ? '#fff' : '#000' }}>
-                Market Screen
+                Setting Screen
             </Text>
             <Text style={{ color: theme === 'dark' ? '#fff' : '#000' }}>
                 Current Theme: {theme}
@@ -18,4 +18,4 @@ const MarketScreen = () => {
     );
 };
 
-export default MarketScreen;
+export default SettingScreen;

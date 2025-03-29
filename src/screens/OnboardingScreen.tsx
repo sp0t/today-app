@@ -2,9 +2,11 @@ import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import * as ImagePicker from 'react-native-image-picker';
+import { useNavigation } from '@react-navigation/native';
 
 import { baseStyles } from '../styles';
 import images from '../styles/images';
+import { GenericNavigationProps } from '../interface/types';
 
 import PrimaryButton from '../components/ui/Button/PrimaryButton';
 import PrimaryInput from '../components/ui/Input/PrimaryInput';
@@ -18,8 +20,10 @@ interface SlideData {
     profilePhoto: string;
 }
 
-const OnboardingScreen = ({ navigation }: { navigation: any }) => {
+const OnboardingScreen = () => {
     const sliderRef = useRef<AppIntroSlider | null>(null);
+    const navigation = useNavigation<GenericNavigationProps>();
+
     const [formData, setFormData] = useState<SlideData>({
         email: '',
         verificationCode: '',
@@ -229,7 +233,7 @@ const OnboardingScreen = ({ navigation }: { navigation: any }) => {
                             <PrimaryButton 
                                 title="Let's go!" 
                                 style={{ marginTop: '30%' }}
-                                onPress={() => navigation.replace('Home')} 
+                                onPress={() => navigation.navigate('MainApp')} 
                             />
                         </View>
                     </View>

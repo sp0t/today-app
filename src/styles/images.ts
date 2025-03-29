@@ -14,6 +14,13 @@ const images = {
         OnboardingBottom: require('../assets/images/Onboarding_Bottom.png'),
         UserIcon: require('../assets/images/UserIcon.png'),
         MailIcon: require('../assets/images/MailIcon.png'),
+    },
+    tab: {
+        TabMarket: require('../assets/images/Tab_Market.png'),
+        TabFeed: require('../assets/images/Tab_Feed.png'),
+        TabSend: require('../assets/images/Tab_Send.png'),
+        TabSetting: require('../assets/images/Tab_Setting.png'),
+        
     }
 };
 

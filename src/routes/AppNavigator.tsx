@@ -16,10 +16,6 @@ import SettingScreen from '../screens/SettingScreen';
 // Import your icon component
 import SmallIcon from '../components/ui/Icon/smallIcon';
 import images from '../styles/images';
-import { IconHome } from '@tabler/icons-react-native';
-import { IconList } from '@tabler/icons-react-native';
-import { IconSend } from '@tabler/icons-react-native';
-import { IconWallet  } from '@tabler/icons-react-native';
 
 // Create navigators
 const Stack = createStackNavigator();
@@ -30,22 +26,21 @@ const MainTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarShowLabel: false,
         tabBarIcon: ({ focused, color, size }) => {
           let iconSource;
           
           switch (route.name) {
             case 'Market':
-              iconSource = <IconHome />;
+              iconSource = images.tab.TabMarket;
               break;
             case 'Feed':
-              iconSource = <IconList />;
+              iconSource = images.tab.TabFeed;
               break;
             case 'Send':
-              iconSource = <IconSend />;
+              iconSource = images.tab.TabSend;
               break;
             case 'Settings':
-              iconSource = <IconWallet />;
+              iconSource = images.tab.TabSetting;
               break;
           }
           
@@ -55,7 +50,10 @@ const MainTabNavigator = () => {
               styles.iconContainer,
               focused ? styles.activeIconContainer : null
             ]}>
-            {iconSource}
+              <SmallIcon 
+                source={iconSource} 
+                style={focused ? { tintColor: '#000000' } : { tintColor: '#6B7280' }}
+              />
             </View>
           );
         },

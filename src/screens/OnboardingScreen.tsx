@@ -168,6 +168,12 @@ const OnboardingScreen = () => {
                                         onChangeText={(text) => setFormData({ ...formData, firstName: text })}
                                         placeholder="First name"
                                     />
+                                    <PrimaryInput
+                                        style={{marginTop:10}}
+                                        value={formData.lastName}
+                                        onChangeText={(text) => setFormData({ ...formData, lastName: text })}
+                                        placeholder="Last name"
+                                    />
                                 </View>
                             </ImageBackground>
                         </View>
@@ -183,12 +189,6 @@ const OnboardingScreen = () => {
                             />
                         </View>
                         <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
-                            <PrimaryInput
-                                style={{ position: 'absolute', top: -70, width: '90%' }}
-                                value={formData.lastName}
-                                onChangeText={(text) => setFormData({ ...formData, lastName: text })}
-                                placeholder="Last name"
-                            />
                             <PrimaryButton title="Continue" style={[{ marginTop: '40%' }, !(formData.firstName && formData.lastName) && styles.buttonDisabled]}
                                 disabled={!(formData.firstName && formData.lastName)}
                                 onPress={() => sliderRef.current?.goToSlide(3)} />

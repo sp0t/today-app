@@ -119,7 +119,7 @@ const MarketScreen = () => {
                 <Carousel
                     ref={educationalCarouselRef}
                     loop={false}  // Disable loop to prevent sliding beyond boundaries
-                    width={width * 0.85}
+                    width={width}
                     height={180}
                     snapEnabled={true}
                     pagingEnabled={true}

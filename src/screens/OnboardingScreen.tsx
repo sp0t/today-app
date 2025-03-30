@@ -74,7 +74,7 @@ const OnboardingScreen = () => {
                             />
                         </View>
                         <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
-                            <PrimaryButton title="Continue" style={[{ marginTop: '30%' }, !validateEmail(formData.email) && styles.buttonDisabled]}
+                            <PrimaryButton title="Continue" style={[{ marginTop: '40%' }, !validateEmail(formData.email) && styles.buttonDisabled]}
                                 disabled={!validateEmail(formData.email)} onPress={() => sliderRef.current?.goToSlide(1)} />
                         </View>
                     </View>

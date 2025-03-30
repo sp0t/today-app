@@ -3,6 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View, StyleSheet } from 'react-native';
 
 // Import your screens
 import OnboardingScreen from '../screens/OnboardingScreen';
@@ -30,22 +31,33 @@ const MainTabNavigator = () => {
           
           switch (route.name) {
             case 'Market':
-              iconSource = focused ? images.tab.TabMarket : images.tab.TabMarket;
+              iconSource = images.tab.TabMarket;
               break;
             case 'Feed':
-              iconSource = focused ? images.tab.TabFeed : images.tab.TabFeed;
+              iconSource = images.tab.TabFeed;
               break;
             case 'Send':
-              iconSource = focused ? images.tab.TabSend : images.tab.TabSend;
+              iconSource = images.tab.TabSend;
               break;
             case 'Settings':
-              iconSource = focused ? images.tab.TabSetting : images.tab.TabSetting;
+              iconSource = images.tab.TabSetting;
               break;
           }
           
-          return <SmallIcon source={iconSource} />;
+          // Create a container with background for active tab
+          return (
+            <View style={[
+              styles.iconContainer,
+              focused ? styles.activeIconContainer : null
+            ]}>
+              <SmallIcon 
+                source={iconSource} 
+                style={focused ? { tintColor: '#000000' } : { tintColor: '#6B7280' }}
+              />
+            </View>
+          );
         },
-        tabBarActiveTintColor: '#007AFF',
+        tabBarActiveTintColor: '#000000',
         tabBarInactiveTintColor: '#6B7280',
         tabBarStyle: {
           height: 60,
@@ -62,5 +74,15 @@ const MainTabNavigator = () => {
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  iconContainer: {
+    padding: 8,
+    borderRadius: 8,
+  },
+  activeIconContainer: {
+    backgroundColor: '#F2F2F2',  // Light gray background for active tab
+  }
+});
 
 export default MainTabNavigator;

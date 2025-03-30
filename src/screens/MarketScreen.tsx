@@ -73,14 +73,27 @@ const MarketScreen = () => {
         },
     ];
 
+    // Split topGainers into chunks of 2 for pagination
+    const gainersChunks = [];
+    for (let i = 0; i < topGainers.length; i += 2) {
+        gainersChunks.push(topGainers.slice(i, i + 2));
+    }
+
     const progressValue = useSharedValue(0);
+    const gainersProgressValue = useSharedValue(0);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentGainerIndex, setCurrentGainerIndex] = useState(0);
     const educationalCarouselRef = useRef(null);
     const gainersCarouselRef = useRef(null);
 
     // Handle educational carousel slide
     const handleEducationalSnapToItem = (index: number) => {
         setCurrentIndex(index);
+    };
+
+    // Handle gainers carousel slide
+    const handleGainersSnapToItem = (index: number) => {
+        setCurrentGainerIndex(index);
     };
 
     return (
@@ -156,32 +169,55 @@ const MarketScreen = () => {
 
                 <Carousel
                     ref={gainersCarouselRef}
-                    loop={false}  // Disable loop
-                    vertical={false}
+                    loop={false}
                     width={width}
-                    height={240}
-                    data={[topGainers]}
+                    height={210}
+                    snapEnabled={true}
+                    pagingEnabled={true}
+                    data={gainersChunks}
                     scrollAnimationDuration={1000}
-                    renderItem={() => (
+                    onProgressChange={(_, absoluteProgress) => {
+                        gainersProgressValue.value = absoluteProgress;
+                    }}
+                    onSnapToItem={handleGainersSnapToItem}
+                    mode="parallax"
+                    modeConfig={{
+                        parallaxScrollingScale: 0.95,
+                        parallaxScrollingOffset: 30,
+                    }}
+                    renderItem={({ item }) => (
                         <View style={styles.gainersListContainer}>
-                            {topGainers.map((item) => (
-                                <TouchableOpacity key={item.id} style={styles.gainerItem}>
+                            {item.map((gainerItem) => (
+                                <TouchableOpacity key={gainerItem.id} style={styles.gainerItem}>
                                     <View style={styles.gainerLeft}>
-                                        <Image source={item.icon} style={styles.gainerIcon} />
+                                        <Image source={gainerItem.icon} style={styles.gainerIcon} />
                                         <View style={styles.gainerInfo}>
-                                            <Text style={styles.gainerName}>{item.name}</Text>
-                                            <Text style={styles.gainerSymbol}>{item.symbol}</Text>
+                                            <Text style={styles.gainerName}>{gainerItem.name}</Text>
+                                            <Text style={styles.gainerSymbol}>{gainerItem.symbol}</Text>
                                         </View>
                                     </View>
                                     <View style={styles.gainerRight}>
-                                        <Text style={styles.gainerPrice}>{item.price}</Text>
-                                        <Text style={styles.gainerChange}>{item.change}</Text>
+                                        <Text style={styles.gainerPrice}>{gainerItem.price}</Text>
+                                        <Text style={styles.gainerChange}>{gainerItem.change}</Text>
                                     </View>
                                 </TouchableOpacity>
                             ))}
                         </View>
                     )}
                 />
+
+                {/* Gainers pagination indicator */}
+                <View style={styles.paginationContainer}>
+                    {gainersChunks.map((_, index) => (
+                        <View
+                            key={index}
+                            style={[
+                                styles.paginationDot,
+                                { backgroundColor: currentGainerIndex === index ? '#E91E63' : '#ccc' }
+                            ]}
+                        />
+                    ))}
+                </View>
             </View>
 
             {/* Deposit button */}

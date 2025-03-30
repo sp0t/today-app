@@ -79,6 +79,10 @@ const MarketScreen = () => {
         gainersChunks.push(topGainers.slice(i, i + 2));
     }
 
+    // Define item width for the top carousel to show part of the next item
+    const ITEM_WIDTH = width * 0.8; // Use 80% of screen width for main item
+    const ITEM_OFFSET = (width - ITEM_WIDTH) / 2; // Center the item with equal spacing on both sides
+
     const progressValue = useSharedValue(0);
     const gainersProgressValue = useSharedValue(0);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -119,7 +123,7 @@ const MarketScreen = () => {
                 <Carousel
                     ref={educationalCarouselRef}
                     loop={false}  // Disable loop to prevent sliding beyond boundaries
-                    width={width}
+                    width={ITEM_WIDTH}  // Width of each item is less than screen width
                     height={180}
                     snapEnabled={true}
                     pagingEnabled={true}
@@ -134,17 +138,26 @@ const MarketScreen = () => {
                         parallaxScrollingScale: 0.9,
                         parallaxScrollingOffset: 50,
                     }}
+                    defaultIndex={0}
+                    style={{
+                        width: width,  // Carousel container is full width
+                        paddingHorizontal: 0,
+                    }}
                     renderItem={({ item, index }) => (
-                        <TouchableOpacity style={[
-                            styles.educationalCard, 
-                            { backgroundColor: item.backgroundColor }
-                        ]}>
-                            <Image source={item.image} style={styles.educationalImage} />
-                            <View style={styles.educationalOverlay}>
-                                <Text style={styles.educationalDuration}>{item.duration}</Text>
-                                <Text style={styles.educationalTitle}>{item.title}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <View style={styles.educationalCardContainer}>
+                            <TouchableOpacity 
+                                style={[
+                                    styles.educationalCard, 
+                                    { backgroundColor: item.backgroundColor }
+                                ]}
+                            >
+                                <Image source={item.image} style={styles.educationalImage} />
+                                <View style={styles.educationalOverlay}>
+                                    <Text style={styles.educationalDuration}>{item.duration}</Text>
+                                    <Text style={styles.educationalTitle}>{item.title}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     )}
                 />
                 
@@ -272,10 +285,17 @@ const styles = StyleSheet.create({
         marginBottom: 12,
     },
     educationalCarouselContainer: {
-        height: 200,  // Increased to accommodate pagination
+        height: 220,  // Increased to accommodate pagination
+        width: '100%',
+    },
+    educationalCardContainer: {
+        width: '100%',
+        alignItems: 'center',
+        paddingHorizontal: 10, // Provide some spacing between cards
     },
     educationalCard: {
-        flex: 1,
+        width: '100%',
+        height: 180,
         borderRadius: 16,
         overflow: 'hidden',
         position: 'relative',

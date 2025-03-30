@@ -77,11 +77,11 @@ const MainTabNavigator = () => {
 
 const styles = StyleSheet.create({
   iconContainer: {
-    padding: 8,
-    borderRadius: 8,
+    padding: 10,
+    borderRadius: 100,
   },
   activeIconContainer: {
-    backgroundColor: '#F2F2F2',  // Light gray background for active tab
+    backgroundColor: '#F4F4F5',  // Light gray background for active tab
   }
 });
 

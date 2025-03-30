@@ -186,8 +186,8 @@ const MarketScreen = () => {
                     onSnapToItem={handleGainersSnapToItem}
                     mode="parallax"
                     modeConfig={{
-                        parallaxScrollingScale: 0.95,
-                        parallaxScrollingOffset: SIDE_ITEM_OFFSET,
+                        parallaxScrollingScale: 0.9,  // Try 0.9 for better effect
+                        parallaxScrollingOffset: 20,  // Reduce offset
                     }}
                     renderItem={({ item }) => (
                         <View style={[styles.gainersListContainer, { width: ITEM_WIDTH }]}>

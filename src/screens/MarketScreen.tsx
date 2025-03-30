@@ -19,20 +19,20 @@ const MarketScreen = () => {
             id: '1',
             title: 'What is DeFi?',
             duration: '56 seconds to learn',
-            image: require('./assets/defi.jpg'),
+            image: images.login.LearnTop,
             // If no image, use null and component will show default
         },
         {
             id: '2',
             title: 'What is yield?',
             duration: '40 seconds to learn',
-            image: require('./assets/yield.jpg'),
+            image: images.login.LearnTop,
         },
         {
             id: '3',
             title: 'Understanding NFTs',
             duration: '32 seconds to learn',
-            image: null, // Example with no image
+            image: images.login.LearnTop,
         },
     ];
 
@@ -44,7 +44,7 @@ const MarketScreen = () => {
             symbol: 'PARTI',
             price: '$0.3568',
             change: '+12%',
-            image: require('./assets/particle.png'),
+            image: images.login.LearnTop,
             color: '#8A2BE2',
         },
         {
@@ -53,7 +53,7 @@ const MarketScreen = () => {
             symbol: 'LMWR',
             price: '$0.09479',
             change: '+9%',
-            image: require('./assets/limewire.png'),
+            image: images.login.LearnTop,
             color: '#32CD32',
         },
         {
@@ -62,7 +62,7 @@ const MarketScreen = () => {
             symbol: 'BRETT',
             price: '$0.03741',
             change: '+5%',
-            image: require('./assets/brett.png'),
+            image: images.login.LearnTop,
             color: '#00BFFF',
         },
         {
@@ -71,7 +71,7 @@ const MarketScreen = () => {
             symbol: 'KAITO',
             price: '$1.35',
             change: '+19%',
-            image: null, // Example with no image
+            image: images.login.LearnTop,
             color: '#00FFFF',
         },
     ];

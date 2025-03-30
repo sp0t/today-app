@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity, SafeAreaView, StatusBar } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import { useSharedValue } from 'react-native-reanimated';
@@ -74,6 +74,14 @@ const MarketScreen = () => {
     ];
 
     const progressValue = useSharedValue(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const educationalCarouselRef = useRef(null);
+    const gainersCarouselRef = useRef(null);
+
+    // Handle educational carousel slide
+    const handleEducationalSnapToItem = (index: number) => {
+        setCurrentIndex(index);
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -96,7 +104,8 @@ const MarketScreen = () => {
             {/* Educational Carousel */}
             <View style={styles.educationalCarouselContainer}>
                 <Carousel
-                    loop
+                    ref={educationalCarouselRef}
+                    loop={false}  // Disable loop to prevent sliding beyond boundaries
                     width={width * 0.85}
                     height={180}
                     snapEnabled={true}
@@ -106,8 +115,17 @@ const MarketScreen = () => {
                     onProgressChange={(_, absoluteProgress) => {
                         progressValue.value = absoluteProgress;
                     }}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity style={[styles.educationalCard, { backgroundColor: item.backgroundColor }]}>
+                    onSnapToItem={handleEducationalSnapToItem}
+                    mode="parallax"
+                    modeConfig={{
+                        parallaxScrollingScale: 0.9,
+                        parallaxScrollingOffset: 50,
+                    }}
+                    renderItem={({ item, index }) => (
+                        <TouchableOpacity style={[
+                            styles.educationalCard, 
+                            { backgroundColor: item.backgroundColor }
+                        ]}>
                             <Image source={item.image} style={styles.educationalImage} />
                             <View style={styles.educationalOverlay}>
                                 <Text style={styles.educationalDuration}>{item.duration}</Text>
@@ -116,6 +134,19 @@ const MarketScreen = () => {
                         </TouchableOpacity>
                     )}
                 />
+                
+                {/* Pagination indicator */}
+                <View style={styles.paginationContainer}>
+                    {educationalItems.map((_, index) => (
+                        <View
+                            key={index}
+                            style={[
+                                styles.paginationDot,
+                                { backgroundColor: currentIndex === index ? '#E91E63' : '#ccc' }
+                            ]}
+                        />
+                    ))}
+                </View>
             </View>
 
             {/* Top gainers section */}
@@ -124,7 +155,8 @@ const MarketScreen = () => {
                 <Text style={styles.topGainersSubtitle}>Price rising over the past 24 hours</Text>
 
                 <Carousel
-                    loop
+                    ref={gainersCarouselRef}
+                    loop={false}  // Disable loop
                     vertical={false}
                     width={width}
                     height={240}
@@ -204,7 +236,7 @@ const styles = StyleSheet.create({
         marginBottom: 12,
     },
     educationalCarouselContainer: {
-        height: 180,
+        height: 200,  // Increased to accommodate pagination
     },
     educationalCard: {
         flex: 1,
@@ -234,8 +266,21 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
     },
+    // Pagination styles
+    paginationContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    paginationDot: {
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        marginHorizontal: 4,
+    },
     topGainersSection: {
-        marginTop: 24,
+        marginTop: 16,
         flex: 1,
     },
     topGainersTitle: {

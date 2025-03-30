@@ -190,7 +190,7 @@ const MarketScreen = () => {
                         parallaxScrollingOffset: 20,  // Reduce offset
                     }}
                     renderItem={({ item }) => (
-                        <View style={[styles.gainersListContainer, { width: ITEM_WIDTH }]}>
+                        <View style={[styles.gainersListContainer]}>
                             {item.map((gainerItem) => (
                                 <TouchableOpacity key={gainerItem.id} style={styles.gainerItem}>
                                     <View style={styles.gainerLeft}>

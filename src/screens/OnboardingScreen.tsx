@@ -184,7 +184,7 @@ const OnboardingScreen = () => {
                         </View>
                         <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
                             <PrimaryInput
-                                style={{ position: 'absolute', top: -30, width: '90%' }}
+                                style={{ position: 'absolute', top: -70, width: '90%' }}
                                 value={formData.lastName}
                                 onChangeText={(text) => setFormData({ ...formData, lastName: text })}
                                 placeholder="Last name"

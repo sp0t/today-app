@@ -132,7 +132,7 @@ const MarketScreen = () => {
                     mode="parallax"
                     modeConfig={{
                         parallaxScrollingScale: 0.9,
-                        parallaxScrollingOffset: 50,
+                        parallaxScrollingOffset: 200,
                     }}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity style={[

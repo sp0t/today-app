@@ -136,10 +136,9 @@ const MarketScreen = () => {
   );
 
   return (
-    <>
+    <SafeAreaView style={styles.safeAreaContainer}>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={styles.safeAreaTop} />
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
           <View>
@@ -181,21 +180,21 @@ const MarketScreen = () => {
         <TouchableOpacity style={styles.depositButton}>
           <Text style={styles.depositButtonText}>Deposit</Text>
         </TouchableOpacity>
-      </SafeAreaView>
-    </>
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safeAreaTop: {
-    flex: 0,
-    backgroundColor: '#FFFFFF'
+  safeAreaContainer: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
   },
   container: {
     flex: 1,
     backgroundColor: '#fff',
     paddingTop: Platform.OS === 'ios' ? 0 : 16,
-    paddingHorizontal: 10,
+    paddingHorizontal: 16, // Consistent padding for both platforms
   },
   header: {
     flexDirection: 'row',

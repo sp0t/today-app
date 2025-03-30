@@ -96,6 +96,9 @@ const MarketScreen = () => {
         setCurrentGainerIndex(index);
     };
 
+    const ITEM_WIDTH = width * 0.8; 
+    const SIDE_ITEM_OFFSET = (width - ITEM_WIDTH) / 2;
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle="dark-content" />
@@ -137,7 +140,7 @@ const MarketScreen = () => {
                     }}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity style={[
-                            styles.educationalCard, 
+                            styles.educationalCard,
                             { backgroundColor: item.backgroundColor }
                         ]}>
                             <Image source={item.image} style={styles.educationalImage} />
@@ -148,7 +151,7 @@ const MarketScreen = () => {
                         </TouchableOpacity>
                     )}
                 />
-                
+
                 {/* Pagination indicator */}
                 <View style={styles.paginationContainer}>
                     {educationalItems.map((_, index) => (
@@ -184,10 +187,10 @@ const MarketScreen = () => {
                     mode="parallax"
                     modeConfig={{
                         parallaxScrollingScale: 0.95,
-                        parallaxScrollingOffset: 30,
+                        parallaxScrollingOffset: SIDE_ITEM_OFFSET,
                     }}
                     renderItem={({ item }) => (
-                        <View style={styles.gainersListContainer}>
+                        <View style={[styles.gainersListContainer, { width: ITEM_WIDTH }]}>
                             {item.map((gainerItem) => (
                                 <TouchableOpacity key={gainerItem.id} style={styles.gainerItem}>
                                     <View style={styles.gainerLeft}>

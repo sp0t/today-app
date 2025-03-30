@@ -131,8 +131,9 @@ const MarketScreen = () => {
                     onSnapToItem={handleEducationalSnapToItem}
                     mode="parallax"
                     modeConfig={{
-                        parallaxScrollingScale: 0.9,
-                        parallaxScrollingOffset: 50,
+                        parallaxScrollingScale: 0.85, // Adjust to make side items more visible
+                        parallaxScrollingOffset: 70,  // Increase offset for better side visibility
+                        parallaxAdjacentItemScale: 0.75, // Scale for adjacent items (if supported)
                     }}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity style={[

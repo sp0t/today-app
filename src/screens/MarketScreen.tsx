@@ -1,21 +1,326 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { useTheme } from '../theme/ThemeContext';
+import {
+    View,
+    Text,
+    Image,
+    ScrollView,
+    TouchableOpacity,
+    StyleSheet,
+    FlatList,
+    SafeAreaView,
+    StatusBar,
+} from 'react-native';
+import images from '../styles/images';
 
 const MarketScreen = () => {
-    const { theme, toggleTheme } = useTheme();
+    // Mock data for learn cards
+    const learnCards = [
+        {
+            id: '1',
+            title: 'What is DeFi?',
+            duration: '56 seconds to learn',
+            image: require('./assets/defi.jpg'),
+            // If no image, use null and component will show default
+        },
+        {
+            id: '2',
+            title: 'What is yield?',
+            duration: '40 seconds to learn',
+            image: require('./assets/yield.jpg'),
+        },
+        {
+            id: '3',
+            title: 'Understanding NFTs',
+            duration: '32 seconds to learn',
+            image: null, // Example with no image
+        },
+    ];
+
+    // Mock data for top gainers
+    const topGainers = [
+        {
+            id: '1',
+            name: 'Particle Network',
+            symbol: 'PARTI',
+            price: '$0.3568',
+            change: '+12%',
+            image: require('./assets/particle.png'),
+            color: '#8A2BE2',
+        },
+        {
+            id: '2',
+            name: 'Limewire',
+            symbol: 'LMWR',
+            price: '$0.09479',
+            change: '+9%',
+            image: require('./assets/limewire.png'),
+            color: '#32CD32',
+        },
+        {
+            id: '3',
+            name: 'Brett',
+            symbol: 'BRETT',
+            price: '$0.03741',
+            change: '+5%',
+            image: require('./assets/brett.png'),
+            color: '#00BFFF',
+        },
+        {
+            id: '4',
+            name: 'Kaito',
+            symbol: 'KAITO',
+            price: '$1.35',
+            change: '+19%',
+            image: null, // Example with no image
+            color: '#00FFFF',
+        },
+    ];
+
+    // Render learn card item
+    const renderLearnCard = ({ item }: { item: any }) => (
+        <TouchableOpacity style={styles.learnCard}>
+            {item.image ? (
+                <Image source={item.image} style={styles.learnCardImage} />
+            ) : (
+                <View style={[styles.learnCardImage, styles.defaultCardBackground]}>
+                    <Text style={styles.defaultIconText}>?</Text>
+                </View>
+            )}
+            <View style={styles.learnCardOverlay}>
+                <Text style={styles.learnCardDuration}>{item.duration}</Text>
+                <Text style={styles.learnCardTitle}>{item.title}</Text>
+            </View>
+        </TouchableOpacity>
+    );
+
+    // Render top gainer item
+    const renderGainerItem = ({ item }: { item: any }) => (
+        <TouchableOpacity style={styles.gainerItem}>
+            <View style={styles.gainerLeft}>
+                {item.image ? (
+                    <Image source={item.image} style={styles.gainerImage} />
+                ) : (
+                    <View style={[styles.gainerImage, { backgroundColor: item.color }]}>
+                        <Text style={styles.defaultIconText}>
+                            {item.symbol.charAt(0)}
+                        </Text>
+                    </View>
+                )}
+                <View style={styles.gainerInfo}>
+                    <Text style={styles.gainerName}>{item.name}</Text>
+                    <Text style={styles.gainerSymbol}>{item.symbol}</Text>
+                </View>
+            </View>
+            <View style={styles.gainerRight}>
+                <Text style={styles.gainerPrice}>{item.price}</Text>
+                <Text style={styles.gainerChange}>{item.change}</Text>
+            </View>
+        </TouchableOpacity>
+    );
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ fontSize: 20, color: theme === 'dark' ? '#fff' : '#000' }}>
-                Market Screen
-            </Text>
-            <Text style={{ color: theme === 'dark' ? '#fff' : '#000' }}>
-                Current Theme: {theme}
-            </Text>
-            <Button title="Toggle Theme" onPress={toggleTheme} />
-        </View>
+        <SafeAreaView style={styles.container}>
+            <StatusBar barStyle="dark-content" />
+
+            {/* Header */}
+            <View style={styles.header}>
+                <View>
+                    <Text style={styles.welcomeText}>Welcome</Text>
+                    <Text style={styles.dateText}>Monday, March 5th</Text>
+                </View>
+                <View style={styles.marketStatus}>
+                    <Image source={images.tab.TabMarket} style={{ width: 16, height: 16 }} />
+                    <Text style={styles.marketStatusText}>Markets are always open</Text>
+                </View>
+            </View>
+
+            {/* Learn Section */}
+            <Text style={styles.sectionTitle}>Learn about the future of finance</Text>
+            <FlatList
+                data={learnCards}
+                renderItem={renderLearnCard}
+                keyExtractor={item => item.id}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.learnCardsContainer}
+            />
+
+            {/* Top Gainers Section */}
+            <View style={styles.topGainersHeader}>
+                <Text style={styles.sectionTitle}>Top gainers</Text>
+                <Text style={styles.gainersSubtitle}>Price rising over the past 24 hours</Text>
+            </View>
+
+            <FlatList
+                data={topGainers}
+                renderItem={renderGainerItem}
+                keyExtractor={item => item.id}
+                style={styles.gainersList}
+                showsVerticalScrollIndicator={false}
+            />
+
+            {/* Deposit Button */}
+            <TouchableOpacity style={styles.depositButton}>
+                <Text style={styles.depositButtonText}>Deposit</Text>
+            </TouchableOpacity>
+        </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        padding: 16,
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        marginBottom: 20,
+    },
+    welcomeText: {
+        fontSize: 14,
+        color: '#FF00FF',
+        fontWeight: '500',
+    },
+    dateText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#000',
+    },
+    marketStatus: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 196, 154, 0.1)',
+        borderRadius: 20,
+        paddingVertical: 4,
+        paddingHorizontal: 8,
+    },
+    marketStatusText: {
+        fontSize: 12,
+        color: '#00C49A',
+        marginLeft: 4,
+    },
+    sectionTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 12,
+        color: '#000',
+    },
+    learnCardsContainer: {
+        padding: 4,
+    },
+    learnCard: {
+        width: 160,
+        height: 120,
+        borderRadius: 12,
+        overflow: 'hidden',
+        marginRight: 12,
+    },
+    learnCardImage: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 12,
+    },
+    defaultCardBackground: {
+        backgroundColor: '#E0E0E0',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    defaultIconText: {
+        fontSize: 24,
+        color: '#FFFFFF',
+        fontWeight: 'bold',
+    },
+    learnCardOverlay: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: 12,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    learnCardDuration: {
+        fontSize: 12,
+        color: '#FFFFFF',
+        marginBottom: 4,
+    },
+    learnCardTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+    },
+    topGainersHeader: {
+        marginTop: 20,
+        marginBottom: 4,
+    },
+    gainersSubtitle: {
+        fontSize: 12,
+        color: '#666',
+        marginTop: -8,
+        marginBottom: 12,
+    },
+    gainersList: {
+        flex: 1,
+    },
+    gainerItem: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 12,
+        borderBottomWidth: 1,
+        borderBottomColor: '#F0F0F0',
+    },
+    gainerLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    gainerImage: {
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    gainerInfo: {
+        marginLeft: 12,
+    },
+    gainerName: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: '#000',
+    },
+    gainerSymbol: {
+        fontSize: 12,
+        color: '#666',
+    },
+    gainerRight: {
+        alignItems: 'flex-end',
+    },
+    gainerPrice: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: '#000',
+    },
+    gainerChange: {
+        fontSize: 12,
+        color: '#00C49A',
+        fontWeight: '500',
+    },
+    depositButton: {
+        backgroundColor: '#000',
+        borderRadius: 12,
+        padding: 16,
+        alignItems: 'center',
+        marginTop: 16,
+        marginBottom: 8,
+    },
+    depositButtonText: {
+        color: '#FFFFFF',
+        fontSize: 16,
+        fontWeight: '600',
+    },
+});
 
 export default MarketScreen;

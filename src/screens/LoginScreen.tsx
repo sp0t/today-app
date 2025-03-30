@@ -98,7 +98,7 @@ const LoginScreen = () => {
         </Animated.View>
         <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
           <Text style={styles.bottomTitle}>Don’t wait for tomorrow, prosper today</Text>
-          <PrimaryButton title="Create an account" style={{ marginTop: '16%' }} onPress={handleCreateAccount} />
+          <PrimaryButton title="Create an account" style={{ marginTop: '25%' }} onPress={handleCreateAccount} />
           <TextButton title="Sign in" style={{ marginTop: 20 }} onPress={() => { }} />
         </View>
       </View>

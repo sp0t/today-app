@@ -23,6 +23,7 @@ interface SlideData {
 const OnboardingScreen = () => {
     const sliderRef = useRef<AppIntroSlider | null>(null);
     const navigation = useNavigation<GenericNavigationProps>();
+    const [image, setImage] = useState<string | null>(null);
 
     const [formData, setFormData] = useState<SlideData>({
         email: '',
@@ -34,6 +35,24 @@ const OnboardingScreen = () => {
 
     const validateEmail = (email: string) => {
         return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email);
+    };
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibrary({
+            mediaType: 'photo',
+            includeBase64: false,
+        });
+
+        if (!result.didCancel) {
+            // For Expo ImagePicker in recent versions
+            const selectedAsset = result.assets?.[0];
+            if (selectedAsset?.uri) {
+                setImage(selectedAsset.uri);
+            } else if (result.assets?.[0]?.uri) {
+                // Fallback for older versions
+                setImage(result.assets?.[0]?.uri);
+            }
+        }
     };
 
     const slides = [
@@ -196,25 +215,24 @@ const OnboardingScreen = () => {
                                     <Text style={[styles.subtitle, { marginTop: 14 }]}>
                                         Your profile photo is how you show up,{'\n'}you can change this later
                                     </Text>
-                                    <TouchableOpacity
-                                        style={styles.photoUpload}
-                                        onPress={() => {
-                                          ImagePicker.launchImageLibrary({
-                                            mediaType: 'photo',
-                                            includeBase64: false,
-                                          }, (response:any) => {
-                                            if (response.assets?.[0]?.uri) {
-                                              setFormData({ ...formData, profilePhoto: response.assets[0].uri });
-                                            }
-                                          });
-                                        }}
-                                    >
-                                        {formData.profilePhoto ? (
-                                            <Image source={{ uri: formData.profilePhoto }} style={styles.profilePhoto} />
-                                        ) : (
-                                            <Text style={styles.uploadText}>Upload Photo</Text>
-                                        )}
-                                    </TouchableOpacity>
+                                    <View>
+                                        <View >
+                                            <View >
+                                                {image ? (
+                                                    <Image source={{ uri: image }} />
+                                                ) : (
+                                                    <View >
+                                                        <View />
+                                                        <View />
+                                                    </View>
+                                                )}
+                                            </View>
+                                        </View>
+
+                                        <TouchableOpacity onPress={pickImage}>
+                                            <Text>Upload</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
                             </ImageBackground>
                         </View>
@@ -230,10 +248,10 @@ const OnboardingScreen = () => {
                             />
                         </View>
                         <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
-                            <PrimaryButton 
-                                title="Let's go!" 
+                            <PrimaryButton
+                                title="Let's go!"
                                 style={{ marginTop: '40%' }}
-                                onPress={() => navigation.navigate('MainApp')} 
+                                onPress={() => navigation.navigate('MainApp')}
                             />
                         </View>
                     </View>

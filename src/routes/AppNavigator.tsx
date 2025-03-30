@@ -61,8 +61,10 @@ const MainTabNavigator = () => {
         tabBarInactiveTintColor: '#6B7280',
         tabBarStyle: {
           height: 60,
-          paddingBottom: 8,
-          paddingTop: 8,
+          paddingBottom: 16,
+          paddingTop: 16,
+          borderTopRightRadius: 16,
+          borderTopLeftRadius: 16,
         },
         headerShown: false,
       })}

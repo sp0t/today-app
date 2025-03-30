@@ -119,7 +119,7 @@ const OnboardingScreen = () => {
                             />
                         </View>
                         <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
-                            <PrimaryButton title="Continue" style={[{ marginTop: '30%' }, formData.verificationCode.length !== 6 && styles.buttonDisabled]}
+                            <PrimaryButton title="Continue" style={[{ marginTop: '40%' }, formData.verificationCode.length !== 6 && styles.buttonDisabled]}
                                 disabled={formData.verificationCode.length !== 6}
                                 onPress={() => sliderRef.current?.goToSlide(2)} />
                         </View>
@@ -170,7 +170,7 @@ const OnboardingScreen = () => {
                                 onChangeText={(text) => setFormData({ ...formData, lastName: text })}
                                 placeholder="Last name"
                             />
-                            <PrimaryButton title="Continue" style={[{ marginTop: '30%' }, !(formData.firstName && formData.lastName) && styles.buttonDisabled]}
+                            <PrimaryButton title="Continue" style={[{ marginTop: '40%' }, !(formData.firstName && formData.lastName) && styles.buttonDisabled]}
                                 disabled={!(formData.firstName && formData.lastName)}
                                 onPress={() => sliderRef.current?.goToSlide(3)} />
                         </View>
@@ -232,7 +232,7 @@ const OnboardingScreen = () => {
                         <View style={[baseStyles.bottomContainer, { alignItems: 'center', justifyContent: 'center' }]}>
                             <PrimaryButton 
                                 title="Let's go!" 
-                                style={{ marginTop: '30%' }}
+                                style={{ marginTop: '40%' }}
                                 onPress={() => navigation.navigate('MainApp')} 
                             />
                         </View>
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     contentContainer: {
-        marginTop: '60%',
+        marginTop: '55%',
         width: '90%',
     },
     icon: {

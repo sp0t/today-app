@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     contentContainer: {
-        marginTop: '40%',
+        marginTop: '60%',
         width: '90%',
     },
     icon: {

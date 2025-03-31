@@ -388,8 +388,9 @@ const styles = StyleSheet.create<IStyles>({
     backgroundColor: '#ffffff',
   },
   header: {
-    paddingHorizontal: 16,
-    paddingTop: 12,
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+    paddingTop: 16,
     paddingBottom: 8,
   },
   welcomeText: {

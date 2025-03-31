@@ -256,7 +256,8 @@ const MarketScreen: React.FC = () => {
   const getItemLayout = useCallback(
     (_: any, index: number) => ({
       length: CARD_WIDTH + CARD_GAP,
-      offset: (CARD_WIDTH + CARD_GAP) * index - 20,
+      // offset: (CARD_WIDTH + CARD_GAP) * index,
+      offset: 0,
       index,
     }),
     []

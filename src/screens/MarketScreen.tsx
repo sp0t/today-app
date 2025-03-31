@@ -436,6 +436,7 @@ const styles = StyleSheet.create<IStyles>({
     color: '#000000',
     letterSpacing: -0.1,
     lineHeight: 22,
+    paddingHorizontal: 20
   },
   sectionSubtitle: {
     fontSize: 12,

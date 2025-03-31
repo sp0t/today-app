@@ -311,30 +311,6 @@ const MarketScreen: React.FC = () => {
           /> */}
         </View>
       </View>
-
-      {/* Top gainers section */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Top gainers</Text>
-        <Text style={styles.sectionSubtitle}>Price rising over the past 24 hours</Text>
-
-        <FlatList
-          ref={bottomCarouselRef}
-          data={topGainers}
-          renderItem={renderTopGainer}
-          keyExtractor={(item) => item.id}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled
-          snapToInterval={CARD_WIDTH + CARD_GAP}
-          decelerationRate="fast"
-          contentContainerStyle={styles.carouselContent}
-          onMomentumScrollEnd={handleBottomScrollEnd}
-          initialScrollIndex={0}
-          getItemLayout={getItemLayout}
-          removeClippedSubviews={true} // Performance optimization
-        />
-      </View>
-
       {/* Deposit button */}
       <View style={styles.footer}>
         <TouchableOpacity

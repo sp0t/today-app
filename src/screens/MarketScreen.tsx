@@ -22,7 +22,7 @@ import images from '../styles/images'
 // Constants for layout measurements
 const { width } = Dimensions.get('window');
 const CARD_WIDTH = width * 0.5;
-const GANINER_CARD_WIDTH = width * 0.85;
+const GANINER_CARD_WIDTH = width * 0.86;
 const CARD_GAP = 12;
 
 // Type definitions

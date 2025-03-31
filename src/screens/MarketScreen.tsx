@@ -85,7 +85,7 @@ const EducationalCardItem: React.FC<EducationalCardItemProps> = ({ item, index, 
       style={[
         styles.educationalCard,
         { width: CARD_WIDTH, 
-          marginRight: index === totalItems - 1 ? 0 : 20,
+          marginRight: index === totalItems - 1 ? 20 : CARD_GAP,
           // marginLeft: index === 0 ? 20 : 0
         }
       ]}

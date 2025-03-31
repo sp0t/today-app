@@ -273,7 +273,7 @@ const MarketScreen: React.FC = () => {
           <Text style={styles.welcomeText}>Welcome</Text>
           <Text style={styles.dateText}>Monday, March 5th</Text>
         </View>
-        <View style={styles.dateContainer}>
+        <View>
             <Text style={styles.statusText}>Markets are always open</Text>
         </View>
       </View>

@@ -649,22 +649,25 @@ const styles = StyleSheet.create<IStyles>({
   },
   gainerTicker: {
     marginTop: 4,
-    fontSize: 12,
-    color: '#6B7280',
+    fontSize: 10,
+    fontWeight: '500',
+    color: '#808080',
   },
   gainerPrice: {
-    marginTop: 2,
     alignItems: 'flex-end',
     alignContent: 'space-between'
   },
   priceValue: {
-    marginTop: 4,
+    marginTop: 2,
     fontSize: 14,
+    fontWeight: '500',
     color: '#000000',
   },
   priceChange: {
+    marginTop: 4,
     fontSize: 12,
-    color: '#10B981',
+    fontWeight: '500',
+    color: '#0BA72A',
   },
   footer: {
     padding: 16,

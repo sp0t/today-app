@@ -84,7 +84,10 @@ const EducationalCardItem: React.FC<EducationalCardItemProps> = ({ item, index, 
     <TouchableOpacity
       style={[
         styles.educationalCard,
-        { width: CARD_WIDTH, marginRight: index === totalItems - 1 ? 0 : CARD_GAP }
+        { width: CARD_WIDTH, 
+          marginRight: index === totalItems - 1 ? 0 : 20,
+          marginLeft: index === 0 ? 20 : 0
+        }
       ]}
       activeOpacity={0.9}
     >
@@ -115,7 +118,7 @@ const TopGainerItem: React.FC<TopGainerItemProps> = ({ item, index, totalItems }
         styles.gainerCard,
         { width: CARD_WIDTH, 
           marginRight: index === totalItems - 1 ? 0 : 20,
-          marginLeft: index === 1 ? 20 : 0
+          marginLeft: index === 0 ? 20 : 0
         }
       ]}
     >

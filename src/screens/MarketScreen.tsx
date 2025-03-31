@@ -23,7 +23,7 @@ import images from '../styles/images'
 // Constants for layout measurements
 const { width } = Dimensions.get('window');
 const CARD_WIDTH = width * 0.6;
-const CARD_GAP = width * 0.05;
+const CARD_GAP = 12;
 
 // Type definitions
 interface EducationalCard {
@@ -113,7 +113,7 @@ const TopGainerItem: React.FC<TopGainerItemProps> = ({ item, index, totalItems }
     <View
       style={[
         styles.gainerCard,
-        { width: CARD_WIDTH, marginRight: index === totalItems - 1 ? 0 : CARD_GAP }
+        { width: CARD_WIDTH, marginRight: index === totalItems - 1 ? 0 : 20 }
       ]}
     >
       <View style={[styles.gainerIcon, { backgroundColor: item.color }]}>

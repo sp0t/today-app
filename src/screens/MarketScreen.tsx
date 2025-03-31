@@ -14,6 +14,54 @@ const data = [
 ];
 
 const MarketScreen = () => {
+    const scrollX = useRef(new Animated.Value(0)).current;
+  
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <FlatList
+          data={data}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled
+          snapToAlignment="start"
+          decelerationRate="fast"
+          snapToInterval={ITEM_WIDTH}
+          scrollEventThrottle={16}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            { useNativeDriver: false }
+          )}
+          renderItem={({ item, index }) => {
+            const inputRange = [
+              (index - 1) * ITEM_WIDTH,
+              index * ITEM_WIDTH,
+              (index + 1) * ITEM_WIDTH
+            ];
+            
+            const scale = scrollX.interpolate({
+              inputRange,
+              outputRange: [NEXT_ITEM_SCALE, 1, NEXT_ITEM_SCALE],
+              extrapolate: 'clamp'
+            });
+  
+            return (
+              <Animated.View
+                style={{
+                  width: ITEM_WIDTH,
+                  transform: [{ scaleX: scale }], // Only scale width, not height
+                  marginHorizontal: 10,
+                  height: 200, // Keep height constant
+                  backgroundColor: item.color,
+                  borderRadius: 10
+                }}
+              />
+            );
+          }}
+        />
+      </View>
+    );
+  };
+const MarketScreen = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
 
   return (
@@ -48,9 +96,9 @@ const MarketScreen = () => {
             <Animated.View
               style={{
                 width: ITEM_WIDTH,
-                transform: [{ scale }],
+                transform: [{ scaleX: scale }], // Only scale width, not height
                 marginHorizontal: 10,
-                height: 200,
+                height: 200, // Keep height constant
                 backgroundColor: item.color,
                 borderRadius: 10
               }}
@@ -61,5 +109,6 @@ const MarketScreen = () => {
     </View>
   );
 };
+  
 
 export default MarketScreen;

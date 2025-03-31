@@ -409,6 +409,7 @@ const styles = StyleSheet.create<IStyles>({
     fontSize: 14,
     fontWeight: '600',
     color: '#000000',
+    marginTop: 4
   },
   marketStatus: {
     flexDirection: 'row',

@@ -267,8 +267,6 @@ const MarketScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.welcomeText}>Welcome</Text>

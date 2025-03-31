@@ -451,7 +451,7 @@ const MarketScreen: React.FC = () => {
       </View>
       {/* Deposit button */}
       <View style={styles.footer}>
-        <PrimaryButton title="Deposit" onPress={()=>{}} />
+        <PrimaryButton title="Deposit" style={{width:"100%"}} onPress={()=>{}} />
       </View>
     </SafeAreaView>
   );

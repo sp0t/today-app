@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import images from '../styles/images'
+import PrimaryButton from '../components/ui/Button/PrimaryButton';
 
 // Constants for layout measurements
 const { width } = Dimensions.get('window');
@@ -450,13 +451,7 @@ const MarketScreen: React.FC = () => {
       </View>
       {/* Deposit button */}
       <View style={styles.footer}>
-        <TouchableOpacity
-          style={styles.depositButton}
-          activeOpacity={0.8}
-          onPress={() => console.log('Deposit pressed')}
-        >
-          <Text style={styles.depositButtonText}>Deposit</Text>
-        </TouchableOpacity>
+        <PrimaryButton title="Deposit" onPress={()=>{}} />
       </View>
     </SafeAreaView>
   );
@@ -623,7 +618,7 @@ const styles = StyleSheet.create<IStyles>({
     alignItems: 'center',
     paddingVertical: 8,
     paddingRight: 20,
-    marginBottom:10
+    marginBottom: 10
   },
   gainerIcon: {
     width: 40,
@@ -655,7 +650,7 @@ const styles = StyleSheet.create<IStyles>({
     color: '#808080',
   },
   gainerPrice: {
-    marginTop:4,
+    marginTop: 4,
     alignItems: 'flex-end',
     alignContent: 'space-between'
   },

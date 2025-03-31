@@ -86,7 +86,7 @@ const EducationalCardItem: React.FC<EducationalCardItemProps> = ({ item, index, 
         styles.educationalCard,
         { width: CARD_WIDTH, 
           marginRight: index === totalItems - 1 ? 0 : CARD_GAP,
-          // marginLeft: index === 0 ? 20 : 0
+          marginLeft: index === 0 ? 20 : 0
         }
       ]}
       activeOpacity={0.9}

@@ -641,20 +641,24 @@ const styles = StyleSheet.create<IStyles>({
     flex: 1,
   },
   gainerName: {
+    marginTop: 2,
     fontSize: 14,
     fontWeight: '500',
     color: '#000000',
+
   },
   gainerTicker: {
+    marginTop: 4,
     fontSize: 12,
     color: '#6B7280',
   },
   gainerPrice: {
-    flex: 1,
+    marginTop: 2,
     alignItems: 'flex-end',
     alignContent: 'space-between'
   },
   priceValue: {
+    marginTop: 4,
     fontSize: 14,
     color: '#000000',
   },

@@ -120,7 +120,7 @@ const TopGainerItem: React.FC<TopGainerItemProps> = ({ item, index, totalItems }
         {
           width: GANINER_CARD_WIDTH,
           marginRight: index === totalItems - 1 ? 0 : CARD_GAP,
-          // marginLeft: index === 0 ? 20 : 0
+          marginLeft: index === 0 ? 20 : 0
         }
       ]}
     >

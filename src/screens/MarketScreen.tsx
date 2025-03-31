@@ -346,7 +346,7 @@ const MarketScreen: React.FC = () => {
 
   const renderTopGainerPage = useCallback(
     ({ item }: { item: TopGainer[] }) => (
-      <View style={{width: GANINER_CARD_WIDTH + CARD_GAP}}>
+      <View style={{ width: GANINER_CARD_WIDTH + CARD_GAP }}>
         {item.map((gainer, index) => (
           <TopGainerItem
             key={gainer.id}
@@ -420,12 +420,14 @@ const MarketScreen: React.FC = () => {
             onMomentumScrollEnd={handleTopScrollEnd}
             initialScrollIndex={0}
             getItemLayout={getItemLayout}
-            removeClippedSubviews={true} // Performance optimization
+            removeClippedSubviews={true}
           />
         </View>
 
       </View>
-      <View>
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Top gainers</Text>
+        <Text style={styles.sectionTitle}>Price rising over the past 24 hours</Text>
         <FlatList
           ref={bottomCarouselRef}
           data={groupedPages}
@@ -543,7 +545,7 @@ const styles = StyleSheet.create<IStyles>({
     fontWeight: '400'
   },
   section: {
-    paddingVertical: 32
+    paddingTop: 32
   },
   sectionTitle: {
     fontSize: 16,
@@ -555,8 +557,9 @@ const styles = StyleSheet.create<IStyles>({
   },
   sectionSubtitle: {
     fontSize: 12,
-    color: '#6B7280',
-    marginBottom: 10,
+    color: '#808080',
+    letterSpacing: -0.1,
+    fontWeight:'400'
   },
   carouselContainer: {
     position: 'relative',

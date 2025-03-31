@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { View, FlatList, Dimensions, Animated } from 'react-native';
 
 const { width } = Dimensions.get('window');
-const ITEM_WIDTH = width * 0.6;
+const ITEM_WIDTH = width * 0.5;
 const NEXT_ITEM_SCALE = 0.8;
 
 const data = [

@@ -22,7 +22,7 @@ import images from '../styles/images'
 
 // Constants for layout measurements
 const { width } = Dimensions.get('window');
-const CARD_WIDTH = width * 0.7;
+const CARD_WIDTH = width * 0.6;
 const CARD_GAP = width * 0.05;
 
 // Type definitions

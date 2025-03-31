@@ -428,22 +428,24 @@ const MarketScreen: React.FC = () => {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Top gainers</Text>
         <Text style={styles.sectionSubtitle}>Price rising over the past 24 hours</Text>
-        <FlatList
-          ref={bottomCarouselRef}
-          data={groupedPages}
-          renderItem={renderTopGainerPage}
-          keyExtractor={(_, index) => index.toString()}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled
-          snapToInterval={GANINER_CARD_WIDTH + CARD_GAP}
-          decelerationRate="fast"
-          contentContainerStyle={styles.carouselContent}
-          onMomentumScrollEnd={handleBottomScrollEnd}
-          initialScrollIndex={0}
-          getItemLayout={getGainerItemLayout} // update this function accordingly for pages
-          removeClippedSubviews={true} // Performance optimization
-        />
+        <View style={styles.carouselContainer}>
+          <FlatList
+            ref={bottomCarouselRef}
+            data={groupedPages}
+            renderItem={renderTopGainerPage}
+            keyExtractor={(_, index) => index.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled
+            snapToInterval={GANINER_CARD_WIDTH + CARD_GAP}
+            decelerationRate="fast"
+            contentContainerStyle={styles.carouselContent}
+            onMomentumScrollEnd={handleBottomScrollEnd}
+            initialScrollIndex={0}
+            getItemLayout={getGainerItemLayout} // update this function accordingly for pages
+            removeClippedSubviews={true} // Performance optimization
+          />
+        </View>
 
       </View>
       {/* Deposit button */}
@@ -559,7 +561,7 @@ const styles = StyleSheet.create<IStyles>({
     fontSize: 12,
     color: '#808080',
     letterSpacing: -0.1,
-    fontWeight:'400',
+    fontWeight: '400',
     paddingHorizontal: 20,
     marginTop: 6
   },
@@ -620,6 +622,7 @@ const styles = StyleSheet.create<IStyles>({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 8,
+    paddingRight: 32
   },
   gainerIcon: {
     width: 40,

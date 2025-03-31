@@ -2,8 +2,9 @@ import React, { useRef } from 'react';
 import { View, FlatList, Dimensions, Animated } from 'react-native';
 
 const { width } = Dimensions.get('window');
-const ITEM_WIDTH = width * 0.5;
+const ITEM_WIDTH = width * 0.6;
 const NEXT_ITEM_SCALE = 0.8;
+const SPACING = 10;
 
 const data = [
   { id: '1', color: 'red' },
@@ -13,7 +14,7 @@ const data = [
   { id: '5', color: 'purple' }
 ];
 
-const MarketScreen = () => {
+const Carousel = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
 
   return (
@@ -25,17 +26,18 @@ const MarketScreen = () => {
         pagingEnabled
         snapToAlignment="start"
         decelerationRate="fast"
-        snapToInterval={ITEM_WIDTH}
+        snapToInterval={ITEM_WIDTH + SPACING * 2}
+        contentContainerStyle={{ paddingHorizontal: SPACING }}
         scrollEventThrottle={16}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
+          { useNativeDriver: true }
         )}
         renderItem={({ item, index }) => {
           const inputRange = [
-            (index - 1) * ITEM_WIDTH,
-            index * ITEM_WIDTH,
-            (index + 1) * ITEM_WIDTH
+            (index - 1) * (ITEM_WIDTH + SPACING * 2),
+            index * (ITEM_WIDTH + SPACING * 2),
+            (index + 1) * (ITEM_WIDTH + SPACING * 2)
           ];
           
           const scale = scrollX.interpolate({
@@ -44,12 +46,18 @@ const MarketScreen = () => {
             extrapolate: 'clamp'
           });
 
+          const translateX = scrollX.interpolate({
+            inputRange,
+            outputRange: [50, 0, -50],
+            extrapolate: 'clamp'
+          });
+
           return (
             <Animated.View
               style={{
                 width: ITEM_WIDTH,
-                transform: [{ scale }],
-                marginHorizontal: 10,
+                transform: [{ scale }, { translateX }],
+                marginHorizontal: SPACING,
                 height: 200,
                 backgroundColor: item.color,
                 borderRadius: 10
@@ -62,4 +70,4 @@ const MarketScreen = () => {
   );
 };
 
-export default MarketScreen;
+export default Carousel;

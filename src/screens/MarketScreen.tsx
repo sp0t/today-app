@@ -22,6 +22,7 @@ import images from '../styles/images'
 // Constants for layout measurements
 const { width } = Dimensions.get('window');
 const CARD_WIDTH = width * 0.5;
+const GANINER_CARD_WIDTH = width * 0.8;
 const CARD_GAP = 12;
 
 // Type definitions
@@ -117,7 +118,7 @@ const TopGainerItem: React.FC<TopGainerItemProps> = ({ item, index, totalItems }
       style={[
         styles.gainerCard,
         {
-          width: CARD_WIDTH,
+          width: GANINER_CARD_WIDTH,
           marginRight: index === totalItems - 1 ? 0 : CARD_GAP,
           // marginLeft: index === 0 ? 20 : 0
         }
@@ -281,7 +282,7 @@ const MarketScreen: React.FC = () => {
 
   const handleBottomScrollEnd = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
     const contentOffset = e.nativeEvent.contentOffset.x;
-    const index = Math.round(contentOffset / (CARD_WIDTH + CARD_GAP));
+    const index = Math.round(contentOffset / (GANINER_CARD_WIDTH + CARD_GAP));
     setBottomActiveIndex(index);
   }, []);
 
@@ -318,6 +319,15 @@ const MarketScreen: React.FC = () => {
     (_: any, index: number) => ({
       length: CARD_WIDTH + CARD_GAP,
       offset: (CARD_WIDTH + CARD_GAP) * index,
+      index,
+    }),
+    []
+  );
+
+  const getGainerItemLayout = useCallback(
+    (_: any, index: number) => ({
+      length: GANINER_CARD_WIDTH + CARD_GAP,
+      offset: (GANINER_CARD_WIDTH + CARD_GAP) * index,
       index,
     }),
     []

@@ -255,6 +255,52 @@ const MarketScreen: React.FC = () => {
       color: '#2DD4BF',
       iconText: 'K',
     },
+    {
+      id: '10',
+      name: 'Kaito',
+      ticker: 'KAITO',
+      price: '$1.35',
+      change: '+19%',
+      color: '#2DD4BF',
+      iconText: 'K',
+    },
+    {
+      id: '11',
+      name: 'Kaito',
+      ticker: 'KAITO',
+      price: '$1.35',
+      change: '+19%',
+      color: '#2DD4BF',
+      iconText: 'K',
+    },
+
+    {
+      id: '12',
+      name: 'Kaito',
+      ticker: 'KAITO',
+      price: '$1.35',
+      change: '+19%',
+      color: '#2DD4BF',
+      iconText: 'K',
+    },
+    {
+      id: '13',
+      name: 'Kaito',
+      ticker: 'KAITO',
+      price: '$1.35',
+      change: '+19%',
+      color: '#2DD4BF',
+      iconText: 'K',
+    },
+    {
+      id: '14',
+      name: 'Kaito',
+      ticker: 'KAITO',
+      price: '$1.35',
+      change: '+19%',
+      color: '#2DD4BF',
+      iconText: 'K',
+    },
   ];
 
 

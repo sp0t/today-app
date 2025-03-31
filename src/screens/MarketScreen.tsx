@@ -434,7 +434,8 @@ const styles = StyleSheet.create<IStyles>({
     fontSize: 16,
     fontWeight: '600',
     color: '#000000',
-    marginBottom: 10,
+    letterSpacing: -0.1,
+    lineHeight: 22,
   },
   sectionSubtitle: {
     fontSize: 12,

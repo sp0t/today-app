@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useMemo } from 'react';
 import {
   View,
   Text,
@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   FlatList,
   Dimensions,
-  StatusBar,
   SafeAreaView,
   NativeSyntheticEvent,
   NativeScrollEvent,
@@ -84,7 +83,8 @@ const EducationalCardItem: React.FC<EducationalCardItemProps> = ({ item, index, 
     <TouchableOpacity
       style={[
         styles.educationalCard,
-        { width: CARD_WIDTH, 
+        {
+          width: CARD_WIDTH,
           marginRight: index === totalItems - 1 ? 0 : CARD_GAP,
           marginLeft: index === 0 ? 20 : 0
         }
@@ -116,7 +116,8 @@ const TopGainerItem: React.FC<TopGainerItemProps> = ({ item, index, totalItems }
     <View
       style={[
         styles.gainerCard,
-        { width: CARD_WIDTH, 
+        {
+          width: CARD_WIDTH,
           marginRight: index === totalItems - 1 ? 0 : CARD_GAP,
           // marginLeft: index === 0 ? 20 : 0
         }
@@ -208,7 +209,62 @@ const MarketScreen: React.FC = () => {
       color: '#2DD4BF',
       iconText: 'K',
     },
+    {
+      id: '5',
+      name: 'Kaito',
+      ticker: 'KAITO',
+      price: '$1.35',
+      change: '+19%',
+      color: '#2DD4BF',
+      iconText: 'K',
+    },
+    {
+      id: '6',
+      name: 'Kaito',
+      ticker: 'KAITO',
+      price: '$1.35',
+      change: '+19%',
+      color: '#2DD4BF',
+      iconText: 'K',
+    },
+    {
+      id: '7',
+      name: 'Kaito',
+      ticker: 'KAITO',
+      price: '$1.35',
+      change: '+19%',
+      color: '#2DD4BF',
+      iconText: 'K',
+    },
+    {
+      id: '8',
+      name: 'Kaito',
+      ticker: 'KAITO',
+      price: '$1.35',
+      change: '+19%',
+      color: '#2DD4BF',
+      iconText: 'K',
+    },
+    {
+      id: '9',
+      name: 'Kaito',
+      ticker: 'KAITO',
+      price: '$1.35',
+      change: '+19%',
+      color: '#2DD4BF',
+      iconText: 'K',
+    },
   ];
+
+
+  const groupedPages = useMemo(() => {
+    const pages = [];
+    for (let i = 0; i < topGainers.length; i += 4) {
+      pages.push(topGainers.slice(i, i + 4));
+    }
+    return pages;
+  }, [topGainers]);
+
 
   // Refs and state
   const topCarouselRef = useRef<FlatList<EducationalCard>>(null);
@@ -241,15 +297,20 @@ const MarketScreen: React.FC = () => {
     [educationalCards.length]
   );
 
-  const renderTopGainer = useCallback(
-    ({ item, index }: ListRenderItemInfo<TopGainer>) => (
-      <TopGainerItem
-        item={item}
-        index={index}
-        totalItems={topGainers.length}
-      />
+  const renderTopGainerPage = useCallback(
+    ({ item }: { item: TopGainer[] }) => (
+      <View>
+        {item.map((gainer, index) => (
+          <TopGainerItem
+            key={gainer.id}
+            item={gainer}
+            index={index}
+            totalItems={item.length} // or groupedPages.length if you prefer overall count
+          />
+        ))}
+      </View>
     ),
-    [topGainers.length]
+    [groupedPages.length]
   );
 
   // Item layout calculator for optimized FlatList performance
@@ -280,7 +341,7 @@ const MarketScreen: React.FC = () => {
           <Text style={styles.dateText}>Monday, March 5th</Text>
         </View>
         <View>
-            <Text style={styles.statusText}>Markets are always open</Text>
+          <Text style={styles.statusText}>Markets are always open</Text>
         </View>
       </View>
 
@@ -305,11 +366,27 @@ const MarketScreen: React.FC = () => {
             getItemLayout={getItemLayout}
             removeClippedSubviews={true} // Performance optimization
           />
-          {/* <CarouselIndicators
-            items={educationalCards}
-            activeIndex={topActiveIndex}
-          /> */}
         </View>
+        <View>
+          <FlatList
+            ref= {bottomCarouselRef}
+            data={groupedPages}
+            renderItem={renderTopGainerPage}
+            keyExtractor={(_, index) => index.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled
+            snapToInterval={CARD_WIDTH + CARD_GAP} 
+            decelerationRate="fast"
+            contentContainerStyle={styles.carouselContent}
+            onMomentumScrollEnd={handleBottomScrollEnd}
+            initialScrollIndex={0}
+            getItemLayout={getItemLayout} // update this function accordingly for pages
+            removeClippedSubviews={true} // Performance optimization
+          />
+
+        </View>
+
       </View>
       {/* Deposit button */}
       <View style={styles.footer}>

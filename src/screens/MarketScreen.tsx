@@ -86,7 +86,7 @@ const EducationalCardItem: React.FC<EducationalCardItemProps> = ({ item, index, 
         styles.educationalCard,
         { width: CARD_WIDTH, 
           marginRight: index === totalItems - 1 ? 0 : 20,
-          marginLeft: index === 0 ? 20 : 0
+          // marginLeft: index === 0 ? 20 : 0
         }
       ]}
       activeOpacity={0.9}
@@ -256,8 +256,7 @@ const MarketScreen: React.FC = () => {
   const getItemLayout = useCallback(
     (_: any, index: number) => ({
       length: CARD_WIDTH + CARD_GAP,
-      // offset: (CARD_WIDTH + CARD_GAP) * index,
-      offset: 0,
+      offset: (CARD_WIDTH + CARD_GAP) * index,
       index,
     }),
     []

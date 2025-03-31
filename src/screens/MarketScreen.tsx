@@ -1,573 +1,553 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
-  StatusBar,
   Image,
   TouchableOpacity,
-  Dimensions,
   FlatList,
-  Animated
+  Dimensions,
+  StatusBar,
+  SafeAreaView,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+  ViewStyle,
+  TextStyle,
+  ImageStyle,
+  ImageSourcePropType,
+  ListRenderItemInfo,
 } from 'react-native';
-import { NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import images from '../styles/images'
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+// Constants for layout measurements
+const { width } = Dimensions.get('window');
+const CARD_WIDTH = width * 0.7;
+const CARD_GAP = width * 0.05;
 
-// Sample market items data using the interface
-
-interface MarketItem {
-    id: String,
-    title: String,
-    image: String,
-    price: String,
-    rating: Number,
-    description: String,
-    category: String,
-    inStock: Boolean,
-    quantity: Number,
-    tags: String[]
+// Type definitions
+interface EducationalCard {
+  id: string;
+  title: string;
+  duration: string;
+  colors: string[];
+  image: ImageSourcePropType;
 }
 
-const marketItems: MarketItem[] = [
-  {
-    id: '1',
-    title: 'Fresh Produce',
-    image: 'https://example.com/produce.jpg',
-    price: '$15.99',
-    rating: 4.8,
-    description: 'Locally sourced fruits and vegetables delivered to your door.',
-    category: 'Produce',
-    inStock: true,
-    quantity: 25,
-    tags: ['organic', 'local', 'fresh']
-  },
-  {
-    id: '2',
-    title: 'Artisan Bread',
-    image: 'https://example.com/bread.jpg',
-    price: '$7.50',
-    rating: 4.7,
-    description: 'Freshly baked sourdough and specialty breads.',
-    category: 'Bakery',
-    inStock: true,
-    quantity: 15,
-    tags: ['bread', 'baked', 'artisan']
-  },
-  {
-    id: '3',
-    title: 'Organic Dairy',
-    image: 'https://example.com/dairy.jpg',
-    price: '$12.99',
-    rating: 4.5,
-    description: 'Farm-fresh milk, cheese, and yogurt from grass-fed cows.',
-    category: 'Dairy',
-    inStock: true,
-    quantity: 20,
-    tags: ['organic', 'dairy', 'grass-fed']
-  },
-  {
-    id: '4',
-    title: 'Premium Meats',
-    image: 'https://example.com/meat.jpg',
-    price: '$24.99',
-    rating: 4.9,
-    description: 'High-quality cuts from sustainable and ethical farms.',
-    category: 'Meats',
-    inStock: true,
-    quantity: 12,
-    tags: ['meat', 'premium', 'sustainable']
-  },
-  {
-    id: '5',
-    title: 'Specialty Spices',
-    image: 'https://example.com/spices.jpg',
-    price: '$18.75',
-    rating: 4.6,
-    description: 'Rare and exotic spices from around the world.',
-    category: 'Spices',
-    inStock: true,
-    quantity: 30,
-    tags: ['spices', 'exotic', 'rare']
-  }
-];
-
-// Props interface for the CustomCarousel component
-interface CustomCarouselProps {
-  data: MarketItem[];
-  renderItem: (props: { item: MarketItem; index: number }) => React.ReactNode;
+interface TopGainer {
+  id: string;
+  name: string;
+  ticker: string;
+  price: string;
+  change: string;
+  color: string;
+  iconText: string;
 }
 
-const MarketScreen: React.FC = () => {
-  const [selectedItem, setSelectedItem] = useState<MarketItem>(marketItems[0]);
+// Component prop types
+interface CarouselIndicatorsProps {
+  items: Array<EducationalCard>;
+  activeIndex: number;
+}
 
-  // Custom render item for our carousel
-  const renderCarouselItem = ({ item, index }: { item: MarketItem; index: number }) => {
-    return (
-      <TouchableOpacity
-        activeOpacity={0.9}
-        onPress={() => setSelectedItem(item)}
-        style={styles.carouselItemContainer}
-      >
-        <View style={styles.carouselItem}>
-          {/* Image placeholder - replace with actual Image component when you have images */}
-          <View style={styles.imageContainer}>
-            <View style={styles.imagePlaceholder}>
-              <Text style={styles.imagePlaceholderText}>{item.title[0]}</Text>
-            </View>
-            {/* Uncomment this when you have actual images */}
-            {/* <Image
-              source={{ uri: item.image }}
-              style={styles.itemImage}
-              resizeMode="cover"
-            /> */}
-          </View>
-          
-          <View style={styles.itemInfo}>
-            <Text style={styles.itemTitle}>{item.title}</Text>
-            <Text style={styles.itemPrice}>{item.price}</Text>
-            
-            <View style={styles.ratingContainer}>
-              <Text style={styles.ratingText}>★</Text>
-            </View>
-          </View>
-        </View>
-      </TouchableOpacity>
-    );
-  };
+interface EducationalCardItemProps {
+  item: EducationalCard;
+  index: number;
+  totalItems: number;
+}
 
+interface TopGainerItemProps {
+  item: TopGainer;
+  index: number;
+  totalItems: number;
+}
+
+// Sub-components
+const CarouselIndicators: React.FC<CarouselIndicatorsProps> = ({ items, activeIndex }) => {
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-      
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Market</Text>
-        <TouchableOpacity style={styles.cartButton}>
-          <Text style={styles.cartIcon}>🛒</Text>
-        </TouchableOpacity>
-      </View>
-      
-      {/* Market Categories */}
-      <View style={styles.categoriesContainer}>
-        <ScrollableCategories />
-      </View>
-      
-      {/* Featured Products Carousel */}
-      <View style={styles.carouselSection}>
-        <Text style={styles.sectionTitle}>Featured Products</Text>
-        <View style={styles.carouselContainer}>
-          <CustomCarousel
-            data={marketItems}
-            renderItem={renderCarouselItem}
-          />
-        </View>
-      </View>
-      
-      {/* Selected Item Details */}
-      {selectedItem && (
-        <View style={styles.detailsContainer}>
-          <Text style={styles.detailsTitle}>{selectedItem.title}</Text>
-          <Text style={styles.detailsDescription}>{selectedItem.description}</Text>
-          
-          {/* Display tags if available */}
-          {selectedItem.tags && selectedItem.tags.length > 0 && (
-            <View style={styles.tagsContainer}>
-              {selectedItem.tags.map((tag, index) => (
-                <View key={index} style={styles.tagItem}>
-                  <Text style={styles.tagText}>{tag}</Text>
-                </View>
-              ))}
-            </View>
-          )}
-          
-          <TouchableOpacity 
-            style={[
-              styles.addToCartButton,
-              !selectedItem.inStock && styles.disabledButton
-            ]}
-            disabled={!selectedItem.inStock}
-          >
-            <Text style={styles.addToCartButtonText}>
-              {selectedItem.inStock 
-                ? `Add to Cart - ${selectedItem.price}`
-                : 'Out of Stock'}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      )}
-    </SafeAreaView>
-  );
-};
-
-// Scrollable Categories Component
-const ScrollableCategories: React.FC = () => {
-  const categories = ['All', 'Produce', 'Bakery', 'Dairy', 'Meats', 'Spices', 'Beverages'];
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  
-  return (
-    <View style={styles.categoriesScrollView}>
-      {categories.map((category, index) => (
-        <TouchableOpacity
+    <View style={styles.indicators}>
+      {items.map((_, index) => (
+        <View
           key={index}
           style={[
-            styles.categoryItem,
-            selectedCategory === category && styles.selectedCategoryItem
+            styles.indicator,
+            index === activeIndex && styles.activeIndicator
           ]}
-          onPress={() => setSelectedCategory(category)}
-        >
-          <Text 
-            style={[
-              styles.categoryText,
-              selectedCategory === category && styles.selectedCategoryText
-            ]}
-          >
-            {category}
-          </Text>
-        </TouchableOpacity>
+        />
       ))}
     </View>
   );
 };
 
-// CustomCarousel with TypeScript types
-const CustomCarousel: React.FC<CustomCarouselProps> = ({ data, renderItem }) => {
-  const flatListRef = useRef<FlatList>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const scrollX = useRef(new Animated.Value(0)).current;
-
-  const ITEM_WIDTH = SCREEN_WIDTH * 0.6;
-  const ITEM_PADDING = 15;
-  const viewableOffset = ITEM_WIDTH - (SCREEN_WIDTH - ITEM_WIDTH) + ITEM_PADDING;
-
-  useEffect(() => {
-    const listener = scrollX.addListener(({ value }) => {
-      const index = Math.round(value / viewableOffset);
-      if (index !== activeIndex && index >= 0 && index < data.length) {
-        setActiveIndex(index);
-      }
-    });
-
-    return () => {
-      scrollX.removeListener(listener);
-    };
-  }, [activeIndex, scrollX, viewableOffset, data.length]);
-
-  const handleScroll = Animated.event(
-    [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-    {
-      useNativeDriver: false,
-      listener: (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        const offsetX = event.nativeEvent.contentOffset.x;
-        const lastItemIndex = data.length - 1;
-        
-        if (activeIndex === lastItemIndex || 
-            (offsetX > (lastItemIndex * viewableOffset) - ITEM_WIDTH / 2)) {
-          const finalOffset = lastItemIndex * viewableOffset;
-          
-          if (Math.abs(offsetX - finalOffset) > 5) {
-            flatListRef.current?.scrollToOffset({
-              offset: finalOffset,
-              animated: true
-            });
-          }
-        }
-      }
-    }
-  );
-
-  const wrappedRenderItem = (itemProps: { item: MarketItem; index: number }) => {
-    const { item, index } = itemProps;
-    const inputRange = [
-      (index - 1) * viewableOffset,
-      index * viewableOffset,
-      (index + 1) * viewableOffset,
-    ];
-
-    const scale = scrollX.interpolate({
-      inputRange,
-      outputRange: [0.9, 1, 0.9],
-      extrapolate: 'clamp',
-    });
-
-    const opacity = scrollX.interpolate({
-      inputRange,
-      outputRange: [0.6, 1, 0.6],
-      extrapolate: 'clamp',
-    });
-
-    return (
-      <Animated.View
-        style={{
-          transform: [{ scale }],
-          opacity,
-        }}
-      >
-        {renderItem(itemProps)}
-      </Animated.View>
-    );
-  };
-
-  const getItemLayout = (_: any, index: number) => ({
-    length: viewableOffset,
-    offset: viewableOffset * index,
-    index,
-  });
-
-  const snapToOffsets = data.map((_, index) => index * viewableOffset);
-
+const EducationalCardItem: React.FC<EducationalCardItemProps> = ({ item, index, totalItems }) => {
   return (
-    <View style={styles.carouselWrapper}>
-      <FlatList
-        ref={flatListRef}
-        data={data}
-        renderItem={wrappedRenderItem}
-        keyExtractor={(item) => item.id.toString()}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        snapToOffsets={snapToOffsets}
-        snapToAlignment="start"
-        decelerationRate="fast"
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
-        getItemLayout={getItemLayout}
-        contentContainerStyle={styles.flatListContent}
-      />
-      
-      <View style={styles.pagination}>
-        {data.map((_, index) => (
-          <TouchableOpacity
-            key={index}
-            style={[
-              styles.paginationDot,
-              activeIndex === index && styles.paginationDotActive,
-            ]}
-            onPress={() => {
-              flatListRef.current?.scrollToIndex({
-                index,
-                animated: true,
-              });
-            }}
-          />
-        ))}
+    <TouchableOpacity 
+      style={[
+        styles.educationalCard, 
+        { width: CARD_WIDTH, marginRight: index === totalItems - 1 ? 0 : CARD_GAP }
+      ]}
+      activeOpacity={0.9}
+    >
+      <LinearGradient
+        colors={item.colors}
+        style={styles.cardGradient}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+      >
+        <Image
+          source={item.image}
+          style={styles.cardImage}
+          resizeMode="cover"
+        />
+        <View style={styles.cardContent}>
+          <Text style={styles.cardDuration}>{item.duration}</Text>
+          <Text style={styles.cardTitle}>{item.title}</Text>
+        </View>
+      </LinearGradient>
+    </TouchableOpacity>
+  );
+};
+
+const TopGainerItem: React.FC<TopGainerItemProps> = ({ item, index, totalItems }) => {
+  return (
+    <View 
+      style={[
+        styles.gainerCard, 
+        { width: CARD_WIDTH, marginRight: index === totalItems - 1 ? 0 : CARD_GAP }
+      ]}
+    >
+      <View style={[styles.gainerIcon, { backgroundColor: item.color }]}>
+        <Text style={styles.gainerIconText}>{item.iconText}</Text>
+      </View>
+      <View style={styles.gainerInfo}>
+        <Text style={styles.gainerName}>{item.name}</Text>
+        <Text style={styles.gainerTicker}>{item.ticker}</Text>
+      </View>
+      <View style={styles.gainerPrice}>
+        <Text style={styles.priceValue}>{item.price}</Text>
+        <Text style={styles.priceChange}>{item.change}</Text>
       </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+// Main component
+const MarketScreen: React.FC = () => {
+  // Sample data
+  const educationalCards: EducationalCard[] = [
+    {
+      id: '1',
+      title: 'What is DeFi?',
+      duration: '56 seconds total',
+      colors: ['#9333EA', '#3B82F6'],
+      image: images.login.InvestBottom
+    },
+    {
+      id: '2',
+      title: 'What is yield?',
+      duration: '40 seconds total',
+      colors: ['#FB7185', '#EF4444'],
+      image: images.login.InvestBottom
+    },
+    {
+      id: '3',
+      title: 'How to stake tokens?',
+      duration: '62 seconds total',
+      colors: ['#10B981', '#14B8A6'],
+      image: images.login.InvestBottom
+    },
+    {
+      id: '4',
+      title: 'NFT basics',
+      duration: '45 seconds total',
+      colors: ['#F59E0B', '#F97316'],
+      image: images.login.InvestBottom
+    },
+  ];
+
+  const topGainers: TopGainer[] = [
+    {
+      id: '1',
+      name: 'Particle Network',
+      ticker: 'PARTI',
+      price: '$0.3568',
+      change: '+12%',
+      color: '#9333EA',
+      iconText: 'P',
+    },
+    {
+      id: '2',
+      name: 'Limewire',
+      ticker: 'LMWR',
+      price: '$0.09479',
+      change: '+9%',
+      color: '#10B981',
+      iconText: 'L',
+    },
+    {
+      id: '3',
+      name: 'Brett',
+      ticker: 'BRETT',
+      price: '$0.03741',
+      change: '+5%',
+      color: '#3B82F6',
+      iconText: 'B',
+    },
+    {
+      id: '4',
+      name: 'Kaito',
+      ticker: 'KAITO',
+      price: '$1.35',
+      change: '+19%',
+      color: '#2DD4BF',
+      iconText: 'K',
+    },
+  ];
+
+  // Refs and state
+  const topCarouselRef = useRef<FlatList<EducationalCard>>(null);
+  const bottomCarouselRef = useRef<FlatList<TopGainer>>(null);
+  const [topActiveIndex, setTopActiveIndex] = useState<number>(0);
+  const [bottomActiveIndex, setBottomActiveIndex] = useState<number>(0);
+
+  // Handlers with proper TypeScript event types
+  const handleTopScrollEnd = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const contentOffset = e.nativeEvent.contentOffset.x;
+    const index = Math.round(contentOffset / (CARD_WIDTH + CARD_GAP));
+    setTopActiveIndex(index);
+  }, []);
+
+  const handleBottomScrollEnd = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const contentOffset = e.nativeEvent.contentOffset.x;
+    const index = Math.round(contentOffset / (CARD_WIDTH + CARD_GAP));
+    setBottomActiveIndex(index);
+  }, []);
+
+  // Render functions with proper typing
+  const renderEducationalCard = useCallback(
+    ({ item, index }: ListRenderItemInfo<EducationalCard>) => (
+      <EducationalCardItem 
+        item={item} 
+        index={index} 
+        totalItems={educationalCards.length} 
+      />
+    ), 
+    [educationalCards.length]
+  );
+
+  const renderTopGainer = useCallback(
+    ({ item, index }: ListRenderItemInfo<TopGainer>) => (
+      <TopGainerItem 
+        item={item} 
+        index={index} 
+        totalItems={topGainers.length} 
+      />
+    ), 
+    [topGainers.length]
+  );
+
+  // Item layout calculator for optimized FlatList performance
+  const getItemLayout = useCallback(
+    (_: any, index: number) => ({
+      length: CARD_WIDTH + CARD_GAP,
+      offset: (CARD_WIDTH + CARD_GAP) * index,
+      index,
+    }), 
+    []
+  );
+
+  // Optional: Navigate to specific card programmatically
+  const scrollToEducationalCard = useCallback((index: number) => {
+    topCarouselRef.current?.scrollToIndex({ index, animated: true });
+  }, []);
+
+  const scrollToGainer = useCallback((index: number) => {
+    bottomCarouselRef.current?.scrollToIndex({ index, animated: true });
+  }, []);
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" />
+      
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.welcomeText}>Welcome</Text>
+        <View style={styles.dateContainer}>
+          <Text style={styles.dateText}>Monday, March 5th</Text>
+          <View style={styles.marketStatus}>
+            <View style={styles.statusDot} />
+            <Text style={styles.statusText}>Markets are always open</Text>
+          </View>
+        </View>
+      </View>
+      
+      {/* Learn about finance section */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Learn about the future of finance</Text>
+        
+        <View style={styles.carouselContainer}>
+          <FlatList
+            ref={topCarouselRef}
+            data={educationalCards}
+            renderItem={renderEducationalCard}
+            keyExtractor={(item) => item.id}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled
+            snapToInterval={CARD_WIDTH + CARD_GAP}
+            decelerationRate="fast"
+            contentContainerStyle={styles.carouselContent}
+            onMomentumScrollEnd={handleTopScrollEnd}
+            initialScrollIndex={0}
+            getItemLayout={getItemLayout}
+            removeClippedSubviews={true} // Performance optimization
+          />
+          <CarouselIndicators 
+            items={educationalCards}
+            activeIndex={topActiveIndex}
+          />
+        </View>
+      </View>
+      
+      {/* Top gainers section */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Top gainers</Text>
+        <Text style={styles.sectionSubtitle}>Price rising over the past 24 hours</Text>
+        
+        <FlatList
+          ref={bottomCarouselRef}
+          data={topGainers}
+          renderItem={renderTopGainer}
+          keyExtractor={(item) => item.id}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled
+          snapToInterval={CARD_WIDTH + CARD_GAP}
+          decelerationRate="fast"
+          contentContainerStyle={styles.carouselContent}
+          onMomentumScrollEnd={handleBottomScrollEnd}
+          initialScrollIndex={0}
+          getItemLayout={getItemLayout}
+          removeClippedSubviews={true} // Performance optimization
+        />
+      </View>
+      
+      {/* Deposit button */}
+      <View style={styles.footer}>
+        <TouchableOpacity 
+          style={styles.depositButton} 
+          activeOpacity={0.8}
+          onPress={() => console.log('Deposit pressed')}
+        >
+          <Text style={styles.depositButtonText}>Deposit</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+// Typed styles
+interface IStyles {
+  container: ViewStyle;
+  header: ViewStyle;
+  welcomeText: TextStyle;
+  dateContainer: ViewStyle;
+  dateText: TextStyle;
+  marketStatus: ViewStyle;
+  statusDot: ViewStyle;
+  statusText: TextStyle;
+  section: ViewStyle;
+  sectionTitle: TextStyle;
+  sectionSubtitle: TextStyle;
+  carouselContainer: ViewStyle;
+  carouselContent: ViewStyle;
+  educationalCard: ViewStyle;
+  cardGradient: ViewStyle;
+  cardImage: ImageStyle;
+  cardContent: ViewStyle;
+  cardDuration: TextStyle;
+  cardTitle: TextStyle;
+  indicators: ViewStyle;
+  indicator: ViewStyle;
+  activeIndicator: ViewStyle;
+  gainerCard: ViewStyle;
+  gainerIcon: ViewStyle;
+  gainerIconText: TextStyle;
+  gainerInfo: ViewStyle;
+  gainerName: TextStyle;
+  gainerTicker: TextStyle;
+  gainerPrice: ViewStyle;
+  priceValue: TextStyle;
+  priceChange: TextStyle;
+  footer: ViewStyle;
+  depositButton: ViewStyle;
+  depositButtonText: TextStyle;
+}
+
+const styles = StyleSheet.create<IStyles>({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#ffffff',
   },
   header: {
+    paddingHorizontal: 16,
+    paddingTop: 12,
+    paddingBottom: 8,
+  },
+  welcomeText: {
+    fontSize: 12,
+    color: '#EC4899',
+    fontWeight: '500',
+  },
+  dateContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#eaeaea',
+    marginTop: 4,
   },
-  headerTitle: {
-    fontSize: 24,
+  dateText: {
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#212529',
+    color: '#000000',
   },
-  cartButton: {
+  marketStatus: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  statusDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: '#10B981',
+    marginRight: 4,
+  },
+  statusText: {
+    fontSize: 12,
+    color: '#10B981',
+  },
+  section: {
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#000000',
+    marginBottom: 10,
+  },
+  sectionSubtitle: {
+    fontSize: 12,
+    color: '#6B7280',
+    marginBottom: 10,
+  },
+  carouselContainer: {
+    position: 'relative',
+  },
+  carouselContent: {
+    paddingRight: 16,
+  },
+  educationalCard: {
+    height: 120,
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  cardGradient: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    borderRadius: 12,
+  },
+  cardImage: {
+    ...StyleSheet.absoluteFillObject,
+    width: '100%',
+    height: '100%',
+    opacity: 0.7,
+  },
+  cardContent: {
+    padding: 12,
+  },
+  cardDuration: {
+    fontSize: 12,
+    color: 'rgba(255, 255, 255, 0.8)',
+    marginBottom: 2,
+  },
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+  },
+  indicators: {
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+    flexDirection: 'row',
+  },
+  indicator: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    marginLeft: 4,
+  },
+  activeIndicator: {
+    width: 16,
+    backgroundColor: '#FFFFFF',
+  },
+  gainerCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+  },
+  gainerIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#f8f9fa',
     justifyContent: 'center',
     alignItems: 'center',
+    marginRight: 12,
   },
-  cartIcon: {
-    fontSize: 20,
-  },
-  categoriesContainer: {
-    paddingVertical: 15,
-    backgroundColor: '#fff',
-    marginBottom: 10,
-  },
-  categoriesScrollView: {
-    flexDirection: 'row',
-    paddingHorizontal: 15,
-  },
-  categoryItem: {
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    marginRight: 10,
-    borderRadius: 20,
-    backgroundColor: '#f1f3f5',
-  },
-  selectedCategoryItem: {
-    backgroundColor: '#339af0',
-  },
-  categoryText: {
-    fontWeight: '500',
-    color: '#495057',
-  },
-  selectedCategoryText: {
-    color: '#fff',
-  },
-  carouselSection: {
-    marginVertical: 15,
-  },
-  sectionTitle: {
-    fontSize: 20,
+  gainerIconText: {
+    fontSize: 18,
     fontWeight: 'bold',
-    marginLeft: 20,
-    marginBottom: 15,
-    color: '#212529',
+    color: '#FFFFFF',
   },
-  carouselContainer: {
-    height: 220,
-  },
-  carouselWrapper: {
+  gainerInfo: {
     flex: 1,
   },
-  flatListContent: {
-    paddingLeft: (SCREEN_WIDTH - (SCREEN_WIDTH * 0.6)) / 2,
-    paddingRight: (SCREEN_WIDTH - (SCREEN_WIDTH * 0.6)) / 2,
-  },
-  carouselItemContainer: {
-    width: SCREEN_WIDTH * 0.6,
-    paddingHorizontal: 15,
-  },
-  carouselItem: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    overflow: 'hidden',
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    height: 180,
-  },
-  imageContainer: {
-    height: 120,
-    backgroundColor: '#e9ecef',
-  },
-  imagePlaceholder: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#339af0',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  imagePlaceholderText: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  itemImage: {
-    width: '100%',
-    height: '100%',
-  },
-  itemInfo: {
-    padding: 12,
-  },
-  itemTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#212529',
-    marginBottom: 4,
-  },
-  itemPrice: {
-    fontSize: 15,
+  gainerName: {
+    fontSize: 14,
     fontWeight: '500',
-    color: '#339af0',
+    color: '#000000',
   },
-  ratingContainer: {
-    position: 'absolute',
-    right: 12,
-    bottom: 12,
-    backgroundColor: '#fee500',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 10,
-  },
-  ratingText: {
+  gainerTicker: {
     fontSize: 12,
-    fontWeight: 'bold',
-    color: '#212529',
+    color: '#6B7280',
   },
-  pagination: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 10,
+  gainerPrice: {
+    alignItems: 'flex-end',
   },
-  paginationDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#ced4da',
-    marginHorizontal: 4,
+  priceValue: {
+    fontSize: 14,
+    color: '#000000',
   },
-  paginationDotActive: {
-    backgroundColor: '#339af0',
-    width: 12,
-    height: 12,
-    borderRadius: 6,
+  priceChange: {
+    fontSize: 12,
+    color: '#10B981',
   },
-  detailsContainer: {
-    backgroundColor: '#fff',
-    padding: 20,
-    marginHorizontal: 20,
-    marginTop: 10,
+  footer: {
+    padding: 16,
+    marginTop: 'auto',
+  },
+  depositButton: {
+    backgroundColor: '#000000',
+    paddingVertical: 14,
     borderRadius: 12,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  detailsTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#212529',
-    marginBottom: 8,
-  },
-  detailsDescription: {
-    fontSize: 15,
-    color: '#495057',
-    marginBottom: 15,
-    lineHeight: 22,
-  },
-  tagsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginBottom: 15,
-  },
-  tagItem: {
-    backgroundColor: '#e9ecef',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 15,
-    marginRight: 8,
-    marginBottom: 8,
-  },
-  tagText: {
-    fontSize: 12,
-    color: '#495057',
-  },
-  addToCartButton: {
-    backgroundColor: '#339af0',
-    paddingVertical: 12,
-    borderRadius: 8,
     alignItems: 'center',
   },
-  disabledButton: {
-    backgroundColor: '#ced4da',
-  },
-  addToCartButtonText: {
-    color: '#fff',
+  depositButtonText: {
+    color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
 });
 

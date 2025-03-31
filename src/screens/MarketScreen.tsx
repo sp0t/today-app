@@ -427,7 +427,7 @@ const MarketScreen: React.FC = () => {
       </View>
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Top gainers</Text>
-        <Text style={styles.sectionTitle}>Price rising over the past 24 hours</Text>
+        <Text style={styles.sectionSubtitle}>Price rising over the past 24 hours</Text>
         <FlatList
           ref={bottomCarouselRef}
           data={groupedPages}

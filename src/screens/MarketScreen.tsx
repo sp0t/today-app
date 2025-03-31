@@ -299,10 +299,10 @@ const MarketScreen: React.FC = () => {
             getItemLayout={getItemLayout}
             removeClippedSubviews={true} // Performance optimization
           />
-          <CarouselIndicators
+          {/* <CarouselIndicators
             items={educationalCards}
             activeIndex={topActiveIndex}
-          />
+          /> */}
         </View>
       </View>
 
@@ -445,7 +445,7 @@ const styles = StyleSheet.create<IStyles>({
   },
   carouselContainer: {
     position: 'relative',
-    paddingLeft: 20
+    paddingTop: 12
   },
   carouselContent: {
     paddingRight: 16,

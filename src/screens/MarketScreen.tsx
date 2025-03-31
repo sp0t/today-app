@@ -559,7 +559,9 @@ const styles = StyleSheet.create<IStyles>({
     fontSize: 12,
     color: '#808080',
     letterSpacing: -0.1,
-    fontWeight:'400'
+    fontWeight:'400',
+    paddingHorizontal: 20,
+    marginTop: 6
   },
   carouselContainer: {
     position: 'relative',

@@ -622,7 +622,7 @@ const styles = StyleSheet.create<IStyles>({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 8,
-    paddingRight: 32
+    paddingRight: 20
   },
   gainerIcon: {
     width: 40,

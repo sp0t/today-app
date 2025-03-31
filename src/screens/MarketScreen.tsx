@@ -346,7 +346,7 @@ const MarketScreen: React.FC = () => {
 
   const renderTopGainerPage = useCallback(
     ({ item }: { item: TopGainer[] }) => (
-      <View>
+      <View style={{width: GANINER_CARD_WIDTH}}>
         {item.map((gainer, index) => (
           <TopGainerItem
             key={gainer.id}
@@ -434,7 +434,7 @@ const MarketScreen: React.FC = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           pagingEnabled
-          snapToInterval={GANINER_CARD_WIDTH + CARD_GAP*3}
+          snapToInterval={GANINER_CARD_WIDTH}
           decelerationRate="fast"
           contentContainerStyle={styles.carouselContent}
           onMomentumScrollEnd={handleBottomScrollEnd}

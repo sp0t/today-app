@@ -113,7 +113,10 @@ const TopGainerItem: React.FC<TopGainerItemProps> = ({ item, index, totalItems }
     <View
       style={[
         styles.gainerCard,
-        { width: CARD_WIDTH, marginRight: index === totalItems - 1 ? 0 : 20 }
+        { width: CARD_WIDTH, 
+          marginRight: index === totalItems - 1 ? 0 : 20,
+          marginLeft: index === 0 ? 20 : 0
+        }
       ]}
     >
       <View style={[styles.gainerIcon, { backgroundColor: item.color }]}>

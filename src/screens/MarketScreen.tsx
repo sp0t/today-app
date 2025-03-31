@@ -121,24 +121,23 @@ const MarketScreen = () => {
             <View style={styles.educationalCarouselContainer}>
                 <Carousel
                     ref={educationalCarouselRef}
-                    loop={false}  // Disable loop to prevent sliding beyond boundaries
+                    loop={false}
                     width={width}
-                    height={180}
+                    height={210}
                     snapEnabled={true}
                     pagingEnabled={true}
                     data={educationalItems}
                     scrollAnimationDuration={1000}
                     onProgressChange={(_, absoluteProgress) => {
-                        progressValue.value = absoluteProgress;
+                        gainersProgressValue.value = absoluteProgress;
                     }}
                     onSnapToItem={handleEducationalSnapToItem}
                     mode="parallax"
                     modeConfig={{
-                        parallaxScrollingScale: 0.85, // Adjust to make side items more visible
-                        parallaxScrollingOffset: 200,  // Increase offset for better side visibility
-                        parallaxAdjacentItemScale: 0.75, // Scale for adjacent items (if supported)
+                        parallaxScrollingScale: 0.9,  // Try 0.9 for better effect
+                        parallaxScrollingOffset: 100,  // Reduce offset
                     }}
-                    renderItem={({ item, index }) => (
+                    renderItem={({ item }) => (
                         <TouchableOpacity style={[
                             styles.educationalCard,
                             { backgroundColor: item.backgroundColor }

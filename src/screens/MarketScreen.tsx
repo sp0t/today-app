@@ -268,7 +268,7 @@ const MarketScreen: React.FC = () => {
 
   // Refs and state
   const topCarouselRef = useRef<FlatList<EducationalCard>>(null);
-  const bottomCarouselRef = useRef<FlatList<TopGainer>>(null);
+  const bottomCarouselRef = useRef<FlatList<TopGainer[]>>(null);
   const [topActiveIndex, setTopActiveIndex] = useState<number>(0);
   const [bottomActiveIndex, setBottomActiveIndex] = useState<number>(0);
 
@@ -367,25 +367,25 @@ const MarketScreen: React.FC = () => {
             removeClippedSubviews={true} // Performance optimization
           />
         </View>
-        <View>
-          <FlatList
-            ref= {bottomCarouselRef}
-            data={groupedPages}
-            renderItem={renderTopGainerPage}
-            keyExtractor={(_, index) => index.toString()}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            pagingEnabled
-            snapToInterval={CARD_WIDTH + CARD_GAP} 
-            decelerationRate="fast"
-            contentContainerStyle={styles.carouselContent}
-            onMomentumScrollEnd={handleBottomScrollEnd}
-            initialScrollIndex={0}
-            getItemLayout={getItemLayout} // update this function accordingly for pages
-            removeClippedSubviews={true} // Performance optimization
-          />
 
-        </View>
+      </View>
+      <View>
+        <FlatList
+          ref={bottomCarouselRef}
+          data={groupedPages}
+          renderItem={renderTopGainerPage}
+          keyExtractor={(_, index) => index.toString()}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled
+          snapToInterval={CARD_WIDTH + CARD_GAP}
+          decelerationRate="fast"
+          contentContainerStyle={styles.carouselContent}
+          onMomentumScrollEnd={handleBottomScrollEnd}
+          initialScrollIndex={0}
+          getItemLayout={getItemLayout} // update this function accordingly for pages
+          removeClippedSubviews={true} // Performance optimization
+        />
 
       </View>
       {/* Deposit button */}

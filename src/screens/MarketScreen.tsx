@@ -393,7 +393,7 @@ const MarketScreen: React.FC = () => {
           contentContainerStyle={styles.carouselContent}
           onMomentumScrollEnd={handleBottomScrollEnd}
           initialScrollIndex={0}
-          getItemLayout={getItemLayout} // update this function accordingly for pages
+          getItemLayout={getGainerItemLayout} // update this function accordingly for pages
           removeClippedSubviews={true} // Performance optimization
         />
 

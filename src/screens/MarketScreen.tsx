@@ -428,8 +428,7 @@ const styles = StyleSheet.create<IStyles>({
     fontWeight: '400'
   },
   section: {
-    paddingHorizontal: 16,
-    paddingVertical: 16,
+    paddingVertical: 32
   },
   sectionTitle: {
     fontSize: 16,

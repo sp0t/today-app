@@ -491,8 +491,6 @@ interface IStyles {
   priceValue: TextStyle;
   priceChange: TextStyle;
   footer: ViewStyle;
-  depositButton: ViewStyle;
-  depositButtonText: TextStyle;
 }
 
 const styles = StyleSheet.create<IStyles>({
@@ -669,18 +667,7 @@ const styles = StyleSheet.create<IStyles>({
   footer: {
     padding: 16,
     marginTop: 'auto',
-  },
-  depositButton: {
-    backgroundColor: '#000000',
-    paddingVertical: 14,
-    borderRadius: 12,
-    alignItems: 'center',
-  },
-  depositButtonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '500',
-  },
+  }
 });
 
 export default MarketScreen;

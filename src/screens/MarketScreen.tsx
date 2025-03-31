@@ -445,6 +445,7 @@ const styles = StyleSheet.create<IStyles>({
   },
   carouselContainer: {
     position: 'relative',
+    paddingLeft: 20
   },
   carouselContent: {
     paddingRight: 16,

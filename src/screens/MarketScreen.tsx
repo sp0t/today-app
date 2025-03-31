@@ -71,12 +71,57 @@ const MarketScreen = () => {
             icon: images.login.LearnTop,
             rightIcon: images.login.LearnTop,
         },
+        {
+            id: 5,
+            name: 'Kaito',
+            symbol: 'KAITO',
+            price: '$1.35',
+            change: '+19%',
+            icon: images.login.LearnTop,
+            rightIcon: images.login.LearnTop,
+        },
+        {
+            id: 6,
+            name: 'Kaito',
+            symbol: 'KAITO',
+            price: '$1.35',
+            change: '+19%',
+            icon: images.login.LearnTop,
+            rightIcon: images.login.LearnTop,
+        },
+        {
+            id: 7,
+            name: 'Kaito',
+            symbol: 'KAITO',
+            price: '$1.35',
+            change: '+19%',
+            icon: images.login.LearnTop,
+            rightIcon: images.login.LearnTop,
+        },
+        {
+            id: 8,
+            name: 'Kaito',
+            symbol: 'KAITO',
+            price: '$1.35',
+            change: '+19%',
+            icon: images.login.LearnTop,
+            rightIcon: images.login.LearnTop,
+        },
+        {
+            id: 9,
+            name: 'Kaito',
+            symbol: 'KAITO',
+            price: '$1.35',
+            change: '+19%',
+            icon: images.login.LearnTop,
+            rightIcon: images.login.LearnTop,
+        },
     ];
 
     // Split topGainers into chunks of 2 for pagination
     const gainersChunks = [];
-    for (let i = 0; i < topGainers.length; i += 2) {
-        gainersChunks.push(topGainers.slice(i, i + 2));
+    for (let i = 0; i < topGainers.length; i += 4) {
+        gainersChunks.push(topGainers.slice(i, i + 4));
     }
 
     const progressValue = useSharedValue(0);

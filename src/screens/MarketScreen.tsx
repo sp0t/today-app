@@ -650,6 +650,7 @@ const styles = StyleSheet.create<IStyles>({
     color: '#6B7280',
   },
   gainerPrice: {
+    flex: 1,
     alignItems: 'flex-end',
     alignContent: 'space-between'
   },

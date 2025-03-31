@@ -654,7 +654,7 @@ const styles = StyleSheet.create<IStyles>({
     color: '#808080',
   },
   gainerPrice: {
-    marginTop:2,
+    marginTop:4,
     alignItems: 'flex-end',
     alignContent: 'space-between'
   },

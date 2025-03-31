@@ -388,7 +388,7 @@ const MarketScreen: React.FC = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           pagingEnabled
-          snapToInterval={CARD_WIDTH + CARD_GAP}
+          snapToInterval={GANINER_CARD_WIDTH + CARD_GAP}
           decelerationRate="fast"
           contentContainerStyle={styles.carouselContent}
           onMomentumScrollEnd={handleBottomScrollEnd}

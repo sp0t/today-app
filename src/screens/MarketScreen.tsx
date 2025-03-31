@@ -231,7 +231,7 @@ const MarketScreen = () => {
                     mode="parallax"
                     modeConfig={{
                         parallaxScrollingScale: 0.9,  // Try 0.9 for better effect
-                        parallaxScrollingOffset: 100,  // Reduce offset
+                        parallaxScrollingOffset: 16,  // Reduce offset
                     }}
                     renderItem={({ item }) => (
                         <View style={[styles.gainersListContainer]}>

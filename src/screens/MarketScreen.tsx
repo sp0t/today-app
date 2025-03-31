@@ -1,64 +1,56 @@
-import React, { useRef } from 'react';
-import { View, FlatList, Dimensions, Animated } from 'react-native';
+import React, { useRef } from "react";
+import { View, FlatList, Dimensions, StyleSheet } from "react-native";
 
-const { width } = Dimensions.get('window');
-const ITEM_WIDTH = width * 0.5;
-const NEXT_ITEM_OPACITY = 0.8;
+const { width } = Dimensions.get("window");
 
-const data = [
-  { id: '1', color: 'red' },
-  { id: '2', color: 'blue' },
-  { id: '3', color: 'green' },
-  { id: '4', color: 'orange' },
-  { id: '5', color: 'purple' }
-];
+const ITEM_WIDTH = width * 0.8; // Focused item width
+const SPACING = 20; // Margin spacing
+const DATA = Array.from({ length: 5 }, (_, i) => ({ id: i }));
 
 const MarketScreen = () => {
-  const scrollX = useRef(new Animated.Value(0)).current;
+  const flatListRef = useRef<FlatList>(null);
+
+  const renderItem = ({ item, index }: { item: any; index: number }) => {
+    const isLastItem = index === DATA.length - 1;
+    const marginLeft = index === 0 ? SPACING : 0;
+    const marginRight = isLastItem ? SPACING : 0;
+
+    return (
+      <View
+        style={[
+          styles.item,
+          {
+            marginLeft,
+            marginRight,
+          },
+        ]}
+      />
+    );
+  };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <FlatList
-        data={data}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled
-        snapToAlignment="start"
-        decelerationRate="fast"
-        snapToInterval={ITEM_WIDTH}
-        scrollEventThrottle={16}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
-        )}
-        renderItem={({ item, index }) => {
-          const inputRange = [
-            (index - 1) * ITEM_WIDTH,
-            index * ITEM_WIDTH,
-            (index + 1) * ITEM_WIDTH
-          ];
-          
-          const opacity = scrollX.interpolate({
-            inputRange,
-            outputRange: [NEXT_ITEM_OPACITY, 1, NEXT_ITEM_OPACITY],
-            extrapolate: 'clamp'
-          });
-
-          return (
-            <Animated.View
-              style={{
-                width: ITEM_WIDTH,
-                opacity,
-                height: 200,
-                backgroundColor: item.color,
-                borderRadius: 10
-              }}
-            />
-          );
-        }}
-      />
-    </View>
+    <FlatList
+      ref={flatListRef}
+      data={DATA}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={renderItem}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      pagingEnabled
+      snapToInterval={ITEM_WIDTH}
+      decelerationRate="fast"
+      contentContainerStyle={{ paddingRight: SPACING }}
+    />
   );
 };
+
+const styles = StyleSheet.create({
+  item: {
+    width: ITEM_WIDTH,
+    height: 200,
+    backgroundColor: "gray",
+    borderRadius: 10,
+  },
+});
 
 export default MarketScreen;

@@ -395,8 +395,8 @@ const styles = StyleSheet.create<IStyles>({
     paddingBottom: 8,
   },
   welcomeText: {
-    fontSize: 12,
-    color: '#EC4899',
+    fontSize: 10,
+    color: '#F30AA1',
     fontWeight: '500',
   },
   dateContainer: {
@@ -406,8 +406,8 @@ const styles = StyleSheet.create<IStyles>({
     marginTop: 4,
   },
   dateText: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 14,
+    fontWeight: '600',
     color: '#000000',
   },
   marketStatus: {
@@ -423,7 +423,8 @@ const styles = StyleSheet.create<IStyles>({
   },
   statusText: {
     fontSize: 12,
-    color: '#10B981',
+    color: '#000000',
+    fontWeight: '400'
   },
   section: {
     paddingHorizontal: 16,

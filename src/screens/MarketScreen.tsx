@@ -81,9 +81,9 @@ const CarouselIndicators: React.FC<CarouselIndicatorsProps> = ({ items, activeIn
 
 const EducationalCardItem: React.FC<EducationalCardItemProps> = ({ item, index, totalItems }) => {
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={[
-        styles.educationalCard, 
+        styles.educationalCard,
         { width: CARD_WIDTH, marginRight: index === totalItems - 1 ? 0 : CARD_GAP }
       ]}
       activeOpacity={0.9}
@@ -110,9 +110,9 @@ const EducationalCardItem: React.FC<EducationalCardItemProps> = ({ item, index, 
 
 const TopGainerItem: React.FC<TopGainerItemProps> = ({ item, index, totalItems }) => {
   return (
-    <View 
+    <View
       style={[
-        styles.gainerCard, 
+        styles.gainerCard,
         { width: CARD_WIDTH, marginRight: index === totalItems - 1 ? 0 : CARD_GAP }
       ]}
     >
@@ -226,23 +226,23 @@ const MarketScreen: React.FC = () => {
   // Render functions with proper typing
   const renderEducationalCard = useCallback(
     ({ item, index }: ListRenderItemInfo<EducationalCard>) => (
-      <EducationalCardItem 
-        item={item} 
-        index={index} 
-        totalItems={educationalCards.length} 
+      <EducationalCardItem
+        item={item}
+        index={index}
+        totalItems={educationalCards.length}
       />
-    ), 
+    ),
     [educationalCards.length]
   );
 
   const renderTopGainer = useCallback(
     ({ item, index }: ListRenderItemInfo<TopGainer>) => (
-      <TopGainerItem 
-        item={item} 
-        index={index} 
-        totalItems={topGainers.length} 
+      <TopGainerItem
+        item={item}
+        index={index}
+        totalItems={topGainers.length}
       />
-    ), 
+    ),
     [topGainers.length]
   );
 
@@ -252,7 +252,7 @@ const MarketScreen: React.FC = () => {
       length: CARD_WIDTH + CARD_GAP,
       offset: (CARD_WIDTH + CARD_GAP) * index,
       index,
-    }), 
+    }),
     []
   );
 
@@ -269,20 +269,19 @@ const MarketScreen: React.FC = () => {
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.welcomeText}>Welcome</Text>
-        <View style={styles.dateContainer}>
+        <View>
+          <Text style={styles.welcomeText}>Welcome</Text>
           <Text style={styles.dateText}>Monday, March 5th</Text>
-          <View style={styles.marketStatus}>
-            <View style={styles.statusDot} />
+        </View>
+        <View style={styles.dateContainer}>
             <Text style={styles.statusText}>Markets are always open</Text>
-          </View>
         </View>
       </View>
-      
+
       {/* Learn about finance section */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Learn about the future of finance</Text>
-        
+
         <View style={styles.carouselContainer}>
           <FlatList
             ref={topCarouselRef}
@@ -300,18 +299,18 @@ const MarketScreen: React.FC = () => {
             getItemLayout={getItemLayout}
             removeClippedSubviews={true} // Performance optimization
           />
-          <CarouselIndicators 
+          <CarouselIndicators
             items={educationalCards}
             activeIndex={topActiveIndex}
           />
         </View>
       </View>
-      
+
       {/* Top gainers section */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Top gainers</Text>
         <Text style={styles.sectionSubtitle}>Price rising over the past 24 hours</Text>
-        
+
         <FlatList
           ref={bottomCarouselRef}
           data={topGainers}
@@ -329,11 +328,11 @@ const MarketScreen: React.FC = () => {
           removeClippedSubviews={true} // Performance optimization
         />
       </View>
-      
+
       {/* Deposit button */}
       <View style={styles.footer}>
-        <TouchableOpacity 
-          style={styles.depositButton} 
+        <TouchableOpacity
+          style={styles.depositButton}
           activeOpacity={0.8}
           onPress={() => console.log('Deposit pressed')}
         >
@@ -389,6 +388,7 @@ const styles = StyleSheet.create<IStyles>({
   },
   header: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingTop: 16,
     paddingBottom: 8,

@@ -1,4 +1,7 @@
 {
   "name": "today_app",
-  "displayName": "today_app"
+  "displayName": "today_app",
+  "plugins": [
+    "expo-secure-store"
+  ]
 }

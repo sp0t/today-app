@@ -9,7 +9,6 @@ import MainTabNavigator from './AppNavigator';
 // screens
 import OnboardingScreen from '../screens/OnboardingScreen';
 import LoginScreen from '../screens/LoginScreen';
-import MarketScreen from '../screens/MarketScreen';
 
 const Stack = createStackNavigator();
 
